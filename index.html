@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observatorio de Seguridad Alimentaria Chile</title>
+<meta name="description" content="Monitoreamos el acceso de los hogares chilenos a los alimentos y su exposición al riesgo climático. Datos, análisis y alerta temprana sobre la canasta básica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pino:#16302A;
+  --pino-2:#1E3E35;
+  --pino-3:#27503F;
+  --musgo:#3A6B57;
+  --trigo:#C88A3C;
+  --trigo-cl:#E0A85C;
+  --papel:#F3EFE6;
+  --papel-2:#EAE4D6;
+  --tiza:#E6EDE7;
+  --humo:#9FB3A8;
+  --tinta:#152621;
+  --r1:#2E5A4C; --r2:#5F7A48; --r3:#A08F42; --r4:#C88A3C; --r5:#B4562A;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{background:var(--pino);color:var(--tiza);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--trigo-cl);margin-bottom:18px}
+.eyebrow--dark{color:var(--musgo)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.015em}
+h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin-bottom:18px}
+h3{font-size:1.22rem;line-height:1.25;margin-bottom:10px}
+p{margin-bottom:1em}
+p:last-child{margin-bottom:0}
+.lede{font-size:1.12rem;color:var(--humo);max-width:62ch}
+section{padding:96px 0}
+.paper{background:var(--papel);color:var(--tinta)}
+.paper .lede{color:#4A5B53}
+.paper h2,.paper h3{color:var(--tinta)}
+:focus-visible{outline:2.5px solid var(--trigo-cl);outline-offset:3px;border-radius:2px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(22,48,42,.82);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.stuck{border-bottom-color:var(--pino-3)}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-txt{font-family:var(--serif);font-size:.98rem;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+.brand-txt small{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--humo);font-weight:400;margin-top:2px}
+.nav-links{margin-left:auto;display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:.88rem;text-decoration:none;color:var(--humo);transition:color .2s}
+.nav-links a:hover{color:var(--tiza)}
+.btn{display:inline-block;font-family:var(--sans);font-size:.88rem;font-weight:500;text-decoration:none;padding:10px 20px;border-radius:2px;transition:all .2s;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:var(--trigo);color:var(--tinta);border-color:var(--trigo)}
+.btn-solid:hover{background:var(--trigo-cl);border-color:var(--trigo-cl)}
+.btn-ghost{border-color:var(--musgo);color:var(--tiza);background:none}
+.btn-ghost:hover{border-color:var(--trigo-cl);color:var(--trigo-cl)}
+.nav-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--musgo);color:var(--tiza);padding:7px 11px;border-radius:2px;font-family:var(--mono);font-size:.75rem}
+
+/* ---------- hero ---------- */
+.hero{padding:86px 0 78px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 22%,rgba(46,90,76,.5),transparent 62%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.15rem);margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--trigo-cl)}
+.hero-sub{font-size:1.16rem;color:var(--humo);max-width:46ch;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- canasta (signature) ---------- */
+.canasta-card{background:var(--pino-2);border:1px solid var(--pino-3);border-radius:4px;padding:24px}
+.canasta-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.canasta-head strong{font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--humo);font-weight:500}
+.canasta-read{font-family:var(--mono);font-size:.72rem;color:var(--trigo-cl);min-height:1.1em}
+.canasta{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.cell{aspect-ratio:1;border-radius:2px;background:var(--pino-3);opacity:0;transform:scale(.55);border:none;padding:0;cursor:pointer;transition:opacity .32s ease,transform .32s ease}
+.cell.on{opacity:1;transform:scale(1)}
+.cell:hover,.cell:focus-visible{transform:scale(1.32);z-index:2;position:relative}
+.legend{display:flex;align-items:center;gap:9px;margin-top:16px;font-family:var(--mono);font-size:.66rem;color:var(--humo);letter-spacing:.05em}
+.ramp{display:flex;gap:3px}
+.ramp i{width:17px;height:7px;border-radius:1px;display:block}
+.canasta-note{margin-top:14px;font-size:.76rem;line-height:1.5;color:#7C9488}
+
+/* ---------- data strip ---------- */
+.strip{background:var(--pino-2);border-top:1px solid var(--pino-3);border-bottom:1px solid var(--pino-3);padding:52px 0}
+.strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+.stat .fig{font-family:var(--serif);font-size:clamp(1.9rem,3.3vw,2.6rem);font-weight:600;color:var(--trigo-cl);line-height:1;letter-spacing:-.02em}
+.stat .lbl{font-size:.87rem;color:var(--humo);margin-top:10px;line-height:1.45}
+.stat .src{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--musgo);margin-top:8px}
+
+/* ---------- layers (FAO) ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.layers{display:flex;flex-direction:column;gap:8px}
+.layer{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:17px 20px;border-radius:3px;color:#fff}
+.layer .n{font-family:var(--serif);font-size:1.6rem;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.layer .t{font-size:.9rem;line-height:1.42}
+.l1{background:#B4562A;margin:0 16% 0 0}
+.l2{background:var(--trigo);margin:0 8% 0 0}
+.l3{background:#8E7A3A}
+.paper .note{font-family:var(--mono);font-size:.72rem;color:#6B7C73;letter-spacing:.04em;margin-top:18px}
+
+/* ---------- lines of work ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--pino-2);border:1px solid var(--pino-3);border-radius:4px;padding:30px 26px;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--musgo);transform:translateY(-3px)}
+.card .ico{width:36px;height:36px;margin-bottom:20px;color:var(--trigo-cl)}
+.card p{font-size:.94rem;color:var(--humo);margin:0}
+
+/* ---------- index feature ---------- */
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.dims{list-style:none;margin-top:26px}
+.dims li{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:13px 0;border-top:1px solid var(--papel-2)}
+.dims li:last-child{border-bottom:1px solid var(--papel-2)}
+.dims .d-n{font-family:var(--mono);font-size:.72rem;color:#8A9A91}
+.dims .d-t{font-size:.95rem}
+.dims .d-w{font-family:var(--mono);font-size:.85rem;color:var(--trigo);font-weight:500}
+
+/* ---------- poverty line diagram ---------- */
+.diagram{background:#fff;border:1px solid var(--papel-2);border-radius:4px;padding:28px}
+.diagram h3{font-size:1.05rem;margin-bottom:4px}
+.diagram .cap{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#8A9A91;margin-bottom:22px}
+
+/* ---------- publications ---------- */
+.pubs{list-style:none;border-top:1px solid var(--pino-3)}
+.pub{border-bottom:1px solid var(--pino-3)}
+.pub a{display:grid;grid-template-columns:112px 1fr auto;gap:26px;align-items:baseline;padding:24px 6px;text-decoration:none;transition:background .2s,padding-left .2s}
+.pub a:hover{background:var(--pino-2);padding-left:16px}
+.pub .date{font-family:var(--mono);font-size:.74rem;color:var(--musgo);letter-spacing:.06em}
+.pub .ttl{font-family:var(--serif);font-size:1.16rem;font-weight:600;line-height:1.3}
+.pub .src{font-size:.82rem;color:var(--humo);white-space:nowrap}
+.pub a:hover .ttl{color:var(--trigo-cl)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--pino-2);border:1px solid var(--pino-3);border-radius:4px;padding:52px 48px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.contact h2{margin-bottom:12px}
+.cinfo{font-size:.94rem;line-height:1.9}
+.cinfo a{color:var(--trigo-cl);text-decoration:none;border-bottom:1px solid rgba(224,168,92,.35)}
+.cinfo a:hover{border-bottom-color:var(--trigo-cl)}
+.cinfo span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--musgo);margin-top:18px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--pino-3);padding:38px 0 46px}
+.foot{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:center;font-size:.82rem;color:var(--musgo)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.cell{opacity:1;transform:none}}
+
+/* ---------- responsive ---------- */
+@media(max-width:940px){
+  .hero-grid,.two,.feature,.contact{grid-template-columns:1fr;gap:44px}
+  .strip-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+  .cards{grid-template-columns:1fr}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--pino-2);border-bottom:1px solid var(--pino-3);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 28px}
+  .nav-links .btn{margin:10px 28px 6px;text-align:center}
+  .nav-toggle{display:block}
+  .contact{padding:38px 26px}
+  .pub a{grid-template-columns:1fr;gap:6px;padding:20px 6px}
+  .pub .src{white-space:normal}
+  section{padding:72px 0}
+}
+@media(max-width:520px){
+  .canasta{grid-template-columns:repeat(8,1fr)}
+  .strip-grid{grid-template-columns:1fr}
+  .layer{grid-template-columns:1fr;gap:6px}
+  .l1,.l2{margin-right:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#inicio">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M5 15h30l-3.2 17.2A4 4 0 0 1 27.9 35H12.1a4 4 0 0 1-3.9-2.8Z" fill="none" stroke="#C88A3C" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M13 27V21M20 27v-9M27 27v-5" stroke="#E6EDE7" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M20 11c0-3 2-4 2-6" stroke="#3A6B57" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-txt">Observatorio<small>Seguridad Alimentaria · Chile</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#problema">El problema</a>
+      <a href="#trabajo">Qué hacemos</a>
+      <a href="#indice">El índice</a>
+      <a href="#publicaciones">Publicaciones</a>
+      <a class="btn btn-ghost" href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Fundación · Santiago de Chile</div>
+      <h1>Nadie está mirando el <em>precio de la olla</em>.</h1>
+      <p class="hero-sub">Monitoreamos cuánto cuesta comer en Chile y cómo el clima empuja ese costo. Producimos el primer índice que mide, producto por producto, la exposición de la canasta básica al riesgo climático.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#indice">Conocer el índice</a>
+        <a class="btn btn-ghost" href="#publicaciones">Leer nuestros análisis</a>
+      </div>
+    </div>
+
+    <div class="canasta-card">
+      <div class="canasta-head">
+        <strong>Canasta básica · 79 productos</strong>
+        <span class="canasta-read" id="readout">Pasa el cursor sobre un producto</span>
+      </div>
+      <div class="canasta" id="canasta" role="list" aria-label="Los 79 productos de la canasta básica de alimentos, según exposición al riesgo climático"></div>
+      <div class="legend">
+        <span>Menor exposición</span>
+        <div class="ramp" aria-hidden="true">
+          <i style="background:var(--r1)"></i><i style="background:var(--r2)"></i><i style="background:var(--r3)"></i><i style="background:var(--r4)"></i><i style="background:var(--r5)"></i>
+        </div>
+        <span>Mayor</span>
+      </div>
+      <p class="canasta-note">Los productos de mayor exposición corresponden a los identificados en nuestro análisis publicado en junio de 2026. El índice completo asigna un puntaje de 1 a 5 a cada uno de los 79 productos de la canasta oficial.</p>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap strip-grid">
+    <div class="stat rv">
+      <div class="fig">17,6%</div>
+      <div class="lbl">de inseguridad alimentaria en Chile: más de tres millones de personas.</div>
+      <div class="src">BID · 2023</div>
+    </div>
+    <div class="stat rv">
+      <div class="fig">$90.658</div>
+      <div class="lbl">cuesta hoy la canasta básica por persona, un 4,8% más que hace un año.</div>
+      <div class="src">Mindesaf · junio 2026</div>
+    </div>
+    <div class="stat rv">
+      <div class="fig">4,3%</div>
+      <div class="lbl">subió el IPC general en el mismo período. La comida le ganó al promedio.</div>
+      <div class="src">INE · junio 2026</div>
+    </div>
+    <div class="stat rv">
+      <div class="fig">79</div>
+      <div class="lbl">productos evaluados uno a uno según su exposición al clima y a la logística.</div>
+      <div class="src">Índice IV-CBA</div>
+    </div>
+  </div>
+</div>
+
+<section class="paper" id="problema">
+  <div class="wrap two">
+    <div class="rv">
+      <div class="eyebrow eyebrow--dark">El problema</div>
+      <h2>El hambre es solo la punta</h2>
+      <p class="lede">La seguridad alimentaria dejó de ser un problema de producir comida y pasó a ser uno de poder pagarla. En Chile eso casi nunca se ve como hambre: se ve como sustitución. Cuando la proteína, la fruta y la verdura se encarecen, el hogar no deja de comer — reemplaza por calorías baratas.</p>
+      <p class="lede" style="margin-top:1em">El resultado no aparece en las estadísticas de desnutrición. Aparece diez años después, en las de obesidad, diabetes e hipertensión. Es una crisis de salud pública que empieza en el supermercado.</p>
+      <p class="note">Cifras globales: FAO, El Estado de la Seguridad Alimentaria y la Nutrición en el Mundo.</p>
+    </div>
+    <div class="layers rv" aria-label="Capas del problema alimentario global">
+      <div class="layer l1"><span class="n">673 M</span><span class="t">padecían hambre en 2024 — lo que solemos llamar «el problema».</span></div>
+      <div class="layer l2"><span class="n">2.300 M</span><span class="t">viven inseguridad alimentaria: no acceden de forma estable a comida suficiente.</span></div>
+      <div class="layer l3"><span class="n">2.600 M</span><span class="t">no pueden pagar una dieta saludable. El acceso, no la escasez, es la barrera.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="trabajo">
+  <div class="wrap">
+    <div class="rv" style="max-width:60ch;margin-bottom:46px">
+      <div class="eyebrow">Qué hacemos</div>
+      <h2>Un observatorio, tres tareas</h2>
+      <p class="lede">Trabajamos donde el dato existe pero nadie lo cruza: entre el precio de los alimentos, el riesgo climático y la medición de la pobreza.</p>
+    </div>
+    <div class="cards">
+      <div class="card rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        <h3>Medimos</h3>
+        <p>Seguimos mes a mes el costo de la canasta básica y su composición, con datos oficiales del INE, ODEPA y el Ministerio de Desarrollo Social.</p>
+      </div>
+      <div class="card rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Anticipamos</h3>
+        <p>Estimamos qué alimentos se encarecerán antes de que ocurra, cruzando variabilidad climática, ciclos de El Niño, costo del combustible y logística.</p>
+      </div>
+      <div class="card rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 8h14M7 8l-3 7h6ZM17 8l-3 7h6Z"/></svg>
+        <h3>Incidimos</h3>
+        <p>Traducimos la evidencia en propuestas concretas de política pública y la ponemos a disposición de quien la necesite: prensa, Congreso, academia y sociedad civil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="indice">
+  <div class="wrap feature">
+    <div class="rv">
+      <div class="eyebrow eyebrow--dark">El instrumento</div>
+      <h2>Índice de Vulnerabilidad de la Canasta Básica</h2>
+      <p class="lede">Evaluamos los 79 productos de la canasta oficial y le asignamos a cada uno un puntaje de riesgo de 1 a 5, combinando cuatro dimensiones ponderadas. El resultado permite ver, de un vistazo, qué parte de la mesa chilena está más expuesta.</p>
+      <ul class="dims">
+        <li><span class="d-n">01</span><span class="d-t">Exposición a variabilidad climática</span><span class="d-w">0,4</span></li>
+        <li><span class="d-n">02</span><span class="d-t">Ciclos ENSO (El Niño / La Niña)</span><span class="d-w">0,2</span></li>
+        <li><span class="d-n">03</span><span class="d-t">Costo del combustible</span><span class="d-w">0,2</span></li>
+        <li><span class="d-n">04</span><span class="d-t">Vulnerabilidad logística</span><span class="d-w">0,2</span></li>
+      </ul>
+      <p class="note">Fuentes de base: ARClim, CR2, INIA, ODEPA, NOAA e IFOP.</p>
+    </div>
+
+    <div class="diagram rv">
+      <h3>Cuando sube la olla, se mueve la línea</h3>
+      <div class="cap">Canasta básica y línea de pobreza · Chile</div>
+      <svg viewBox="0 0 420 250" role="img" aria-label="Diagrama: el alza de la canasta básica desplaza hacia arriba la línea oficial de pobreza">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#C88A3C"/></marker></defs>
+        <line x1="20" y1="200" x2="400" y2="200" stroke="#D8D2C4" stroke-width="1.5"/>
+        <line x1="20" y1="150" x2="400" y2="150" stroke="#D8D2C4" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <text x="20" y="218" font-family="IBM Plex Mono, monospace" font-size="10" fill="#8A9A91">Línea de pobreza · antes</text>
+        <text x="20" y="142" font-family="IBM Plex Mono, monospace" font-size="10" fill="#B4562A">Línea de pobreza · hoy $251.515</text>
+        <rect x="52" y="200" width="46" height="34" rx="2" fill="#DCD5C6"/>
+        <rect x="52" y="150" width="46" height="50" rx="2" fill="#C88A3C"/>
+        <text x="75" y="248" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#8A9A91">CBA +4,8%</text>
+        <line x1="130" y1="196" x2="130" y2="156" stroke="#C88A3C" stroke-width="2" marker-end="url(#ar)"/>
+        <g>
+          <circle cx="215" cy="176" r="13" fill="none" stroke="#27503F" stroke-width="2"/>
+          <path d="M215 189v22M204 200h22" stroke="#27503F" stroke-width="2" stroke-linecap="round"/>
+          <text x="238" y="174" font-family="Archivo, sans-serif" font-size="12.5" fill="#152621">Mismo ingreso.</text>
+          <text x="238" y="192" font-family="Archivo, sans-serif" font-size="12.5" font-weight="600" fill="#B4562A">Ahora bajo la línea.</text>
+        </g>
+      </svg>
+      <p style="font-size:.86rem;color:#4A5B53;margin-top:20px">La canasta básica define la línea oficial de pobreza y se calcula sobre el consumo del quintil más pobre. Cuando la comida se encarece más rápido que los sueldos, un hogar puede cruzar el umbral sin haber perdido un solo peso de ingreso.</p>
+    </div>
+  </div>
+</section>
+
+<section id="publicaciones">
+  <div class="wrap">
+    <div class="rv" style="max-width:58ch;margin-bottom:40px">
+      <div class="eyebrow">Publicaciones</div>
+      <h2>Lo que hemos dicho, y cuándo</h2>
+      <p class="lede">Publicamos antes de que el dato oficial confirme. Es la prueba de que el monitoreo sirve.</p>
+    </div>
+    <ul class="pubs rv">
+      <li class="pub">
+        <a href="https://www.biobiochile.cl/noticias/opinion/tu-voz/2026/07/14/el-impacto-del-bencinazo-se-sigue-pagando-en-la-mesa-de-las-familias.shtml" target="_blank" rel="noopener">
+          <span class="date">14 JUL 2026</span>
+          <span class="ttl">El impacto del bencinazo se sigue pagando en la mesa de las familias</span>
+          <span class="src">BioBioChile ↗</span>
+        </a>
+      </li>
+      <li class="pub">
+        <a href="https://www.elmostrador.cl/noticias/pais/2026/06/20/zoom-a-la-canasta-basica-pan-papas-carne-y-huevo-experimentaran-las-mayores-alzas-de-precio/" target="_blank" rel="noopener">
+          <span class="date">20 JUN 2026</span>
+          <span class="ttl">Zoom a la canasta básica: pan, papas, carne y huevo experimentarán las mayores alzas de precio</span>
+          <span class="src">El Mostrador ↗</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap two">
+    <div class="rv">
+      <div class="eyebrow eyebrow--dark">El vacío que ocupamos</div>
+      <h2>El Estado vigila la oferta. Nadie vigila el acceso.</h2>
+    </div>
+    <div class="rv">
+      <p class="lede">Chile ya construye un sistema de alerta temprana para el campo, con financiamiento del BID: sanidad del cultivo, meteorología del predio, productividad agrícola. Toda esa arquitectura mira la producción.</p>
+      <p class="lede" style="margin-top:1em">Nadie mira el otro extremo de la cadena: el acceso del hogar. Nadie anticipa qué alimentos se encarecerán, ni advierte que la línea de pobreza se está moviendo por razones climáticas. Existimos para cerrar esa brecha — no creando institucionalidad nueva, sino completando la que ya se está levantando.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact rv">
+      <div>
+        <div class="eyebrow">Contacto</div>
+        <h2>Hablemos</h2>
+        <p class="lede">Trabajamos con medios, instituciones públicas, universidades y organizaciones que abordan seguridad alimentaria y clima. Si necesitas datos, una lectura del último IPC o una fuente para tu reportaje, escríbenos.</p>
+      </div>
+      <div class="cinfo">
+        <span>Escríbenos</span>
+        <a href="mailto:contacto@observatorioalimentario.cl">contacto@observatorioalimentario.cl</a><br>
+        Santiago, Chile
+        <span>Prensa y datos</span>
+        Respondemos consultas de medios y facilitamos las series y metodologías para su verificación.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Observatorio de Seguridad Alimentaria Chile</div>
+    <div>Datos de fuentes oficiales: INE · ODEPA · Mindesaf · FAO · BID</div>
+  </div>
+</footer>
+
+<script>
+// ---- the canasta: 79 real products of the official CBA, tiered by exposure ----
+const PRODUCTOS=[
+["Pan corriente",5],["Papas",5],["Aceites vegetales",5],["Carne de vacuno, posta",5],["Arroz",5],
+["Trutro de pollo",5],["Jurel en conserva",5],["Huevos de gallina",5],["Leche líquida entera",5],["Paltas",5],
+["Carne de vacuno, molida",4],["Pechuga de pollo",4],["Tomates",4],["Cebollas",4],["Zanahorias",4],
+["Lechugas",4],["Harina de trigo",4],["Queso gouda",4],["Chuleta de cerdo",4],["Atún en conserva",4],
+["Manzanas",4],["Plátanos",4],["Choclo fresco",4],["Zapallo",4],["Limones",4],
+["Porotos secos",3],["Lentejas",3],["Espaguetis",3],["Pan especial",3],["Queso chanco",3],
+["Leche en polvo",3],["Yogur",3],["Mantequilla",3],["Margarina",3],["Naranjas",3],
+["Uvas",3],["Duraznos",3],["Acelgas",3],["Brócoli",3],["Pimentones",3],
+["Zapallo italiano",3],["Pepinos",3],["Ajo",3],["Azúcar",3],["Otras pastas secas",3],
+["Cecinas secas",2],["Vienesas",2],["Cecinas de pavo",2],["Embutidos frescos",2],["Patés",2],
+["Leche descremada",2],["Crema de leche",2],["Postres lácteos",2],["Choclo congelado",2],["Verduras encurtidas",2],
+["Salsa de tomate",2],["Mayonesa",2],["Kétchup",2],["Sal",2],["Especias",2],
+["Hierbas",2],["Caldos concentrados",2],["Café",2],["Té",2],["Galletas dulces",2],
+["Galletas no dulces",1],["Cereales para el desayuno",1],["Tortas y masas dulces",1],["Pan envasado",1],["Snacks de cereal",1],
+["Papas fritas envasadas",1],["Mermeladas",1],["Chocolates",1],["Caramelos",1],["Helado familiar",1],
+["Helados individuales",1],["Jugos líquidos",1],["Jugos en polvo",1],["Agua mineral",1],["Refrescos",1]
+];
+const RAMPA={1:"var(--r1)",2:"var(--r2)",3:"var(--r3)",4:"var(--r4)",5:"var(--r5)"};
+const NIVEL={1:"muy baja",2:"baja",3:"media",4:"alta",5:"muy alta"};
+
+const grid=document.getElementById("canasta");
+const readout=document.getElementById("readout");
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+PRODUCTOS.forEach(([nombre,riesgo],i)=>{
+  const c=document.createElement("button");
+  c.type="button";
+  c.className="cell";
+  c.style.background=RAMPA[riesgo];
+  c.setAttribute("role","listitem");
+  c.setAttribute("aria-label",nombre+" — exposición "+NIVEL[riesgo]);
+  const show=()=>{readout.textContent=nombre+" · exposición "+NIVEL[riesgo];};
+  c.addEventListener("mouseenter",show);
+  c.addEventListener("focus",show);
+  c.addEventListener("click",show);
+  grid.appendChild(c);
+  if(reduce){c.classList.add("on");}
+  else{setTimeout(()=>c.classList.add("on"),160+i*11);}
+});
+grid.addEventListener("mouseleave",()=>{readout.textContent="Pasa el cursor sobre un producto";});
+
+// ---- sticky nav state ----
+const nav=document.getElementById("nav");
+const onScroll=()=>nav.classList.toggle("stuck",window.scrollY>8);
+onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+// ---- mobile menu ----
+const tog=document.getElementById("navToggle"),links=document.getElementById("navLinks");
+tog.addEventListener("click",()=>{
+  const open=links.classList.toggle("open");
+  tog.setAttribute("aria-expanded",open);
+});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+  links.classList.remove("open");tog.setAttribute("aria-expanded","false");
+}));
+
+// ---- scroll reveal ----
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+"ms";io.observe(el);});
+
+</script>
+</body>
+</html>
