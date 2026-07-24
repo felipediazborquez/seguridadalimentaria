@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Índice de Vulnerabilidad de la Canasta Básica · Observatorio de Seguridad Alimentaria</title>
+<meta name="description" content="IV-CBA: índice que mide la exposición de la canasta básica chilena al cambio climático, El Niño y el precio del combustible, producto por producto.">
+<meta property="og:title" content="Índice de Vulnerabilidad de la Canasta Básica · IV-CBA">
+<meta property="og:description" content="Qué parte de la mesa chilena está más expuesta al clima. Activa o desactiva factores y observa cómo cambia el riesgo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20200%20180%22%3E%3Cpath%20d=%22M141.0%2087.0%20C141.9%2086.9%20146.1%2086.9%20147.0%2087.0%20C147.9%2087.1%20147.3%2087.9%20148.0%2088.0%20C148.7%2088.1%20152.3%2088.1%20153.0%2088.0%20C153.7%2087.9%20149.0%2087.1%20154.0%2087.0%20C159.0%2086.9%20188.0%2086.9%20193.0%2087.0%20C198.0%2087.1%20193.5%2087.9%20194.0%2088.0%20C194.5%2088.1%20197.0%2088.0%20197.0%2088.0%20C197.0%2088.0%20197.1%2090.5%20197.0%2091.0%20C196.9%2091.5%20196.3%2090.6%20196.0%2092.0%20C195.7%2093.4%20195.7%2098.0%20195.0%20101.0%20C194.3%20104.0%20193.7%20106.0%20192.0%20110.0%20C190.3%20114.0%20187.8%20120.2%20185.0%20125.0%20C182.2%20129.8%20178.7%20134.7%20175.0%20139.0%20C171.3%20143.3%20167.3%20147.3%20163.0%20151.0%20C158.7%20154.7%20154.2%20158.0%20149.0%20161.0%20C143.8%20164.0%20136.5%20167.3%20132.0%20169.0%20C127.5%20170.7%20123.7%20170.5%20122.0%20171.0%20C120.3%20171.5%20122.9%20171.7%20121.0%20172.0%20C119.1%20172.3%20109.9%20172.7%20108.0%20173.0%20C106.1%20173.3%20109.0%20173.9%20107.0%20174.0%20C105.0%20174.1%2094.0%20174.1%2092.0%20174.0%20C90.0%20173.9%2092.1%20173.1%2091.0%20173.0%20C89.9%20172.9%2085.2%20173.3%2083.0%20173.0%20C80.8%20172.7%2079.5%20171.3%2078.0%20171.0%20C76.5%20170.7%2078.0%20172.3%2074.0%20171.0%20C70.0%20169.7%2060.3%20166.3%2054.0%20163.0%20C47.7%20159.7%2040.7%20154.7%2036.0%20151.0%20C31.3%20147.3%2029.3%20144.8%2026.0%20141.0%20C22.7%20137.2%2019.3%20133.7%2016.0%20128.0%20C12.7%20122.3%207.7%20111.0%206.0%20107.0%20C4.3%20103.0%206.5%20106.0%206.0%20104.0%20C5.5%20102.0%203.5%2097.7%203.0%2095.0%20C2.5%2092.3%203.0%2088.0%203.0%2088.0%20C3.0%2088.0%2010.7%2087.2%2013.0%2088.0%20C15.3%2088.8%2017.8%2092.5%2020.0%2094.0%20C22.2%2095.5%2023.8%2096.3%2026.0%2097.0%20C28.2%2097.7%2031.8%2097.7%2033.0%2098.0%20C34.2%2098.3%2031.6%2098.9%2034.0%2099.0%20C36.4%2099.1%2049.6%2099.1%2052.0%2099.0%20C54.4%2098.9%2052.1%2098.1%2053.0%2098.0%20C53.9%2097.9%2058.1%2098.1%2059.0%2098.0%20C59.9%2097.9%2058.0%2097.1%2060.0%2097.0%20C62.0%2096.9%2070.0%2095.8%2075.0%2097.0%20C80.0%2098.2%2085.2%20102.7%2090.0%20104.0%20C94.8%20105.3%2099.7%20105.5%20104.0%20105.0%20C108.3%20104.5%20111.0%20103.7%20116.0%20101.0%20C121.0%2098.3%20130.0%2091.2%20134.0%2089.0%20C138.0%2086.8%20139.0%2088.3%20140.0%2088.0%20C141.0%2087.7%20140.1%2087.1%20141.0%2087.0%20Z%22%20fill=%22%23123728%22/%3E%3Cpath%20d=%22M165.0%203.0%20C165.7%202.9%20169.3%202.9%20170.0%203.0%20C170.7%203.1%20170.6%203.9%20171.0%204.0%20C171.4%204.1%20172.0%203.7%20173.0%204.0%20C174.0%204.3%20175.8%205.2%20177.0%206.0%20C178.2%206.8%20179.2%207.8%20180.0%209.0%20C180.8%2010.2%20181.7%2010.7%20182.0%2013.0%20C182.3%2015.3%20182.3%2020.7%20182.0%2023.0%20C181.7%2025.3%20181.3%2025.5%20180.0%2027.0%20C178.7%2028.5%20175.2%2031.3%20174.0%2032.0%20C172.8%2032.7%20171.5%2031.9%20171.0%2032.0%20C170.5%2032.1%20171.1%2033.0%20170.0%2033.0%20C168.9%2033.0%20166.3%2027.8%20161.0%2032.0%20C155.7%2036.2%20125.1%2067.8%20120.0%2073.0%20C114.9%2078.2%20120.0%2074.0%20120.0%2074.0%20C120.0%2074.0%20119.1%2073.9%20119.0%2074.0%20C118.9%2074.1%20118.1%2075.9%20118.0%2076.0%20C117.9%2076.1%20118.0%2075.1%20117.0%2076.0%20C116.0%2076.9%20110.9%2082.0%20110.0%2083.0%20C109.1%2084.0%20110.5%2083.4%20110.0%2084.0%20C109.5%2084.6%20107.0%2087.2%20106.0%2088.0%20C105.0%2088.8%20105.3%2088.8%20104.0%2089.0%20C102.7%2089.2%20102.4%2092.5%2098.0%2089.0%20C93.6%2085.5%2072.8%2064.5%2069.0%2061.0%20C65.2%2057.5%2071.6%2057.5%2068.0%2061.0%20C64.4%2064.5%2044.0%2085.5%2040.0%2089.0%20C36.0%2092.5%2036.9%2089.4%2036.0%2089.0%20C35.1%2088.6%2033.4%2086.9%2033.0%2086.0%20C32.6%2085.1%2029.9%2085.6%2033.0%2082.0%20C36.1%2078.4%2054.9%2060.2%2058.0%2057.0%20C61.1%2053.8%2057.9%2056.1%2058.0%2056.0%20C58.1%2055.9%2059.9%2055.1%2060.0%2055.0%20C60.1%2054.9%2059.6%2054.5%2060.0%2054.0%20C60.4%2053.5%2061.8%2051.8%2063.0%2051.0%20C64.2%2050.2%2065.8%2049.3%2067.0%2049.0%20C68.2%2048.7%2068.6%2048.4%2070.0%2049.0%20C71.4%2049.6%2075.5%2052.6%2076.0%2053.0%20C76.5%2053.4%2075.1%2053.0%2076.0%2054.0%20C76.9%2055.0%2082.0%2060.1%2083.0%2061.0%20C84.0%2061.9%2083.9%2060.9%2084.0%2061.0%20C84.1%2061.1%2084.9%2062.9%2085.0%2063.0%20C85.1%2063.1%2084.0%2061.1%2086.0%2063.0%20C88.0%2064.9%2099.0%2076.1%20101.0%2078.0%20C103.0%2079.9%20100.5%2079.4%20102.0%2078.0%20C103.5%2076.6%20111.6%2068.5%20113.0%2067.0%20C114.4%2065.5%20113.0%2066.0%20113.0%2066.0%20C113.0%2066.0%20113.9%2066.1%20114.0%2066.0%20C114.1%2065.9%20114.9%2064.1%20115.0%2064.0%20C115.1%2063.9%20115.7%2064.3%20116.0%2064.0%20C116.3%2063.7%20117.7%2061.3%20118.0%2061.0%20C118.3%2060.7%20118.9%2061.1%20119.0%2061.0%20C119.1%2060.9%20119.9%2059.1%20120.0%2059.0%20C120.1%2058.9%20120.7%2059.3%20121.0%2059.0%20C121.3%2058.7%20122.7%2056.3%20123.0%2056.0%20C123.3%2055.7%20123.9%2056.1%20124.0%2056.0%20C124.1%2055.9%20124.4%2054.6%20125.0%2054.0%20C125.6%2053.4%20127.2%2052.8%20128.0%2052.0%20C128.8%2051.2%20129.7%2049.3%20130.0%2049.0%20C130.3%2048.7%20130.4%2049.5%20131.0%2049.0%20C131.6%2048.5%20134.5%2045.6%20135.0%2045.0%20C135.5%2044.4%20135.0%2044.0%20135.0%2044.0%20C135.0%2044.0%20135.9%2044.1%20136.0%2044.0%20C136.1%2043.9%20136.6%2042.4%20137.0%2042.0%20C137.4%2041.6%20138.6%2041.4%20139.0%2041.0%20C139.4%2040.6%20139.9%2039.1%20140.0%2039.0%20C140.1%2038.9%20140.9%2039.1%20141.0%2039.0%20C141.1%2038.9%20140.7%2038.3%20142.0%2037.0%20C143.3%2035.7%20147.7%2032.3%20149.0%2031.0%20C150.3%2029.7%20149.6%2029.4%20150.0%2029.0%20C150.4%2028.6%20151.4%2028.6%20152.0%2028.0%20C152.6%2027.4%20153.7%2025.8%20154.0%2025.0%20C154.3%2024.2%20154.1%2023.4%20154.0%2023.0%20C153.9%2022.6%20153.1%2023.1%20153.0%2022.0%20C152.9%2020.9%20152.9%2015.1%20153.0%2014.0%20C153.1%2012.9%20153.9%2013.4%20154.0%2013.0%20C154.1%2012.6%20153.6%2011.9%20154.0%2011.0%20C154.4%2010.1%20155.7%208.2%20157.0%207.0%20C158.3%205.8%20160.9%204.5%20162.0%204.0%20C163.1%203.5%20163.6%204.1%20164.0%204.0%20C164.4%203.9%20164.3%203.1%20165.0%203.0%20Z%22%20fill=%22%23123728%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#123728; --verde-med:#3E6E35; --lima:#8AA951; --ocre:#D18B25;
+  --crema:#F3ECE1; --papel:#FCF9F5; --humo:#8FA396; --gris:#5E6B63; --borde:#E2D9CB;
+  --v-800:#1B4A36; --v-linea:#24513C;
+  --r-bajo:#1E8449; --r-mod:#B7860A; --r-alto:#D35400; --r-crit:#C0392B;
+  --f:"Montserrat","Poppins","Manrope",Arial,sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{background:var(--verde);color:#E4EDE6;font-family:var(--f);font-size:clamp(15.5px,.55rem + .55vw,17px);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;overflow-wrap:break-word;-webkit-tap-highlight-color:rgba(209,139,37,.18);font-variant-numeric:tabular-nums}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(18px,4vw,28px)}
+h1,h2,h3{font-weight:700;line-height:1.1;letter-spacing:-.018em}
+h2{font-size:clamp(1.5rem,3.2vw,2.5rem);margin-bottom:16px}
+h3{font-size:1.12rem;margin-bottom:10px}
+p{margin-bottom:1em} p:last-child{margin-bottom:0}
+.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ocre);margin-bottom:14px}
+.lede{font-size:clamp(1rem,.95rem + .3vw,1.1rem);color:#B7C9BC;max-width:64ch}
+section{padding:clamp(46px,6.5vw,80px) 0}
+.claro{background:var(--papel);color:var(--verde)}
+.claro .lede{color:var(--gris)}
+.claro .eyebrow{color:var(--verde-med)}
+:focus-visible{outline:2.5px solid var(--ocre);outline-offset:3px;border-radius:2px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:60;background:rgba(18,55,40,.9);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.stuck{border-bottom-color:var(--v-linea)}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding:12px clamp(18px,4vw,28px);display:flex;align-items:center;gap:clamp(14px,2.5vw,26px)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0;flex:0 1 auto}
+.brand svg{flex-shrink:0;width:46px;height:41px}
+.brand .txt{display:flex;flex-direction:column;min-width:0}
+.brand .t,.brand .s{display:block}
+.brand .t{font-size:.86rem;font-weight:800;line-height:1.06;text-transform:uppercase;letter-spacing:-.005em}
+.brand .s{font-size:.46rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ocre);margin-top:4px}
+.nav-links{margin-left:auto;display:flex;gap:clamp(16px,2.2vw,24px);align-items:center}
+.nav-links a{font-size:.87rem;font-weight:500;text-decoration:none;color:#A9BCAF;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links a.actual{color:var(--ocre)}
+.btn{display:inline-block;font-size:.86rem;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:3px;transition:all .2s;border:1.5px solid transparent;cursor:pointer}
+.btn-ghost{border-color:var(--v-linea);color:#D6E3D9}
+.btn-ghost:hover{border-color:var(--ocre);color:var(--ocre)}
+.nav-toggle{display:none;margin-left:auto;flex-shrink:0;align-items:center;gap:9px;background:none;border:1.5px solid var(--v-linea);color:#D6E3D9;padding:9px 13px;min-height:44px;border-radius:4px;font-family:var(--f);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s}
+.nav-toggle:hover{border-color:var(--ocre);color:var(--ocre)}
+.nav-toggle .bars{display:block;width:18px;height:12px;position:relative;flex-shrink:0}
+.nav-toggle .bars i{position:absolute;left:0;right:0;height:2px;background:currentColor;border-radius:2px;transition:transform .25s ease,opacity .18s ease}
+.nav-toggle .bars i:nth-child(1){top:0}.nav-toggle .bars i:nth-child(2){top:5px}.nav-toggle .bars i:nth-child(3){top:10px}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* encabezado */
+.phead{padding:clamp(42px,6vw,72px) 0 clamp(30px,4vw,48px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;inset:0;background:radial-gradient(115% 85% at 78% 15%,rgba(62,110,53,.4),transparent 60%);pointer-events:none}
+.phead-in{position:relative;z-index:1}
+.phead h1{font-size:clamp(1.9rem,4.4vw,3.2rem);margin-bottom:18px;letter-spacing:-.028em;max-width:20ch}
+.phead h1 em{font-style:normal;color:var(--ocre)}
+.migas{font-size:.78rem;color:#8FA396;margin-bottom:16px}
+.migas a{color:#A9BCAF;text-decoration:none;border-bottom:1px solid rgba(169,188,175,.3)}
+.migas a:hover{color:var(--ocre);border-bottom-color:var(--ocre)}
+.disclaimer{margin-top:20px;font-size:.82rem;color:#9DB1A4;max-width:74ch;border-left:2px solid var(--ocre);padding-left:14px;line-height:1.55}
+
+/* panel de control (toggles) */
+.panel{background:var(--v-800);border-top:1px solid var(--v-linea);border-bottom:1px solid var(--v-linea)}
+.panel-in{padding:clamp(24px,4vw,38px) 0;display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,48px);align-items:center}
+.factors h2{font-size:1.15rem;color:#fff;margin-bottom:4px}
+.factors .sub{font-size:.85rem;color:#9DB1A4;margin-bottom:18px}
+.tgl-row{display:flex;flex-direction:column;gap:10px}
+.tgl{display:flex;align-items:center;gap:14px;background:rgba(18,55,40,.5);border:1px solid var(--v-linea);border-radius:8px;padding:13px 16px;transition:border-color .2s}
+.tgl.on{border-color:var(--verde-med)}
+.tgl.fixed{opacity:.92}
+.tgl .sw{position:relative;width:46px;height:26px;border-radius:999px;background:#2C4A3B;flex-shrink:0;transition:background .2s;border:none;cursor:pointer;padding:0}
+.tgl .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#7E9488;transition:transform .2s,background .2s}
+.tgl.on .sw{background:var(--ocre)}
+.tgl.on .sw::after{transform:translateX(20px);background:#22160A}
+.tgl.fixed .sw{background:var(--verde-med);cursor:not-allowed}
+.tgl.fixed .sw::after{transform:translateX(20px);background:#fff}
+.tgl .lbl{flex:1;min-width:0}
+.tgl .lbl b{display:block;font-size:.95rem;color:#EAF1EC;font-weight:600}
+.tgl .lbl span{font-size:.76rem;color:#9DB1A4}
+.tgl .pill{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ocre);flex-shrink:0}
+.tgl.fixed .pill{color:#8AA951}
+
+/* medidor grande */
+.gauge{background:var(--verde);border:1px solid var(--v-linea);border-radius:12px;padding:24px;text-align:center}
+.gauge .cap{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9DB1A4;margin-bottom:8px}
+.gauge .val{font-size:clamp(3rem,7vw,4.4rem);font-weight:800;line-height:1;letter-spacing:-.03em;transition:color .3s}
+.gauge .val small{font-size:.34em;font-weight:700;color:#9DB1A4;letter-spacing:0}
+.gauge .bar{height:8px;border-radius:4px;background:#0E2A1E;margin:16px 0 10px;overflow:hidden}
+.gauge .bar i{display:block;height:100%;border-radius:4px;transition:width .5s ease,background .3s}
+.gauge .scale{display:flex;justify-content:space-between;font-size:.6rem;color:#7E9488;letter-spacing:.04em}
+.gauge .meta{font-size:.78rem;color:#9DB1A4;margin-top:14px;line-height:1.5}
+.gauge .meta b{color:#EAF1EC}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--borde);margin-bottom:26px;flex-wrap:wrap}
+.tab{font-size:.9rem;padding:11px 18px;border:none;cursor:pointer;background:transparent;font-family:var(--f);font-weight:500;color:var(--gris);border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
+.tab:hover{color:var(--verde)}
+.tab.on{font-weight:700;color:var(--verde);border-bottom-color:var(--ocre)}
+
+/* leyenda escala */
+.leyenda{border:1px solid var(--borde);border-radius:10px;padding:16px 18px;margin-bottom:22px;background:#fff}
+.leyenda .lt{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-bottom:14px}
+.ramp{height:10px;border-radius:5px;background:linear-gradient(to right,var(--r-bajo),var(--r-mod),var(--r-alto),var(--r-crit));position:relative;margin-bottom:30px}
+.ramp .anchor{position:absolute;top:0;transform:translateX(-50%);text-align:center}
+.ramp .anchor .tick{width:2px;height:10px;background:#fff;margin:0 auto}
+.ramp .anchor .al{font-size:.6rem;font-weight:700;margin-top:12px;white-space:nowrap;line-height:1.3}
+.ramp .anchor .al span{display:block;font-weight:400;color:var(--humo)}
+.leyenda .cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px}
+.leyenda .lcat{border-radius:8px;padding:9px 11px}
+.leyenda .lcat b{display:block;font-size:.75rem;margin-bottom:3px}
+.leyenda .lcat span{font-size:.72rem;color:#333;line-height:1.45}
+
+/* tarjetas dashboard */
+.grid-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px}
+.kpi{background:#fff;border:1px solid var(--borde);border-radius:10px;padding:16px 14px;text-align:center}
+.kpi .n{font-size:2rem;font-weight:800;line-height:1;transition:color .3s}
+.kpi .l{font-size:.72rem;color:var(--gris);margin-top:6px;line-height:1.35}
+
+/* top 10 */
+.top{background:#fff;border:1px solid var(--borde);border-radius:12px;overflow:hidden}
+.top .th{padding:14px 18px;border-bottom:1px solid var(--borde);font-weight:700;font-size:.92rem;color:var(--verde)}
+.top .th span{font-weight:400;color:var(--humo);font-size:.8rem}
+.trow{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--borde)}
+.trow:last-child{border-bottom:none}
+.trow .rk{font-size:1rem;font-weight:800;color:var(--humo);width:22px;text-align:right;flex-shrink:0}
+.trow .nm{flex:1;min-width:0}
+.trow .nm b{font-weight:600;font-size:.9rem;color:var(--verde);display:block}
+.trow .nm span{font-size:.72rem;color:var(--humo)}
+.trow .bar{width:90px;height:8px;background:#eee;border-radius:4px;overflow:hidden;flex-shrink:0}
+.trow .bar i{display:block;height:100%;border-radius:4px;transition:width .4s}
+.trow .sc{font-size:.9rem;font-weight:800;min-width:30px;text-align:right;flex-shrink:0}
+
+/* tabla productos */
+.tablewrap{border:1px solid var(--borde);border-radius:10px;overflow:auto;background:#fff}
+table.tp{width:100%;border-collapse:collapse;min-width:720px;font-size:.84rem}
+table.tp th{background:#EEF3EE;color:var(--verde);font-size:.68rem;font-weight:700;letter-spacing:.03em;text-align:left;padding:10px 11px;border-bottom:1px solid var(--borde);white-space:nowrap;cursor:pointer;user-select:none;position:relative}
+table.tp th .ar{color:var(--humo);font-size:.7rem;margin-right:3px}
+table.tp th.act .ar{color:var(--ocre)}
+table.tp th .ic{color:var(--humo);font-weight:800;margin-left:4px;cursor:pointer}
+table.tp td{padding:9px 11px;border-bottom:1px solid var(--borde);vertical-align:top}
+table.tp tr.prow{cursor:pointer;transition:background .12s}
+table.tp tr.prow:hover{background:#F5F8F5}
+table.tp tr.prow.open{background:#EEF3EE}
+.pname b{font-weight:600;font-size:.86rem;color:var(--verde)}
+.pname span{font-size:.72rem;color:var(--humo);display:block;margin-top:1px}
+.pill-sc{display:inline-block;min-width:30px;text-align:center;padding:2px 8px;border-radius:11px;font-size:.78rem;font-weight:700}
+.pill-off{opacity:.32;text-decoration:line-through}
+.ev{font-size:.6rem;padding:2px 7px;border-radius:8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.ev-alta{background:var(--verde);color:#fff}.ev-media{background:#D9E7DC;color:var(--verde)}.ev-baja{background:#EEE;color:#999}
+.imp b{font-weight:800;font-size:.88rem}.imp span{font-size:.62rem;color:var(--humo)}
+.imp .pc{font-size:.68rem;color:var(--humo);margin-top:1px}
+.drow td{background:#EEF3EE;font-size:.8rem;color:var(--gris);line-height:1.6}
+.drow .yatag{margin-left:8px;font-size:.66rem;background:#FDECEA;color:var(--r-crit);padding:1px 7px;border-radius:8px;font-weight:700}
+.searchbox{width:100%;padding:10px 14px;border:1px solid var(--borde);border-radius:8px;font-family:var(--f);font-size:.9rem;margin-bottom:14px;background:#fff;color:var(--verde)}
+.searchbox:focus{outline:2px solid var(--ocre);outline-offset:1px}
+
+/* metodología */
+.metod{max-width:720px}
+.formula{background:#EEF3EE;border:1px solid var(--borde);border-radius:10px;padding:18px 20px;margin-bottom:22px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.86rem;line-height:2;color:var(--verde)}
+.formula b{color:var(--ocre)}
+.mdim{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--borde)}
+.mdim:last-child{border-bottom:none}
+.mdim .dh{font-weight:700;font-size:.95rem;color:var(--verde);margin-bottom:5px}
+.mdim .dd{font-size:.88rem;color:var(--gris);line-height:1.6;margin-bottom:8px}
+.mdim .src{display:flex;gap:6px;flex-wrap:wrap}
+.mdim .src span{font-size:.68rem;background:#EEF3EE;color:var(--verde-med);padding:2px 8px;border-radius:8px;font-weight:600}
+.nota-fuente{font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--gris);margin-top:20px}
+
+footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;font-size:.8rem;color:#8FA396}
+.foot .fbrand{display:flex;align-items:center;gap:11px}
+.foot .fbrand svg{width:34px;height:31px}
+
+@media(max-width:900px){
+  .panel-in{grid-template-columns:1fr;gap:26px}
+}
+@media(max-width:1000px){
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--v-800);border-bottom:1px solid var(--v-linea);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;display:none;max-height:calc(100dvh - 72px);overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px clamp(18px,4vw,28px)}
+  .nav-links .btn{margin:10px clamp(18px,4vw,28px) 6px;text-align:center}
+  .nav-toggle{display:inline-flex}
+}
+@media(max-width:620px){
+  .brand svg{width:38px;height:34px}
+  .brand .t{font-size:.78rem}.brand .s{font-size:.42rem;letter-spacing:.16em}
+  .foot{flex-direction:column;align-items:flex-start;gap:14px}
+  .trow .bar{width:56px}
+}
+@media(max-width:380px){
+  .nav-toggle .tg-txt{display:none}.nav-toggle{padding:9px 11px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <clipPath id="oClip"><path d="M141.0 87.0 C141.9 86.9 146.1 86.9 147.0 87.0 C147.9 87.1 147.3 87.9 148.0 88.0 C148.7 88.1 152.3 88.1 153.0 88.0 C153.7 87.9 149.0 87.1 154.0 87.0 C159.0 86.9 188.0 86.9 193.0 87.0 C198.0 87.1 193.5 87.9 194.0 88.0 C194.5 88.1 197.0 88.0 197.0 88.0 C197.0 88.0 197.1 90.5 197.0 91.0 C196.9 91.5 196.3 90.6 196.0 92.0 C195.7 93.4 195.7 98.0 195.0 101.0 C194.3 104.0 193.7 106.0 192.0 110.0 C190.3 114.0 187.8 120.2 185.0 125.0 C182.2 129.8 178.7 134.7 175.0 139.0 C171.3 143.3 167.3 147.3 163.0 151.0 C158.7 154.7 154.2 158.0 149.0 161.0 C143.8 164.0 136.5 167.3 132.0 169.0 C127.5 170.7 123.7 170.5 122.0 171.0 C120.3 171.5 122.9 171.7 121.0 172.0 C119.1 172.3 109.9 172.7 108.0 173.0 C106.1 173.3 109.0 173.9 107.0 174.0 C105.0 174.1 94.0 174.1 92.0 174.0 C90.0 173.9 92.1 173.1 91.0 173.0 C89.9 172.9 85.2 173.3 83.0 173.0 C80.8 172.7 79.5 171.3 78.0 171.0 C76.5 170.7 78.0 172.3 74.0 171.0 C70.0 169.7 60.3 166.3 54.0 163.0 C47.7 159.7 40.7 154.7 36.0 151.0 C31.3 147.3 29.3 144.8 26.0 141.0 C22.7 137.2 19.3 133.7 16.0 128.0 C12.7 122.3 7.7 111.0 6.0 107.0 C4.3 103.0 6.5 106.0 6.0 104.0 C5.5 102.0 3.5 97.7 3.0 95.0 C2.5 92.3 3.0 88.0 3.0 88.0 C3.0 88.0 10.7 87.2 13.0 88.0 C15.3 88.8 17.8 92.5 20.0 94.0 C22.2 95.5 23.8 96.3 26.0 97.0 C28.2 97.7 31.8 97.7 33.0 98.0 C34.2 98.3 31.6 98.9 34.0 99.0 C36.4 99.1 49.6 99.1 52.0 99.0 C54.4 98.9 52.1 98.1 53.0 98.0 C53.9 97.9 58.1 98.1 59.0 98.0 C59.9 97.9 58.0 97.1 60.0 97.0 C62.0 96.9 70.0 95.8 75.0 97.0 C80.0 98.2 85.2 102.7 90.0 104.0 C94.8 105.3 99.7 105.5 104.0 105.0 C108.3 104.5 111.0 103.7 116.0 101.0 C121.0 98.3 130.0 91.2 134.0 89.0 C138.0 86.8 139.0 88.3 140.0 88.0 C141.0 87.7 140.1 87.1 141.0 87.0 Z"/></clipPath>
+  <symbol id="oIsoInv" viewBox="0 0 200 180">
+    <path d="M141.0 87.0 C141.9 86.9 146.1 86.9 147.0 87.0 C147.9 87.1 147.3 87.9 148.0 88.0 C148.7 88.1 152.3 88.1 153.0 88.0 C153.7 87.9 149.0 87.1 154.0 87.0 C159.0 86.9 188.0 86.9 193.0 87.0 C198.0 87.1 193.5 87.9 194.0 88.0 C194.5 88.1 197.0 88.0 197.0 88.0 C197.0 88.0 197.1 90.5 197.0 91.0 C196.9 91.5 196.3 90.6 196.0 92.0 C195.7 93.4 195.7 98.0 195.0 101.0 C194.3 104.0 193.7 106.0 192.0 110.0 C190.3 114.0 187.8 120.2 185.0 125.0 C182.2 129.8 178.7 134.7 175.0 139.0 C171.3 143.3 167.3 147.3 163.0 151.0 C158.7 154.7 154.2 158.0 149.0 161.0 C143.8 164.0 136.5 167.3 132.0 169.0 C127.5 170.7 123.7 170.5 122.0 171.0 C120.3 171.5 122.9 171.7 121.0 172.0 C119.1 172.3 109.9 172.7 108.0 173.0 C106.1 173.3 109.0 173.9 107.0 174.0 C105.0 174.1 94.0 174.1 92.0 174.0 C90.0 173.9 92.1 173.1 91.0 173.0 C89.9 172.9 85.2 173.3 83.0 173.0 C80.8 172.7 79.5 171.3 78.0 171.0 C76.5 170.7 78.0 172.3 74.0 171.0 C70.0 169.7 60.3 166.3 54.0 163.0 C47.7 159.7 40.7 154.7 36.0 151.0 C31.3 147.3 29.3 144.8 26.0 141.0 C22.7 137.2 19.3 133.7 16.0 128.0 C12.7 122.3 7.7 111.0 6.0 107.0 C4.3 103.0 6.5 106.0 6.0 104.0 C5.5 102.0 3.5 97.7 3.0 95.0 C2.5 92.3 3.0 88.0 3.0 88.0 C3.0 88.0 10.7 87.2 13.0 88.0 C15.3 88.8 17.8 92.5 20.0 94.0 C22.2 95.5 23.8 96.3 26.0 97.0 C28.2 97.7 31.8 97.7 33.0 98.0 C34.2 98.3 31.6 98.9 34.0 99.0 C36.4 99.1 49.6 99.1 52.0 99.0 C54.4 98.9 52.1 98.1 53.0 98.0 C53.9 97.9 58.1 98.1 59.0 98.0 C59.9 97.9 58.0 97.1 60.0 97.0 C62.0 96.9 70.0 95.8 75.0 97.0 C80.0 98.2 85.2 102.7 90.0 104.0 C94.8 105.3 99.7 105.5 104.0 105.0 C108.3 104.5 111.0 103.7 116.0 101.0 C121.0 98.3 130.0 91.2 134.0 89.0 C138.0 86.8 139.0 88.3 140.0 88.0 C141.0 87.7 140.1 87.1 141.0 87.0 Z" fill="#8AA951"/>
+    <g clip-path="url(#oClip)">
+      <path d="M146.0 124.0 C149.2 123.9 171.0 124.0 171.0 124.0 C171.0 124.0 172.5 123.1 171.0 125.0 C169.5 126.9 162.4 136.6 160.0 138.0 C157.6 139.4 153.5 137.5 149.0 138.0 C144.5 138.5 138.7 139.2 133.0 141.0 C127.3 142.8 120.7 145.5 115.0 149.0 C109.3 152.5 102.5 160.2 99.0 162.0 C95.5 163.8 93.8 162.5 90.0 162.0 C86.2 161.5 76.0 159.0 76.0 159.0 C76.0 159.0 80.0 153.7 83.0 151.0 C86.0 148.3 89.0 146.0 94.0 143.0 C99.0 140.0 107.0 135.7 113.0 133.0 C119.0 130.3 124.7 128.3 130.0 127.0 C135.3 125.7 142.7 125.4 145.0 125.0 C147.3 124.6 142.8 124.1 146.0 124.0 Z" fill="#3E6E35"/>
+      <path d="M62.0 115.0 C63.9 115.0 74.0 115.5 78.0 116.0 C82.0 116.5 84.4 117.4 86.0 118.0 C87.6 118.6 88.0 120.0 88.0 120.0 C88.0 120.0 76.0 126.5 70.0 131.0 C64.0 135.5 54.7 144.9 52.0 147.0 C49.3 149.1 51.8 148.2 50.0 147.0 C48.2 145.8 42.5 141.5 39.0 138.0 C35.5 134.5 29.5 126.8 29.0 126.0 C28.5 125.2 27.9 125.1 30.0 124.0 C32.1 122.9 39.8 119.3 45.0 118.0 C50.2 116.7 58.6 116.4 61.0 116.0 C63.4 115.6 60.1 115.0 62.0 115.0 Z" fill="#3E6E35"/>
+      <path d="M153.0 143.0 C153.2 142.9 154.0 143.0 154.0 143.0 C154.0 143.0 152.2 145.0 149.0 147.0 C145.8 149.0 139.7 152.8 135.0 155.0 C130.3 157.2 125.5 159.0 121.0 160.0 C116.5 161.0 108.0 161.0 108.0 161.0 C108.0 161.0 108.5 159.2 112.0 157.0 C115.5 154.8 125.0 149.7 129.0 148.0 C133.0 146.3 133.7 147.7 136.0 147.0 C138.3 146.3 140.3 144.5 143.0 144.0 C145.7 143.5 150.8 144.1 152.0 144.0 C153.2 143.9 152.8 143.1 153.0 143.0 Z" fill="#3E6E35"/>
+      <path d="M150.0 106.0 C153.3 106.0 172.3 106.5 177.0 107.0 C181.7 107.5 180.0 109.0 180.0 109.0 C180.0 109.0 174.7 118.5 174.0 119.0 C173.3 119.5 172.3 118.0 167.0 118.0 C161.7 118.0 148.5 118.3 142.0 119.0 C135.5 119.7 133.2 120.5 128.0 122.0 C122.8 123.5 118.2 124.5 111.0 128.0 C103.8 131.5 91.7 138.3 85.0 143.0 C78.3 147.7 73.0 154.8 71.0 156.0 C69.0 157.2 67.5 156.0 65.0 155.0 C62.5 154.0 56.0 150.0 56.0 150.0 C56.0 150.0 71.7 136.2 79.0 131.0 C86.3 125.8 94.0 122.0 100.0 119.0 C106.0 116.0 109.5 114.8 115.0 113.0 C120.5 111.2 127.3 109.0 133.0 108.0 C138.7 107.0 146.7 107.3 149.0 107.0 C151.3 106.7 146.7 106.0 150.0 106.0 Z" fill="#F3ECE1"/>
+    </g>
+    <path d="M165.0 3.0 C165.7 2.9 169.3 2.9 170.0 3.0 C170.7 3.1 170.6 3.9 171.0 4.0 C171.4 4.1 172.0 3.7 173.0 4.0 C174.0 4.3 175.8 5.2 177.0 6.0 C178.2 6.8 179.2 7.8 180.0 9.0 C180.8 10.2 181.7 10.7 182.0 13.0 C182.3 15.3 182.3 20.7 182.0 23.0 C181.7 25.3 181.3 25.5 180.0 27.0 C178.7 28.5 175.2 31.3 174.0 32.0 C172.8 32.7 171.5 31.9 171.0 32.0 C170.5 32.1 171.1 33.0 170.0 33.0 C168.9 33.0 166.3 27.8 161.0 32.0 C155.7 36.2 125.1 67.8 120.0 73.0 C114.9 78.2 120.0 74.0 120.0 74.0 C120.0 74.0 119.1 73.9 119.0 74.0 C118.9 74.1 118.1 75.9 118.0 76.0 C117.9 76.1 118.0 75.1 117.0 76.0 C116.0 76.9 110.9 82.0 110.0 83.0 C109.1 84.0 110.5 83.4 110.0 84.0 C109.5 84.6 107.0 87.2 106.0 88.0 C105.0 88.8 105.3 88.8 104.0 89.0 C102.7 89.2 102.4 92.5 98.0 89.0 C93.6 85.5 72.8 64.5 69.0 61.0 C65.2 57.5 71.6 57.5 68.0 61.0 C64.4 64.5 44.0 85.5 40.0 89.0 C36.0 92.5 36.9 89.4 36.0 89.0 C35.1 88.6 33.4 86.9 33.0 86.0 C32.6 85.1 29.9 85.6 33.0 82.0 C36.1 78.4 54.9 60.2 58.0 57.0 C61.1 53.8 57.9 56.1 58.0 56.0 C58.1 55.9 59.9 55.1 60.0 55.0 C60.1 54.9 59.6 54.5 60.0 54.0 C60.4 53.5 61.8 51.8 63.0 51.0 C64.2 50.2 65.8 49.3 67.0 49.0 C68.2 48.7 68.6 48.4 70.0 49.0 C71.4 49.6 75.5 52.6 76.0 53.0 C76.5 53.4 75.1 53.0 76.0 54.0 C76.9 55.0 82.0 60.1 83.0 61.0 C84.0 61.9 83.9 60.9 84.0 61.0 C84.1 61.1 84.9 62.9 85.0 63.0 C85.1 63.1 84.0 61.1 86.0 63.0 C88.0 64.9 99.0 76.1 101.0 78.0 C103.0 79.9 100.5 79.4 102.0 78.0 C103.5 76.6 111.6 68.5 113.0 67.0 C114.4 65.5 113.0 66.0 113.0 66.0 C113.0 66.0 113.9 66.1 114.0 66.0 C114.1 65.9 114.9 64.1 115.0 64.0 C115.1 63.9 115.7 64.3 116.0 64.0 C116.3 63.7 117.7 61.3 118.0 61.0 C118.3 60.7 118.9 61.1 119.0 61.0 C119.1 60.9 119.9 59.1 120.0 59.0 C120.1 58.9 120.7 59.3 121.0 59.0 C121.3 58.7 122.7 56.3 123.0 56.0 C123.3 55.7 123.9 56.1 124.0 56.0 C124.1 55.9 124.4 54.6 125.0 54.0 C125.6 53.4 127.2 52.8 128.0 52.0 C128.8 51.2 129.7 49.3 130.0 49.0 C130.3 48.7 130.4 49.5 131.0 49.0 C131.6 48.5 134.5 45.6 135.0 45.0 C135.5 44.4 135.0 44.0 135.0 44.0 C135.0 44.0 135.9 44.1 136.0 44.0 C136.1 43.9 136.6 42.4 137.0 42.0 C137.4 41.6 138.6 41.4 139.0 41.0 C139.4 40.6 139.9 39.1 140.0 39.0 C140.1 38.9 140.9 39.1 141.0 39.0 C141.1 38.9 140.7 38.3 142.0 37.0 C143.3 35.7 147.7 32.3 149.0 31.0 C150.3 29.7 149.6 29.4 150.0 29.0 C150.4 28.6 151.4 28.6 152.0 28.0 C152.6 27.4 153.7 25.8 154.0 25.0 C154.3 24.2 154.1 23.4 154.0 23.0 C153.9 22.6 153.1 23.1 153.0 22.0 C152.9 20.9 152.9 15.1 153.0 14.0 C153.1 12.9 153.9 13.4 154.0 13.0 C154.1 12.6 153.6 11.9 154.0 11.0 C154.4 10.1 155.7 8.2 157.0 7.0 C158.3 5.8 160.9 4.5 162.0 4.0 C163.1 3.5 163.6 4.1 164.0 4.0 C164.4 3.9 164.3 3.1 165.0 3.0 Z" fill="#D18B25"/>
+  </symbol>
+</defs></svg>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Observatorio de Seguridad Alimentaria, inicio">
+      <svg><use href="#oIsoInv"/></svg>
+      <span class="txt"><span class="t">Observatorio de<br>Seguridad Alimentaria</span><span class="s">Datos · Evidencia · Acción</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú de navegación"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="tg-txt">Menú</span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="index.html#problema">El problema</a>
+      <a href="ivcba.html" class="actual" aria-current="page">El índice</a>
+      <a href="evolucion-cba-2026.html">Evolución CBA</a>
+      <a href="index.html#publicaciones">Publicaciones</a>
+      <a class="btn btn-ghost" href="index.html#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header class="phead">
+  <div class="wrap phead-in">
+    <div class="migas"><a href="index.html">Inicio</a> · El índice</div>
+    <div class="eyebrow">IV-CBA · Chile 2026</div>
+    <h1>Qué parte de la mesa chilena está <em>más expuesta</em> al clima</h1>
+    <p class="lede">Evaluamos los productos de la canasta básica oficial y le asignamos a cada uno un puntaje de riesgo de 1 a 5, combinando su sensibilidad al clima, a El Niño, al precio del combustible y a la logística. Activa o desactiva factores abajo y observa cómo se reordena el riesgo.</p>
+    <p class="disclaimer">Este índice no predice precios futuros: identifica vulnerabilidades <em>relativas</em> entre productos usando evidencia de ARClim, CR2, INIA, ODEPA, NOAA e IFOP. NOAA declaró El Niño el 11 de junio de 2026.</p>
+  </div>
+</header>
+
+<div class="panel">
+  <div class="wrap panel-in">
+    <div class="factors">
+      <h2>Factores del índice</h2>
+      <p class="sub">El cambio climático queda siempre activo. Los otros dos factores puedes encenderlos o apagarlos.</p>
+      <div class="tgl-row">
+        <div class="tgl fixed on" id="tgl-clima">
+          <button class="sw" role="switch" aria-checked="true" aria-disabled="true" tabindex="-1" aria-label="Cambio climático, siempre activo"></button>
+          <span class="lbl"><b>Cambio climático</b><span>Sequía, calor extremo y lluvias irregulares · peso 0,4</span></span>
+          <span class="pill">Siempre</span>
+        </div>
+        <div class="tgl on" id="tgl-enso">
+          <button class="sw" role="switch" aria-checked="true" aria-label="El Niño / ENSO"></button>
+          <span class="lbl"><b>El Niño (ENSO)</b><span>Sensibilidad al ciclo El Niño / La Niña · peso 0,2</span></span>
+          <span class="pill">Opcional</span>
+        </div>
+        <div class="tgl on" id="tgl-combustible">
+          <button class="sw" role="switch" aria-checked="true" aria-label="Precio del combustible"></button>
+          <span class="lbl"><b>Precio del combustible</b><span>Dependencia del diésel en producción y transporte · peso 0,2</span></span>
+          <span class="pill">Opcional</span>
+        </div>
+      </div>
+    </div>
+    <div class="gauge">
+      <div class="cap">IV-CBA ponderado</div>
+      <div class="val" id="gaugeVal">–<small>/5</small></div>
+      <div class="bar"><i id="gaugeBar"></i></div>
+      <div class="scale"><span>1 · bajo</span><span>3 · alto</span><span>5 · crítico</span></div>
+      <div class="meta" id="gaugeMeta"></div>
+    </div>
+  </div>
+</div>
+
+<section class="claro">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-tab="dashboard" role="tab">Panorama</button>
+      <button class="tab" data-tab="productos" role="tab">Productos</button>
+      <button class="tab" data-tab="metodologia" role="tab">Metodología</button>
+    </div>
+
+    <!-- LEYENDA (compartida dashboard/productos) -->
+    <div class="leyenda" id="leyenda">
+      <div class="lt">¿Qué significa el número? — escala 1 a 5</div>
+      <div class="ramp" id="ramp"></div>
+      <div class="cats">
+        <div class="lcat" style="background:#E9F7EF"><b style="color:var(--r-bajo)">1–2 · Bajo</b><span>Poco expuesto. Aguanta bien sequía, El Niño o alzas de combustible.</span></div>
+        <div class="lcat" style="background:#FFFBE6"><b style="color:var(--r-mod)">2–3 · Moderado</b><span>Sensibilidad indirecta. Un shock puede afectarlo, pero no de inmediato.</span></div>
+        <div class="lcat" style="background:#FFF3E0"><b style="color:var(--r-alto)">3–4 · Alto</b><span>Exposición real a uno o más factores. Requiere monitoreo activo.</span></div>
+        <div class="lcat" style="background:#FDECEA"><b style="color:var(--r-crit)">4–5 · Crítico</b><span>Alta exposición simultánea a sequía, El Niño y combustible.</span></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="panel-dashboard">
+      <div class="grid-kpi" id="kpis"></div>
+      <div class="top">
+        <div class="th">Top 10 · mayor impacto sobre la canasta <span>(riesgo × peso del producto en la canasta)</span></div>
+        <div id="topList"></div>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div id="panel-productos" style="display:none">
+      <input type="text" id="search" class="searchbox" placeholder="Buscar producto…" aria-label="Buscar producto">
+      <div class="tablewrap">
+        <table class="tp">
+          <thead><tr id="thead"></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- METODOLOGÍA -->
+    <div id="panel-metodologia" style="display:none">
+      <div class="metod">
+        <h2 style="font-size:1.3rem">Cómo se construye el IV-CBA</h2>
+        <div class="formula" id="formula"></div>
+        <div class="mdim">
+          <div class="dh">Clima · peso 0,4 — siempre activo</div>
+          <div class="dd">Sensibilidad del cultivo o especie a sequía, aumento de temperatura y eventos extremos. Se basa en ARClim (escenario RCP8.5), alertas del INIA y proyecciones del CR2. Es el factor de mayor peso y no puede desactivarse: el cambio climático es la lente central del observatorio.</div>
+          <div class="src"><span>ARClim</span><span>CR2</span><span>INIA</span></div>
+        </div>
+        <div class="mdim">
+          <div class="dh">El Niño / ENSO · peso 0,2 — opcional</div>
+          <div class="dd">Sensibilidad al fenómeno El Niño / La Niña. NOAA declaró El Niño el 11 de junio de 2026, con índice Niño 1+2 en +2,1 °C y 63% de probabilidad de un evento muy intenso en noviembre de 2026.</div>
+          <div class="src"><span>NOAA</span><span>IFOP</span><span>CR2</span></div>
+        </div>
+        <div class="mdim">
+          <div class="dh">Combustible · peso 0,2 — opcional</div>
+          <div class="dd">Exposición al <b>precio</b> del diésel: un riesgo coyuntural. El bencinazo de marzo de 2026 llevó el diésel a $580/litro, encareciendo maquinaria agrícola, transporte y cadena de frío. Mide cuánto sube el costo del producto ante un alza puntual del combustible.</div>
+          <div class="src"><span>ODEPA</span><span>ENAP</span></div>
+        </div>
+        <div class="mdim">
+          <div class="dh">Logística · peso 0,2 — siempre activo</div>
+          <div class="dd">Fragilidad <b>estructural</b> de la cadena: un riesgo permanente e independiente del precio del combustible. Mide si el producto es importado, si depende de cadena de frío o si viaja largas distancias. Un plátano importado es frágil aunque el flete baje; un tomate local en invernadero quema diésel pero su cadena es corta.</div>
+          <div class="src"><span>ODEPA</span><span>FAO</span></div>
+        </div>
+        <div class="mdim" style="border-bottom:none">
+          <div class="dh">Combustible y logística: por qué son ejes distintos</div>
+          <div class="dd">Ambos factores están correlacionados (Pearson 0,89 sobre los 79 productos): las cadenas largas tienden a quemar más combustible. Pero no miden lo mismo. El combustible captura la sensibilidad a un <b>shock de precio</b> —reversible, coyuntural—; la logística captura la <b>dependencia estructural</b> de importaciones y cadena de frío, que persiste aunque el diésel baje. Un producto puede ser sensible a uno y no al otro: los limones dependen poco del flete (combustible 2) pese a producirse en zona acotada, mientras un plátano importado arrastra logística máxima con un componente de combustible menor en su precio final. Mantenerlos separados preserva esa distinción; el lector puede ponderar cada eje por su cuenta en la tabla de productos.</div>
+        </div>
+        <p class="dd" style="margin-top:8px"><b>Repesado (escala fija):</b> al desactivar El Niño o combustible, esa dimensión se omite del promedio y el índice se recalcula solo sobre los factores activos, manteniendo la proporción original de sus pesos. Con todos los factores activos el divisor es 1,0; al apagar uno de 0,2 pasa a 0,8. La escala 1–5 se conserva.</p>
+        <p class="nota-fuente">Base de datos: abril 2026 · 79 productos de la canasta básica oficial. Fuentes: ARClim, CR2, INIA, ODEPA, NOAA, IFOP, ENAP, FAO.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="fbrand">
+      <svg><use href="#oIsoInv"/></svg>
+      <span>© 2026 Observatorio de Seguridad Alimentaria</span>
+    </div>
+    <div>Datos de fuentes oficiales: INE · ODEPA · Mindesaf · FAO · BID</div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   IV-CBA · Datos de productos (base abril 2026)
+   Puntaje 1–5 por dimensión. clima y logistica siempre entran;
+   enso y combustible se activan/desactivan por toggle.
+   Repesado "escala fija": índice = Σ(peso_i·score_i)/Σ(peso_i) sobre activos.
+   ========================================================================= */
+const PESOS = { clima:0.4, enso:0.2, combustible:0.2, logistica:0.2 };
+
+const PRODUCTOS = [
+  {cat:"Cereales",prod:"Pan corriente a granel",gasto:10239,cal:666,clima:5,enso:4,combustible:5,logistica:4,pesoCBA:5,ya:true,evidencia:"alta",fuentes:["CR2","INIA","ODEPA"],nota:"Producto de mayor peso calórico (666 kcal/día). CR2: hasta 52% cultivos de trigo afectados bajo RCP8.5. NOAA 11-jun-2026: El Niño declarado. ODEPA: molienda y distribución 100% diésel."},
+  {cat:"Cereales",prod:"Harina de trigo blanca",gasto:628,cal:79,clima:5,enso:4,combustible:5,logistica:4,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["CR2","INIA","ODEPA","ARClim"],nota:"CR2: megasequía sin precedente en un milenio. ARClim: amenaza alta desde O'Higgins a Araucanía."},
+  {cat:"Cereales",prod:"Arroz",gasto:1061,cal:115,clima:5,enso:4,combustible:3,logistica:4,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["CR2","INIA","NOAA"],nota:"NOAA 11-jun-2026: Niño 1+2 costero +2,1°C. CR2: déficit hídrico para riego."},
+  {cat:"Cereales",prod:"Espaguetis",gasto:462,cal:28,clima:5,enso:4,combustible:3,logistica:3,pesoCBA:2,ya:true,evidencia:"alta",fuentes:["CR2","ODEPA"],nota:"Derivado directo de trigo. ARClim/CR2: misma cadena de riesgo que la harina."},
+  {cat:"Cereales",prod:"Otras pastas secas",gasto:528,cal:24,clima:5,enso:4,combustible:3,logistica:3,pesoCBA:2,ya:true,evidencia:"alta",fuentes:["CR2","ODEPA"],nota:"Derivado de trigo. Riesgo climático y ENSO equivalente a espaguetis."},
+  {cat:"Cereales",prod:"Pan especial a granel",gasto:618,cal:22,clima:5,enso:4,combustible:5,logistica:4,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["CR2","INIA"],nota:"Misma cadena de riesgo que el pan corriente."},
+  {cat:"Cereales",prod:"Pan envasado",gasto:408,cal:11,clima:5,enso:3,combustible:5,logistica:4,pesoCBA:2,ya:true,evidencia:"media",fuentes:["CR2","ODEPA"],nota:"Derivado industrial de trigo. Distribución nacional con camiones diésel."},
+  {cat:"Cereales",prod:"Galletas no identificadas",gasto:391,cal:9,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Derivado cereal; riesgo moderado indirecto vía cadena triguera."},
+  {cat:"Cereales",prod:"Cereales para el desayuno",gasto:263,cal:6,clima:3,enso:3,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"media",fuentes:["INIA","NOAA"],nota:"Derivado de maíz/trigo/avena."},
+  {cat:"Cereales",prod:"Galletas dulces con relleno",gasto:328,cal:9,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de trigo y azúcar."},
+  {cat:"Cereales",prod:"Snacks, chips y frituras de cereal",gasto:225,cal:5,clima:3,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de maíz/trigo; riesgo moderado indirecto."},
+  {cat:"Cereales",prod:"Tortas y masas dulces grandes",gasto:371,cal:6,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Insumos: trigo, azúcar, leche. Riesgo moderado acumulado indirecto."},
+  {cat:"Cereales",prod:"Pasteles y masas dulces pequeñas",gasto:359,cal:5,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Mismo perfil que tortas. Riesgo moderado indirecto."},
+  {cat:"Cereales",prod:"Galletas dulces sin relleno",gasto:117,cal:3,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Bajo peso calórico. Riesgo moderado vía trigo."},
+  {cat:"Cereales",prod:"Galletas no dulces",gasto:101,cal:3,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Mismo perfil que galletas dulces sin relleno."},
+  {cat:"Carnes",prod:"Trutro de pollo",gasto:2045,cal:28,clima:3,enso:2,combustible:3,logistica:4,pesoCBA:4,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"Mayor peso calórico del grupo avícola. INIA: riesgo principal vía maíz forrajero."},
+  {cat:"Carnes",prod:"Carne vacuno molida",gasto:1803,cal:9,clima:5,enso:3,combustible:5,logistica:5,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["ARClim","CR2","INIA","ODEPA"],nota:"ARClim: amenaza alta secano costero. CR2: pastizales degradados por megasequía."},
+  {cat:"Carnes",prod:"Otros cortes vacuno",gasto:1758,cal:14,clima:5,enso:3,combustible:5,logistica:5,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["ARClim","CR2","ODEPA"],nota:"ARClim: ganadería extensiva bajo megasequía."},
+  {cat:"Carnes",prod:"Pechuga de pollo",gasto:1407,cal:11,clima:3,enso:2,combustible:3,logistica:4,pesoCBA:3,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"INIA: riesgo indirecto vía maíz."},
+  {cat:"Carnes",prod:"Carne vacuno posta",gasto:1107,cal:6,clima:5,enso:3,combustible:5,logistica:5,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["ARClim","CR2","ODEPA"],nota:"ARClim: amenaza alta. CR2: megasequía."},
+  {cat:"Carnes",prod:"Cecinas y fiambres no identificados",gasto:628,cal:7,clima:3,enso:1,combustible:3,logistica:3,pesoCBA:2,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivados procesados de carne; riesgo moderado indirecto."},
+  {cat:"Carnes",prod:"Carne cerdo chuleta",gasto:759,cal:7,clima:3,enso:2,combustible:3,logistica:3,pesoCBA:2,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"INIA: riesgo indirecto vía maíz forrajero."},
+  {cat:"Carnes",prod:"Vienesas tradicionales",gasto:267,cal:9,clima:3,enso:1,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Producto procesado; riesgo climático indirecto vía cadena porcina."},
+  {cat:"Carnes",prod:"Cortes vacuno no identificados",gasto:1638,cal:14,clima:5,enso:3,combustible:5,logistica:5,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["CR2","ODEPA"],nota:"Cadena vacuna completa bajo presión climática y de combustible simultáneas."},
+  {cat:"Carnes",prod:"Otros embutidos frescos",gasto:579,cal:9,clima:3,enso:1,combustible:3,logistica:3,pesoCBA:2,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de cerdo/vacuno. Cadena de frío con diésel."},
+  {cat:"Carnes",prod:"Cecinas y fiambres de cerdo cocidos",gasto:512,cal:5,clima:3,enso:1,combustible:3,logistica:3,pesoCBA:2,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de cerdo; riesgo moderado."},
+  {cat:"Carnes",prod:"Cecinas secas y semisecas",gasto:152,cal:2,clima:3,enso:1,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado cerdo/vacuno. Riesgo moderado heredado de la cadena cárnica."},
+  {cat:"Carnes",prod:"Cecinas y fiambres de pavo cocidos",gasto:189,cal:1,clima:3,enso:1,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de pavo industrial; bajo riesgo ENSO directo."},
+  {cat:"Carnes",prod:"Patés y pastas de untar",gasto:144,cal:2,clima:2,enso:1,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Ultraprocesado de bajo peso calórico. Riesgo bajo-moderado."},
+  {cat:"Pesca",prod:"Jurel en conserva",gasto:261,cal:5,clima:5,enso:5,combustible:5,logistica:4,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["ARClim","IFOP","NOAA"],nota:"IFOP 2026: El Niño activo impacta el jurel en la macrozona norte."},
+  {cat:"Pesca",prod:"Atún en conserva",gasto:591,cal:4,clima:4,enso:4,combustible:5,logistica:5,pesoCBA:2,ya:true,evidencia:"alta",fuentes:["ARClim","IFOP","NOAA"],nota:"NOAA 11-jun: Niño 1+2 costero +2,1°C."},
+  {cat:"Lácteos y huevos",prod:"Huevos de gallina frescos",gasto:2273,cal:31,clima:3,enso:2,combustible:3,logistica:3,pesoCBA:4,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"INIA: avicultura en galpones; riesgo indirecto vía maíz."},
+  {cat:"Lácteos y huevos",prod:"Leche líquida entera",gasto:1031,cal:21,clima:3,enso:4,combustible:5,logistica:5,pesoCBA:3,ya:false,evidencia:"alta",fuentes:["ARClim","INIA","NOAA"],nota:"ARClim CI lechería: amenaza media en Los Lagos y Araucanía."},
+  {cat:"Lácteos y huevos",prod:"Queso gouda",gasto:1446,cal:21,clima:3,enso:2,combustible:4,logistica:4,pesoCBA:3,ya:false,evidencia:"media",fuentes:["ARClim","INIA"],nota:"ARClim CI lechería. Cadena de frío con diésel."},
+  {cat:"Lácteos y huevos",prod:"Yogur batido",gasto:1106,cal:13,clima:3,enso:2,combustible:4,logistica:4,pesoCBA:3,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"Derivado lácteo; hereda el riesgo de la leche base."},
+  {cat:"Lácteos y huevos",prod:"Leche en polvo",gasto:614,cal:16,clima:3,enso:3,combustible:5,logistica:5,pesoCBA:2,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"INIA: sequía en el sur afecta la producción lechera."},
+  {cat:"Lácteos y huevos",prod:"Queso chanco o mantecoso",gasto:606,cal:9,clima:3,enso:2,combustible:4,logistica:4,pesoCBA:2,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"Mismo perfil que el queso gouda."},
+  {cat:"Lácteos y huevos",prod:"Quesos no identificados",gasto:487,cal:7,clima:3,enso:2,combustible:4,logistica:4,pesoCBA:2,ya:false,evidencia:"media",fuentes:["INIA"],nota:"Derivados lácteos; riesgo moderado."},
+  {cat:"Lácteos y huevos",prod:"Postres y bebidas a base de leche",gasto:320,cal:5,clima:2,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Ultraprocesado lácteo; riesgo moderado indirecto."},
+  {cat:"Lácteos y huevos",prod:"Leche líquida descremada/semidescremada",gasto:335,cal:5,clima:3,enso:4,combustible:5,logistica:5,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ARClim","NOAA"],nota:"Misma cadena que la leche entera. NOAA: El Niño declarado oficialmente."},
+  {cat:"Lácteos y huevos",prod:"Cremas de leche",gasto:203,cal:3,clima:2,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado lácteo; hereda el riesgo de la cadena lechera en menor magnitud."},
+  {cat:"Grasas y aceites",prod:"Aceites vegetales",gasto:1564,cal:197,clima:5,enso:4,combustible:5,logistica:5,pesoCBA:5,ya:true,evidencia:"alta",fuentes:["ARClim","ODEPA","NOAA"],nota:"NOAA 11-jun: 63% prob. de evento muy intenso en nov-2026, impacta producción oleaginosa."},
+  {cat:"Grasas y aceites",prod:"Mantequillas",gasto:693,cal:20,clima:3,enso:2,combustible:4,logistica:4,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Derivado lácteo. Cadena de frío con diésel."},
+  {cat:"Grasas y aceites",prod:"Margarinas",gasto:407,cal:11,clima:2,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Derivado de aceites vegetales importados."},
+  {cat:"Frutas",prod:"Paltas frescas",gasto:1647,cal:19,clima:5,enso:2,combustible:3,logistica:3,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["ARClim","CR2"],nota:"ARClim CI hídrico: Petorca en riesgo muy alto. CR2: emergencia hídrica permanente."},
+  {cat:"Frutas",prod:"Limones y limas frescos",gasto:633,cal:3,clima:5,enso:4,combustible:2,logistica:2,pesoCBA:2,ya:true,evidencia:"alta",fuentes:["ARClim","ODEPA","NOAA"],nota:"ARClim: zona productora Coquimbo-Valparaíso en riesgo alto."},
+  {cat:"Frutas",prod:"Plátanos frescos",gasto:891,cal:14,clima:4,enso:5,combustible:5,logistica:5,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["ODEPA","NOAA"],nota:"100% importado. NOAA: Niño 1+2 +2,1°C afecta Ecuador/Colombia."},
+  {cat:"Frutas",prod:"Manzanas frescas",gasto:420,cal:5,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ARClim","CR2"],nota:"ARClim CI fruticultura: reducción de horas de frío al 2050."},
+  {cat:"Frutas",prod:"Naranjas frescas",gasto:304,cal:4,clima:3,enso:4,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"media",fuentes:["NOAA","ODEPA"],nota:"NOAA: Niño costero afecta zona productora. Importada desde Argentina/Perú."},
+  {cat:"Frutas",prod:"Uvas frescas",gasto:380,cal:5,clima:3,enso:3,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ARClim","ODEPA"],nota:"ARClim: zona vitícola centro-norte bajo sequía. NOAA: El Niño afecta la temporada."},
+  {cat:"Frutas",prod:"Maní salado",gasto:220,cal:8,clima:1,enso:1,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["INIA"],nota:"INIA: cultivo resistente a sequía moderada. Bajo riesgo relativo en los tres vectores."},
+  {cat:"Verduras",prod:"Papas de guarda",gasto:1200,cal:55,clima:5,enso:5,combustible:5,logistica:4,pesoCBA:5,ya:true,evidencia:"alta",fuentes:["ARClim","INIA","ODEPA","NOAA"],nota:"ARClim CI papa: Osorno, Chiloé y Llanquihue en riesgo alto."},
+  {cat:"Verduras",prod:"Tomates frescos",gasto:890,cal:4,clima:5,enso:4,combustible:3,logistica:2,pesoCBA:4,ya:true,evidencia:"alta",fuentes:["ARClim","ODEPA","NOAA"],nota:"ARClim CI hortalizas: amenaza alta Coquimbo–O'Higgins."},
+  {cat:"Verduras",prod:"Cebollas frescas",gasto:420,cal:3,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ARClim","ODEPA"],nota:"ARClim: amenaza media en O'Higgins."},
+  {cat:"Verduras",prod:"Zanahorias frescas",gasto:350,cal:4,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["INIA","ODEPA"],nota:"INIA: riesgo moderado en el Maule."},
+  {cat:"Verduras",prod:"Porotos frescos o secos",gasto:480,cal:12,clima:3,enso:1,combustible:1,logistica:1,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ARClim","INIA"],nota:"Leguminosas más resilientes."},
+  {cat:"Verduras",prod:"Lentejas",gasto:420,cal:10,clima:2,enso:1,combustible:2,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Leguminosa importada. Bajo riesgo relativo."},
+  {cat:"Verduras",prod:"Choclo fresco o congelado",gasto:380,cal:8,clima:3,enso:3,combustible:3,logistica:3,pesoCBA:2,ya:false,evidencia:"media",fuentes:["NOAA","ARClim"],nota:"NOAA: El Niño activo afecta la producción de maíz."},
+  {cat:"Verduras",prod:"Lechuga fresca",gasto:380,cal:2,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["INIA"],nota:"Cultivo de hoja; sensible a olas de calor y déficit hídrico."},
+  {cat:"Verduras",prod:"Zapallo fresco",gasto:280,cal:3,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ARClim"],nota:"ARClim: hortalizas bajo riesgo moderado en la zona central."},
+  {cat:"Verduras",prod:"Espinaca o acelga fresca",gasto:260,cal:2,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["INIA"],nota:"Cultivo de hoja de temporada; sensible a olas de calor."},
+  {cat:"Verduras",prod:"Pepino fresco",gasto:220,cal:1,clima:3,enso:3,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["INIA"],nota:"Hortaliza de verano bajo riesgo moderado."},
+  {cat:"Verduras",prod:"Pimentón fresco",gasto:300,cal:2,clima:3,enso:3,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ARClim"],nota:"ARClim CI hortalizas: amenaza media O'Higgins-Maule."},
+  {cat:"Verduras",prod:"Repollo fresco",gasto:180,cal:2,clima:2,enso:2,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["INIA"],nota:"Cultivo de temporada fría; riesgo moderado."},
+  {cat:"Verduras",prod:"Betarraga fresca",gasto:160,cal:2,clima:2,enso:2,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["INIA"],nota:"Riesgo moderado; cultivo resistente a sequía leve."},
+  {cat:"Azúcar y dulces",prod:"Azúcar blanca o rubia",gasto:520,cal:35,clima:4,enso:4,combustible:3,logistica:3,pesoCBA:3,ya:true,evidencia:"alta",fuentes:["ODEPA","NOAA"],nota:"NOAA 11-jun: 63% prob. de evento muy intenso en nov-2026, impacta producción cañera."},
+  {cat:"Azúcar y dulces",prod:"Mermeladas y jaleas",gasto:210,cal:5,clima:3,enso:2,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de frutas y azúcar."},
+  {cat:"Azúcar y dulces",prod:"Manjar y dulces de leche",gasto:180,cal:6,clima:2,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado lácteo y azúcar; riesgo moderado acumulado."},
+  {cat:"Condimentos",prod:"Salsa de tomate envasada",gasto:350,cal:5,clima:4,enso:3,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Derivado de tomate industrializado."},
+  {cat:"Condimentos",prod:"Mayonesa",gasto:280,cal:8,clima:3,enso:2,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Derivado de aceites vegetales y huevo."},
+  {cat:"Condimentos",prod:"Sal fina o gruesa",gasto:60,cal:0,clima:1,enso:1,combustible:1,logistica:1,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Producción nacional estable."},
+  {cat:"Condimentos",prod:"Mostaza y kétchup",gasto:120,cal:2,clima:2,enso:2,combustible:2,logistica:2,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Productos procesados; riesgo moderado indirecto."},
+  {cat:"Bebidas",prod:"Café o sucedáneo",gasto:420,cal:2,clima:5,enso:5,combustible:5,logistica:5,pesoCBA:2,ya:true,evidencia:"alta",fuentes:["ODEPA","NOAA"],nota:"NOAA 11-jun: El Niño afecta Colombia, Vietnam y Etiopía. 63% prob. muy intenso."},
+  {cat:"Bebidas",prod:"Té o hierba",gasto:310,cal:2,clima:5,enso:4,combustible:5,logistica:5,pesoCBA:1,ya:true,evidencia:"alta",fuentes:["ODEPA","NOAA"],nota:"NOAA 11-jun: El Niño 63% prob. muy intenso. Zonas de cultivo asiáticas afectadas."},
+  {cat:"Bebidas",prod:"Bebidas gaseosas",gasto:620,cal:12,clima:2,enso:1,combustible:3,logistica:2,pesoCBA:2,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Dependencia hídrica industrial; embotellado local."},
+  {cat:"Bebidas",prod:"Agua mineral o purificada",gasto:380,cal:0,clima:5,enso:2,combustible:2,logistica:2,pesoCBA:1,ya:true,evidencia:"alta",fuentes:["ARClim","CR2"],nota:"ARClim CI hídrico: 288 de 345 comunas con riesgo alto."},
+  {cat:"Bebidas",prod:"Jugos y néctares envasados",gasto:340,cal:8,clima:3,enso:3,combustible:3,logistica:2,pesoCBA:1,ya:false,evidencia:"media",fuentes:["ODEPA"],nota:"Derivado de frutas; hereda el riesgo de la cadena frutícola."},
+  {cat:"Bebidas",prod:"Sopas y caldos en polvo o pasta",gasto:280,cal:5,clima:2,enso:2,combustible:3,logistica:3,pesoCBA:1,ya:false,evidencia:"baja",fuentes:["ODEPA"],nota:"Producto procesado; riesgo moderado indirecto."},
+  {cat:"Comidas preparadas",prod:"Alimentos en restaurantes y similares",gasto:2800,cal:65,clima:3,enso:2,combustible:5,logistica:5,pesoCBA:5,ya:true,evidencia:"alta",fuentes:["ODEPA"],nota:"Mayor gasto de la canasta ($2.800/mes). El bencinazo impacta la cadena completa."},
+];
+
+</script>
+<script>
+(function(){
+  "use strict";
+  const $ = s => document.querySelector(s);
+
+  /* estado de factores (clima y logistica siempre true) */
+  const factores = { clima:true, enso:true, combustible:true, logistica:true };
+
+  const rColor = v => v>=4.5?"var(--r-crit)":v>=3.5?"var(--r-alto)":v>=2.5?"var(--r-mod)":"var(--r-bajo)";
+  const rBg    = v => v>=4.5?"#FDECEA":v>=3.5?"#FFF3E0":v>=2.5?"#FFFDE7":"#E9F7EF";
+  const rHex   = v => v>=4.5?"#C0392B":v>=3.5?"#D35400":v>=2.5?"#B7860A":"#1E8449";
+
+  /* índice de un producto según factores activos (escala fija: repesa solo activos) */
+  function indiceDe(p){
+    let num=0, den=0;
+    if(factores.clima){       num+=PESOS.clima*p.clima;             den+=PESOS.clima; }
+    if(factores.enso){        num+=PESOS.enso*p.enso;               den+=PESOS.enso; }
+    if(factores.combustible){ num+=PESOS.combustible*p.combustible; den+=PESOS.combustible; }
+    if(factores.logistica){   num+=PESOS.logistica*p.logistica;     den+=PESOS.logistica; }
+    return den? +(num/den).toFixed(2) : 0;
+  }
+  const impactoDe = p => +(indiceDe(p)*p.pesoCBA/5).toFixed(2);
+
+  /* IV-CBA global ponderado por gasto */
+  function ivGlobal(){
+    let n=0,d=0; PRODUCTOS.forEach(p=>{ n+=indiceDe(p)*p.gasto; d+=p.gasto; });
+    return d? +(n/d).toFixed(2):0;
+  }
+
+  /* ---------- leyenda ramp ---------- */
+  (function(){
+    const anchors=[{v:1,p:"Sal"},{v:2,p:"Lentejas"},{v:2.9,p:"Leche"},{v:3.8,p:"Huevos"},{v:4.8,p:"Aceite / Pan"}];
+    $("#ramp").innerHTML = anchors.map(a=>{
+      const pct=((a.v-1)/4)*100;
+      return `<div class="anchor" style="left:${pct}%"><div class="tick"></div><div class="al" style="color:${rHex(a.v)}">${String(a.v).replace('.',',')}<span>${a.p}</span></div></div>`;
+    }).join("");
+  })();
+
+  /* ---------- medidor ---------- */
+  function renderGauge(){
+    const iv = ivGlobal();
+    const activos = [factores.enso&&"El Niño", factores.combustible&&"combustible"].filter(Boolean);
+    $("#gaugeVal").innerHTML = String(iv).replace('.',',') + '<small>/5</small>';
+    $("#gaugeVal").style.color = rHex(iv);
+    $("#gaugeBar").style.width = ((iv-1)/4*100)+"%";
+    $("#gaugeBar").style.background = rHex(iv);
+    const factoresTxt = activos.length===2 ? "clima + El Niño + combustible"
+      : activos.length===1 ? "clima + "+activos[0]
+      : "solo cambio climático";
+    $("#gaugeMeta").innerHTML = `Abril 2026 · 79 productos · CBA $90.384/persona<br>Factores activos: <b>${factoresTxt}</b>`;
+  }
+
+  /* ---------- dashboard ---------- */
+  function renderDashboard(){
+    const data = PRODUCTOS.map(p=>({...p, indice:indiceDe(p), impacto:impactoDe(p)}));
+    const muyAlto = data.filter(p=>p.indice>=4).length;
+    const alto    = data.filter(p=>p.indice>=3&&p.indice<4).length;
+    const ya      = data.filter(p=>p.ya).length;
+    const evAlta  = data.filter(p=>p.evidencia==="alta").length;
+    $("#kpis").innerHTML = [
+      {n:muyAlto,l:"Riesgo muy alto (≥4)",c:"#C0392B"},
+      {n:alto,l:"Riesgo alto (3–4)",c:"#D35400"},
+      {n:ya,l:"Impacto ya presente",c:"#8E44AD"},
+      {n:evAlta,l:"Evidencia alta",c:"#1B4A36"},
+    ].map(k=>`<div class="kpi"><div class="n" style="color:${k.c}">${k.n}</div><div class="l">${k.l}</div></div>`).join("");
+
+    const top = [...data].sort((a,b)=>b.impacto-a.impacto).slice(0,10);
+    const maxImp = Math.max(...data.map(d=>d.impacto),0.01);
+    $("#topList").innerHTML = top.map((p,i)=>`
+      <div class="trow">
+        <span class="rk">${i+1}</span>
+        <div class="nm"><b>${p.prod}</b><span>${p.cat}</span></div>
+        <div class="bar"><i style="width:${p.impacto/maxImp*100}%;background:${rHex(p.indice)}"></i></div>
+        <span class="sc" style="color:${rHex(p.indice)}">${String(p.impacto.toFixed(1)).replace('.',',')}</span>
+        <span class="ev ev-${p.evidencia}">${p.evidencia}</span>
+      </div>`).join("");
+  }
+
+  /* ---------- productos (tabla ordenable + expandible) ---------- */
+  const COLS = [
+    {key:"prod", lbl:"Producto"},
+    {key:"indice", lbl:"IV-CBA"},
+    {key:"clima", lbl:"Clima", dim:"clima"},
+    {key:"enso", lbl:"El Niño", dim:"enso"},
+    {key:"combustible", lbl:"Combust.", dim:"combustible"},
+    {key:"logistica", lbl:"Logíst.", dim:"logistica"},
+    {key:"evidencia", lbl:"Evidencia"},
+    {key:"impacto", lbl:"Impacto"},
+  ];
+  const EVORD = {alta:3,media:2,baja:1};
+  let sortCol="impacto", sortDir="desc", openRow=null, search="";
+
+  function pillScore(v, active){
+    return `<span class="pill-sc ${active?'':'pill-off'}" style="background:${rBg(v)};color:${rHex(v)}">${String(v).replace('.',',')}</span>`;
+  }
+
+  function renderProductos(){
+    $("#thead").innerHTML = COLS.map(c=>{
+      const act = sortCol===c.key;
+      const ar = act ? (sortDir==="desc"?"▼":"▲") : "⇅";
+      const off = c.dim && c.dim!=="clima" && c.dim!=="logistica" && !factores[c.dim];
+      return `<th data-key="${c.key}" class="${act?'act':''}" style="${off?'opacity:.5':''}"><span class="ar">${ar}</span>${c.lbl}</th>`;
+    }).join("");
+
+    let data = PRODUCTOS
+      .filter(p=>p.prod.toLowerCase().includes(search.toLowerCase()))
+      .map(p=>({...p, indice:indiceDe(p), impacto:impactoDe(p)}));
+
+    data.sort((a,b)=>{
+      let x,y;
+      if(sortCol==="prod"){ return sortDir==="desc"?b.prod.localeCompare(a.prod):a.prod.localeCompare(b.prod); }
+      if(sortCol==="evidencia"){ x=EVORD[a.evidencia]; y=EVORD[b.evidencia]; }
+      else { x=a[sortCol]; y=b[sortCol]; }
+      return sortDir==="desc"?y-x:x-y;
+    });
+
+    $("#tbody").innerHTML = data.map(p=>{
+      const isOpen = openRow===p.prod;
+      return `
+      <tr class="prow ${isOpen?'open':''}" data-prod="${p.prod.replace(/"/g,'&quot;')}">
+        <td class="pname"><b>${p.prod}</b><span>${p.cat} · $${p.gasto.toLocaleString("es-CL")}/mes · ${p.cal} kcal</span></td>
+        <td>${pillScore(p.indice,true)}</td>
+        <td>${pillScore(p.clima,true)}</td>
+        <td>${pillScore(p.enso,factores.enso)}</td>
+        <td>${pillScore(p.combustible,factores.combustible)}</td>
+        <td>${pillScore(p.logistica,true)}</td>
+        <td><span class="ev ev-${p.evidencia}">${p.evidencia}</span></td>
+        <td class="imp"><b style="color:${rHex(p.indice)}">${String(p.impacto.toFixed(1)).replace('.',',')}</b><span>/5</span><div class="pc">peso: ${p.pesoCBA<=2?'bajo':p.pesoCBA===3?'medio':'alto'}</div></td>
+      </tr>
+      ${isOpen?`<tr class="drow"><td colspan="8"><b>Evidencia:</b> ${p.nota}<br><b>Fuentes:</b> ${p.fuentes.join(" · ")}${p.ya?'<span class="yatag">⚡ impacto ya presente</span>':''}</td></tr>`:''}`;
+    }).join("");
+  }
+
+  /* ---------- metodología fórmula dinámica ---------- */
+  function renderFormula(){
+    const parts=[];
+    if(factores.clima) parts.push("0,4·Clima");
+    if(factores.enso) parts.push("0,2·ENSO");
+    if(factores.combustible) parts.push("0,2·Combustible");
+    if(factores.logistica) parts.push("0,2·Logística");
+    const den = (factores.clima?0.4:0)+(factores.enso?0.2:0)+(factores.combustible?0.2:0)+(factores.logistica?0.2:0);
+    $("#formula").innerHTML =
+      `<b>IV-CBA</b> = ( ${parts.join(" + ")} ) / ${String(den).replace('.',',')}<br>`+
+      `<b>Impacto en la canasta</b> = IV-CBA × peso del producto ÷ 5<br>`+
+      `<b>Escala</b>: 1 (bajo) — 5 (crítico)`;
+  }
+
+  /* ---------- render maestro ---------- */
+  function renderAll(){
+    renderGauge();
+    renderDashboard();
+    renderProductos();
+    renderFormula();
+  }
+
+  /* ---------- toggles ---------- */
+  function bindToggle(id, key){
+    const el = $("#"+id), sw = el.querySelector(".sw");
+    sw.addEventListener("click", ()=>{
+      factores[key] = !factores[key];
+      el.classList.toggle("on", factores[key]);
+      sw.setAttribute("aria-checked", factores[key]);
+      renderAll();
+    });
+  }
+  bindToggle("tgl-enso","enso");
+  bindToggle("tgl-combustible","combustible");
+
+  /* ---------- tabs ---------- */
+  document.querySelectorAll(".tab").forEach(t=>{
+    t.addEventListener("click", ()=>{
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+      t.classList.add("on");
+      const tab = t.dataset.tab;
+      $("#panel-dashboard").style.display = tab==="dashboard"?"":"none";
+      $("#panel-productos").style.display = tab==="productos"?"":"none";
+      $("#panel-metodologia").style.display = tab==="metodologia"?"":"none";
+      $("#leyenda").style.display = tab==="metodologia"?"none":"";
+    });
+  });
+
+  /* ---------- orden y expansión tabla ---------- */
+  $("#thead").addEventListener("click", e=>{
+    const th = e.target.closest("th"); if(!th) return;
+    const key = th.dataset.key;
+    if(sortCol===key) sortDir = sortDir==="desc"?"asc":"desc";
+    else { sortCol=key; sortDir="desc"; }
+    renderProductos();
+  });
+  $("#tbody").addEventListener("click", e=>{
+    const tr = e.target.closest("tr.prow"); if(!tr) return;
+    const prod = tr.dataset.prod.replace(/&quot;/g,'"');
+    openRow = openRow===prod?null:prod;
+    renderProductos();
+  });
+  $("#search").addEventListener("input", e=>{ search=e.target.value; openRow=null; renderProductos(); });
+
+  /* ---------- nav ---------- */
+  const nav=$("#nav");
+  const onScroll=()=>nav.classList.toggle("stuck", window.scrollY>8);
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+  const tog=$("#navToggle"), links=$("#navLinks");
+  tog.addEventListener("click", ()=>{ const o=links.classList.toggle("open"); tog.setAttribute("aria-expanded",o); });
+  links.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>{ links.classList.remove("open"); tog.setAttribute("aria-expanded","false"); }));
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

@@ -113,6 +113,20 @@ section{padding:clamp(56px,8vw,94px) 0}
 .l3{background:#8AA951;color:#12281C}
 .nota-fuente{font-size:.72rem;font-weight:600;letter-spacing:.05em;color:var(--gris);margin-top:18px}
 
+/* problema — narrativa */
+.prob-lead{font-size:clamp(1.15rem,1rem + .8vw,1.55rem);font-weight:600;line-height:1.35;color:var(--verde);max-width:24ch;letter-spacing:-.015em}
+.prob-body{max-width:64ch;margin-top:22px}
+.prob-body p{font-size:1.03rem;color:var(--gris);margin-bottom:1.05em}
+.prob-body strong{color:var(--verde);font-weight:700}
+.prob-chain{margin:30px 0;padding:22px 24px;background:#fff;border:1px solid var(--borde);border-radius:8px}
+.prob-chain .cl{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#93A199;margin-bottom:14px}
+.chain-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px}
+.chain-flow .node{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--verde);background:var(--crema);border-radius:999px;padding:8px 14px;white-space:nowrap}
+.chain-flow .node.end{background:var(--ocre);color:#22160A}
+.chain-flow .arw{color:var(--ocre);font-weight:800;flex-shrink:0}
+.prob-kicker{font-size:clamp(1.05rem,1rem + .5vw,1.28rem);font-weight:700;color:var(--verde);line-height:1.4;margin-top:8px;max-width:34ch}
+.prob-kicker em{font-style:normal;color:var(--ocre)}
+
 /* tarjetas */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:22px}
 .card{background:var(--v-800);border:1px solid var(--v-linea);border-radius:8px;padding:30px 26px;transition:border-color .25s,transform .25s}
@@ -232,8 +246,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
     <div class="nav-links" id="navLinks">
       <a href="quienes-somos.html">Quiénes somos</a>
       <a href="#problema">El problema</a>
-      <a href="#trabajo">Qué hacemos</a>
-      <a href="#indice">El índice</a>
+      <a href="ivcba.html">El índice</a>
       <a href="evolucion-cba-2026.html">Evolución CBA</a>
       <a href="#publicaciones">Publicaciones</a>
       <a class="btn btn-ghost" href="#contacto">Contacto</a>
@@ -270,7 +283,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 
 <div class="strip">
   <div class="wrap strip-grid">
-    <div class="stat rv"><div class="fig">17,6%</div><div class="lbl">de inseguridad alimentaria en Chile: más de tres millones de personas.</div><div class="src">BID · 2023</div></div>
+    <div class="stat rv"><div class="fig">3,8 M</div><div class="lbl">de personas en Chile viven con inseguridad alimentaria moderada o grave: el 19,2% de la población.</div><div class="src">FAO · SOFI 2026</div></div>
     <div class="stat rv"><div class="fig">$90.658</div><div class="lbl">cuesta hoy la canasta básica por persona, un 4,8% más que hace un año.</div><div class="src">Mindesaf · junio 2026</div></div>
     <div class="stat rv"><div class="fig">4,3%</div><div class="lbl">subió el IPC general en el mismo período. La comida le ganó al promedio.</div><div class="src">INE · junio 2026</div></div>
     <div class="stat rv"><div class="fig">79</div><div class="lbl">productos evaluados uno a uno según su exposición al clima y a la logística.</div><div class="src">Índice IV-CBA</div></div>
@@ -278,44 +291,38 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 </div>
 
 <section class="claro" id="problema">
-  <div class="wrap two">
-    <div class="rv">
-      <div class="eyebrow">El problema</div>
-      <h2>El hambre es solo la punta</h2>
-      <p class="lede">La seguridad alimentaria dejó de ser un problema de producir comida y pasó a ser uno de poder pagarla. En Chile eso casi nunca se ve como hambre: se ve como sustitución. Cuando la proteína, la fruta y la verdura se encarecen, el hogar no deja de comer — reemplaza por calorías baratas.</p>
-      <p class="lede" style="margin-top:1em">El resultado no aparece en las estadísticas de desnutrición. Aparece diez años después, en las de obesidad, diabetes e hipertensión. Es una crisis de salud pública que empieza en el supermercado.</p>
-      <p class="nota-fuente">Cifras globales: FAO, El Estado de la Seguridad Alimentaria y la Nutrición en el Mundo.</p>
-    </div>
-    <div class="layers rv" aria-label="Capas del problema alimentario global">
-      <div class="layer l1"><span class="n">673 M</span><span class="t">padecían hambre en 2024 — lo que solemos llamar «el problema».</span></div>
-      <div class="layer l2"><span class="n">2.300 M</span><span class="t">viven inseguridad alimentaria: no acceden de forma estable a comida suficiente.</span></div>
-      <div class="layer l3"><span class="n">2.600 M</span><span class="t">no pueden pagar una dieta saludable. El acceso, no la escasez, es la barrera.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="trabajo">
   <div class="wrap">
-    <div class="rv" style="max-width:60ch;margin-bottom:46px">
-      <div class="eyebrow">Qué hacemos</div>
-      <h2>Un observatorio, tres tareas</h2>
-      <p class="lede">Trabajamos donde el dato existe pero nadie lo cruza: entre el precio de los alimentos, el riesgo climático y la medición de la pobreza.</p>
+    <div class="rv" style="max-width:70ch">
+      <div class="eyebrow">El problema</div>
+      <h2>La seguridad alimentaria no es solo tener comida.<br>Es poder acceder a ella.</h2>
     </div>
-    <div class="cards">
-      <div class="card rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
-        <h3>Medimos</h3>
-        <p>Seguimos mes a mes el costo de la canasta básica y su composición, con datos oficiales del INE, ODEPA y el Ministerio de Desarrollo Social.</p>
+    <div class="two" style="margin-top:34px;align-items:start">
+      <div class="rv prob-body">
+        <p>En Chile, el problema no es únicamente cuánto alimento se produce. Es si las personas pueden acceder de manera regular a alimentos suficientes, seguros, nutritivos y adecuados para llevar una vida saludable.</p>
+        <p>Cuando los precios suben, ese acceso se vuelve más difícil. Y no todos los hogares enfrentan el problema de la misma manera: para quienes tienen menos ingresos, un aumento en el precio de los alimentos puede significar <strong>dejar de comprar frutas, verduras o proteínas</strong>, reducir la cantidad de comida o reemplazar alimentos saludables por alternativas más baratas.</p>
+        <p class="prob-lead" style="max-width:none;margin:26px 0 4px">El cambio climático está haciendo este desafío más difícil.</p>
+        <p>Sequías, olas de calor, inundaciones, incendios y otros eventos extremos afectan la producción de alimentos, el agua disponible, el transporte y las cadenas de suministro. A esto se suman los efectos sobre los combustibles, la energía y otros costos que finalmente llegan al precio de los alimentos.</p>
+
+        <div class="prob-chain" role="img" aria-label="Cadena de impactos: del cambio climático al acceso a los alimentos">
+          <div class="cl">El resultado es una cadena de impactos</div>
+          <div class="chain-flow">
+            <span class="node">Cambio climático</span><span class="arw">→</span>
+            <span class="node">Producción</span><span class="arw">→</span>
+            <span class="node">Costos</span><span class="arw">→</span>
+            <span class="node">Precios</span><span class="arw">→</span>
+            <span class="node end">Acceso a los alimentos</span>
+          </div>
+        </div>
+
+        <p><strong>El problema es que esta relación suele permanecer invisible.</strong> Un alimento puede estar disponible en un supermercado y, aun así, ser inaccesible para una familia. Por eso, mirar únicamente si existe suficiente comida no basta: también necesitamos entender cuánto cuesta acceder a ella y qué tan vulnerable es su precio frente a un clima que está cambiando.</p>
+        <p class="prob-kicker">La seguridad alimentaria del futuro también se juega en <em>el precio de la olla</em>.</p>
+        <p style="margin-top:1.05em">Por eso existe el Observatorio de Seguridad Alimentaria: para medir cómo los cambios económicos, ambientales y climáticos están afectando el acceso a los alimentos en Chile. Porque anticipar qué alimentos pueden encarecerse no es solo una cuestión de precios. <strong>Es una cuestión de seguridad alimentaria.</strong></p>
       </div>
-      <div class="card rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        <h3>Anticipamos</h3>
-        <p>Estimamos qué alimentos se encarecerán antes de que ocurra, cruzando variabilidad climática, ciclos de El Niño, costo del combustible y logística.</p>
-      </div>
-      <div class="card rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 8h14M7 8l-3 7h6ZM17 8l-3 7h6Z"/></svg>
-        <h3>Incidimos</h3>
-        <p>Traducimos la evidencia en propuestas concretas de política pública y la ponemos a disposición de quien la necesite: prensa, Congreso, academia y sociedad civil.</p>
+      <div class="layers rv" aria-label="Escala del problema alimentario">
+        <div class="layer l1"><span class="n">3,8 M</span><span class="t">de personas en Chile viven con inseguridad alimentaria moderada o grave: el 19,2% de la población.</span></div>
+        <div class="layer l2"><span class="n">2.300 M</span><span class="t">en el mundo no acceden de forma estable a comida suficiente.</span></div>
+        <div class="layer l3"><span class="n">2.600 M</span><span class="t">no pueden pagar una dieta saludable. El acceso, no la escasez, es la barrera.</span></div>
+        <p class="nota-fuente">Chile: FAO, informe SOFI 2026 (datos 2022–2024). Cifras globales: FAO, El Estado de la Seguridad Alimentaria y la Nutrición en el Mundo.</p>
       </div>
     </div>
   </div>
@@ -326,7 +333,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
     <div class="rv">
       <div class="eyebrow">El instrumento</div>
       <h2>Índice de Vulnerabilidad de la Canasta Básica</h2>
-      <p class="lede">Evaluamos los 79 productos de la canasta oficial y le asignamos a cada uno un puntaje de riesgo de 1 a 5, combinando cuatro dimensiones ponderadas. El resultado permite ver, de un vistazo, qué parte de la mesa chilena está más expuesta.</p>
+      <p class="lede">Evaluamos los productos de la canasta oficial y le asignamos a cada uno un puntaje de riesgo de 1 a 5, combinando cuatro dimensiones ponderadas. El resultado permite ver, de un vistazo, qué parte de la mesa chilena está más expuesta.</p>
       <ul class="dims">
         <li><span class="d-n">01</span><span class="d-t">Exposición a variabilidad climática</span><span class="d-w">0,4</span></li>
         <li><span class="d-n">02</span><span class="d-t">Ciclos ENSO (El Niño / La Niña)</span><span class="d-w">0,2</span></li>
@@ -334,6 +341,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
         <li><span class="d-n">04</span><span class="d-t">Vulnerabilidad logística</span><span class="d-w">0,2</span></li>
       </ul>
       <p class="nota-fuente">Fuentes de base: ARClim, CR2, INIA, ODEPA, NOAA e IFOP.</p>
+      <a class="btn btn-solid" href="ivcba.html" style="margin-top:22px">Explorar el índice interactivo</a>
     </div>
     <div class="diagram rv">
       <h3>Cuando sube la olla, se mueve la línea</h3>
