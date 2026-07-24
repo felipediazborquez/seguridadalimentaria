@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolución CBA 2026 — Observatorio de Seguridad Alimentaria Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Archivo+Narrow:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --cba-ink:#152532;        /* azul tinta institucional */
+    --cba-ink-soft:#3d5262;
+    --cba-paper:#f7f8f6;
+    --cba-card:#ffffff;
+    --cba-line:#dde3e0;
+    --cba-verde:#1f6b4a;      /* verde alimentario (serie principal) */
+    --cba-verde-suave:#e3efe8;
+    --cba-trigo:#c98a2b;      /* ámbar trigo (variaciones) */
+    --cba-rojo:#b3402f;       /* alzas / alertas */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  .cba-page{
+    font-family:'Archivo',system-ui,sans-serif;
+    background:var(--cba-paper);
+    color:var(--cba-ink);
+    padding:0 0 64px;
+    font-variant-numeric:tabular-nums;
+  }
+  .cba-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Encabezado ---------- */
+  .cba-header{padding:48px 0 28px;border-bottom:3px solid var(--cba-ink)}
+  .cba-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Archivo Narrow',sans-serif;font-size:.8rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--cba-verde);
+    margin-bottom:12px;
+  }
+  .cba-eyebrow::before{content:"";width:22px;height:2px;background:var(--cba-verde)}
+  .cba-header h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .cba-header .cba-sub{margin-top:10px;color:var(--cba-ink-soft);max-width:60ch;font-size:.95rem;line-height:1.55}
+  .cba-badge{
+    display:inline-block;margin-top:14px;padding:4px 10px;border:1px solid var(--cba-line);
+    border-radius:3px;background:var(--cba-card);
+    font-family:'Archivo Narrow',sans-serif;font-size:.75rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--cba-ink-soft);
+  }
+
+  /* ---------- Cinta de variación mensual (firma visual) ---------- */
+  .cba-strip{display:flex;gap:6px;align-items:flex-end;margin-top:22px;height:52px}
+  .cba-strip-item{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+  .cba-strip-bar{width:100%;max-width:64px;border-radius:2px 2px 0 0;min-height:3px;transition:opacity .15s}
+  .cba-strip-bar.up{background:var(--cba-trigo)}
+  .cba-strip-bar.down{background:var(--cba-verde)}
+  .cba-strip-item span{font-family:'Archivo Narrow',sans-serif;font-size:.7rem;font-weight:600;color:var(--cba-ink-soft);text-transform:uppercase}
+  .cba-strip-item:hover .cba-strip-bar{opacity:.7}
+
+  /* ---------- KPIs ---------- */
+  .cba-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:30px 0 8px}
+  .cba-kpi{background:var(--cba-card);border:1px solid var(--cba-line);border-radius:6px;padding:18px 18px 16px;position:relative;overflow:hidden}
+  .cba-kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cba-verde)}
+  .cba-kpi.alt::after{background:var(--cba-trigo)}
+  .cba-kpi-label{font-family:'Archivo Narrow',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cba-ink-soft)}
+  .cba-kpi-value{font-size:1.65rem;font-weight:800;letter-spacing:-.02em;margin-top:6px}
+  .cba-kpi-delta{margin-top:4px;font-size:.82rem;color:var(--cba-ink-soft)}
+  .cba-kpi-delta strong{color:var(--cba-rojo);font-weight:600}
+  .cba-kpi-delta strong.neg{color:var(--cba-verde)}
+
+  /* ---------- Secciones / gráficos ---------- */
+  .cba-section{margin-top:40px}
+  .cba-section h2{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+  .cba-section .cba-note{font-size:.85rem;color:var(--cba-ink-soft);margin-top:4px;max-width:75ch;line-height:1.5}
+  .cba-chartbox{background:var(--cba-card);border:1px solid var(--cba-line);border-radius:6px;padding:20px;margin-top:14px}
+  .cba-chartbox canvas{max-height:340px}
+
+  /* ---------- Simulador ---------- */
+  .cba-sim-controls{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:16px;margin-top:16px;
+  }
+  .cba-sim-control{background:var(--cba-card);border:1px solid var(--cba-line);border-radius:6px;padding:16px 18px}
+  .cba-sim-control label{
+    display:block;font-family:'Archivo Narrow',sans-serif;font-size:.78rem;font-weight:600;
+    letter-spacing:.07em;text-transform:uppercase;color:var(--cba-ink-soft);margin-bottom:10px;
+  }
+  .cba-sim-control label output{color:var(--cba-verde);font-size:.95rem}
+  .cba-sim-control input[type=range]{width:100%;accent-color:var(--cba-verde)}
+  .cba-sim-ingreso{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .cba-sim-ingreso input[type=number]{
+    flex:1;min-width:130px;padding:8px 10px;border:1px solid var(--cba-line);border-radius:4px;
+    font-family:'Archivo',sans-serif;font-size:.95rem;font-weight:600;color:var(--cba-ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .cba-sim-ingreso input[type=number]:focus{outline:2px solid var(--cba-verde);outline-offset:1px}
+  .cba-sim-control small{display:block;margin-top:8px;font-size:.75rem;color:var(--cba-ink-soft);line-height:1.45}
+  .cba-sim-readout{
+    margin-top:14px;padding:16px 20px;border-radius:6px;border:1px solid var(--cba-line);
+    background:var(--cba-card);font-size:.95rem;line-height:1.6;
+  }
+  .cba-sim-readout strong{font-weight:800}
+  .cba-sim-readout .pct{color:var(--cba-rojo)}
+  .cba-sim-readout.ok .pct{color:var(--cba-verde)}
+  .cba-chartbox.cba-sim-chart{padding:24px}
+  .cba-chartbox.cba-sim-chart canvas{max-height:460px;min-height:400px}
+
+  /* ---------- Pie / fuente ---------- */
+  .cba-source{margin-top:26px;padding-top:16px;border-top:1px solid var(--cba-line);font-size:.8rem;color:var(--cba-ink-soft);line-height:1.6;max-width:85ch}
+  .cba-source strong{color:var(--cba-ink)}
+
+  @media (max-width:640px){
+    .cba-header{padding:32px 0 22px}
+    .cba-strip{height:42px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="cba-page">
+  <div class="cba-wrap">
+
+    <header class="cba-header">
+      <div class="cba-eyebrow">Observatorio de Seguridad Alimentaria Chile</div>
+      <h1>Evolución de la Canasta Básica de Alimentos · 2026</h1>
+      <p class="cba-sub">
+        Seguimiento mensual del valor oficial de la Canasta Básica de Alimentos (CBA) según los
+        informes de la División Observatorio Social del Ministerio de Desarrollo Social y Familia.
+      </p>
+      <span class="cba-badge" id="cba-badge">Serie metodología 2024 · Enero – Junio 2026</span>
+      <div class="cba-strip" id="cba-strip" aria-hidden="true"></div>
+    </header>
+
+    <section class="cba-kpis" id="cba-kpis"></section>
+
+    <section class="cba-section">
+      <h2>Valor mensual de la CBA</h2>
+      <p class="cba-note" id="cba-nota-nivel"></p>
+      <div class="cba-chartbox"><canvas id="chartNivel" role="img" aria-label="Gráfico de línea del valor mensual de la CBA en 2026"></canvas></div>
+    </section>
+
+    <section class="cba-section">
+      <h2>Variación mensual y a 12 meses</h2>
+      <p class="cba-note">
+        Las barras muestran la variación mes a mes; la línea, la variación interanual. La aceleración
+        de junio combina el alza mensual más alta del año (0,7%) con un efecto base: junio de 2025
+        había registrado una caída mensual de −0,6%, lo que amplifica la comparación a 12 meses.
+      </p>
+      <div class="cba-chartbox"><canvas id="chartVar" role="img" aria-label="Gráfico combinado de variación mensual e interanual de la CBA"></canvas></div>
+    </section>
+
+    <section class="cba-section" id="cba-simulador">
+      <h2>¿Cuánto del ingreso se va en la canasta básica?</h2>
+      <p class="cba-note">
+        El costo alimentario de un hogar corresponde a la CBA por persona multiplicada por el número
+        de integrantes, tal como lo calcula la metodología oficial. Sobre cada barra se indica qué
+        porcentaje del ingreso mensual de referencia se destinaría solo a alimentación. Ajusta el
+        tamaño del hogar y el monto del ingreso para explorar distintos escenarios.
+      </p>
+
+      <div class="cba-sim-controls">
+        <div class="cba-sim-control">
+          <label for="simPersonas">Integrantes del hogar: <output id="simPersonasOut">4</output></label>
+          <input type="range" id="simPersonas" min="1" max="10" step="1" value="4">
+        </div>
+        <div class="cba-sim-control">
+          <label for="simIngreso">Ingreso mensual de referencia ($)</label>
+          <div class="cba-sim-ingreso">
+            <input type="number" id="simIngreso" value="468954" min="0" step="1000">
+          </div>
+          <small>Por defecto: sueldo mínimo líquido de $468.954, calculado sobre el ingreso mínimo bruto de $553.553 (vigente desde mayo de 2026).</small>
+        </div>
+      </div>
+
+      <div class="cba-sim-readout" id="simReadout"></div>
+
+      <div class="cba-chartbox cba-sim-chart"><canvas id="chartSim" role="img" aria-label="Gráfico interactivo del costo de la canasta básica según tamaño del hogar comparado con un ingreso de referencia"></canvas></div>
+
+      <p class="cba-note" style="margin-top:12px">
+        <strong>Lectura con cautela:</strong> el ingreso de referencia por defecto corresponde al
+        sueldo mínimo líquido (tras descuentos previsionales y de salud); el monto exacto varía según
+        AFP, sistema de salud y gratificación de cada trabajador. Un hogar puede además tener más de
+        un perceptor de ingresos.
+      </p>
+    </section>
+
+    <p class="cba-source">
+      <strong>Fuente:</strong> Informes mensuales «Valor de la Canasta Básica de Alimentos y Líneas de Pobreza»,
+      División Observatorio Social, Subsecretaría de Evaluación Social, Ministerio de Desarrollo Social y Familia
+      (serie metodología 2024, elaborada a partir de información de CEPAL e INE-IPC). La serie no es comparable
+      con las series metodológicas anteriores. Elaboración: Centro de Políticas Alimentarias de Chile (CPA Chile).
+    </p>
+
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   DATOS OFICIALES — actualizar aquí cada mes al publicarse el informe Mindesaf.
+   Agregar un objeto al final del arreglo y todo el resto se regenera solo.
+   varMensual y var12m en %, tal como aparecen en el resumen del informe.
+   ========================================================================= */
+const CBA_DATA = [
+  { mes:"Ene", mesLargo:"enero",   cba:89570, varMensual: 0.4,  var12m:4.6 },
+  { mes:"Feb", mesLargo:"febrero", cba:89769, varMensual: 0.2,  var12m:4.6 },
+  { mes:"Mar", mesLargo:"marzo",   cba:90261, varMensual: 0.5,  var12m:4.1 },
+  { mes:"Abr", mesLargo:"abril",   cba:90384, varMensual: 0.1,  var12m:4.2 },
+  { mes:"May", mesLargo:"mayo",    cba:89995, varMensual:-0.4,  var12m:3.4 },
+  { mes:"Jun", mesLargo:"junio",   cba:90658, varMensual: 0.7,  var12m:4.8 },
+];
+
+/* ---------- utilidades de formato (es-CL) ---------- */
+const fCLP = n => "$" + n.toLocaleString("es-CL");
+const fPct = n => n.toLocaleString("es-CL",{minimumFractionDigits:1,maximumFractionDigits:1}) + "%";
+
+const ultimo = CBA_DATA[CBA_DATA.length-1];
+const primero = CBA_DATA[0];
+
+/* ---------- badge dinámico ---------- */
+document.getElementById("cba-badge").textContent =
+  `Serie metodología 2024 · ${primero.mesLargo[0].toUpperCase()+primero.mesLargo.slice(1)} – ${ultimo.mesLargo[0].toUpperCase()+ultimo.mesLargo.slice(1)} 2026`;
+
+/* ---------- cinta de variaciones (header) ---------- */
+(function(){
+  const strip = document.getElementById("cba-strip");
+  const maxAbs = Math.max(...CBA_DATA.map(d=>Math.abs(d.varMensual)));
+  CBA_DATA.forEach(d=>{
+    const item = document.createElement("div");
+    item.className = "cba-strip-item";
+    item.title = `${d.mesLargo}: ${fPct(d.varMensual)} mensual`;
+    const h = Math.max(3, Math.round(Math.abs(d.varMensual)/maxAbs*36));
+    item.innerHTML = `<div class="cba-strip-bar ${d.varMensual<0?'down':'up'}" style="height:${h}px"></div><span>${d.mes}</span>`;
+    strip.appendChild(item);
+  });
+})();
+
+/* ---------- KPIs ---------- */
+(function(){
+  const kpis = [
+    { label:`CBA ${ultimo.mesLargo} 2026`, value:fCLP(ultimo.cba),
+      delta:`<strong class="${ultimo.varMensual<0?'neg':''}">${ultimo.varMensual>0?'+':''}${fPct(ultimo.varMensual)}</strong> mensual` },
+    { label:"Variación 12 meses", value:fPct(ultimo.var12m),
+      delta:`vs. ${fPct(CBA_DATA[CBA_DATA.length-2].var12m)} el mes anterior`, alt:true },
+    { label:"Variación acumulada 2026", value:"1,6%", delta:`a ${ultimo.mesLargo}, según informe oficial` },
+    { label:"Hogar de 4 personas", value:fCLP(ultimo.cba*4), delta:"costo alimentario mensual (CBA × 4)" },
+  ];
+  document.getElementById("cba-kpis").innerHTML = kpis.map(k=>`
+    <div class="cba-kpi${k.alt?' alt':''}">
+      <div class="cba-kpi-label">${k.label}</div>
+      <div class="cba-kpi-value">${k.value}</div>
+      <div class="cba-kpi-delta">${k.delta}</div>
+    </div>`).join("");
+})();
+
+/* ---------- nota nivel ---------- */
+document.getElementById("cba-nota-nivel").textContent =
+  `Entre ${primero.mesLargo} y ${ultimo.mesLargo} de 2026 la CBA pasó de ${fCLP(primero.cba)} a ${fCLP(ultimo.cba)} por persona, ` +
+  `con una variación acumulada en el año de 1,6% a ${ultimo.mesLargo} según el informe oficial. ` +
+  `En todo el período la CBA corre por sobre el IPC general, lo que refleja la mayor exposición ` +
+  `de los hogares de menores ingresos a la inflación de alimentos.`;
+
+/* ---------- gráficos ---------- */
+const css = getComputedStyle(document.documentElement);
+const C = {
+  ink: css.getPropertyValue("--cba-ink").trim(),
+  inkSoft: css.getPropertyValue("--cba-ink-soft").trim(),
+  verde: css.getPropertyValue("--cba-verde").trim(),
+  verdeSuave: css.getPropertyValue("--cba-verde-suave").trim(),
+  trigo: css.getPropertyValue("--cba-trigo").trim(),
+  rojo: css.getPropertyValue("--cba-rojo").trim(),
+  line: css.getPropertyValue("--cba-line").trim(),
+};
+Chart.defaults.font.family = "'Archivo', system-ui, sans-serif";
+Chart.defaults.color = C.inkSoft;
+
+const labels = CBA_DATA.map(d=>d.mes + " 26");
+
+/* Nivel CBA */
+new Chart(document.getElementById("chartNivel"), {
+  type:"line",
+  data:{ labels, datasets:[{
+    label:"CBA ($ por persona)",
+    data:CBA_DATA.map(d=>d.cba),
+    borderColor:C.verde, backgroundColor:C.verdeSuave,
+    borderWidth:2.5, fill:true, tension:.3,
+    pointRadius:4, pointBackgroundColor:C.verde, pointBorderColor:"#fff", pointBorderWidth:2,
+  }]},
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>" "+fCLP(ctx.parsed.y)+" por persona"}}
+    },
+    scales:{
+      y:{ grace:"5%", grid:{color:C.line}, ticks:{callback:v=>"$"+v.toLocaleString("es-CL")} },
+      x:{ grid:{display:false} }
+    }
+  }
+});
+
+/* Variaciones */
+new Chart(document.getElementById("chartVar"), {
+  data:{
+    labels,
+    datasets:[
+      { type:"bar", label:"Variación mensual (%)",
+        data:CBA_DATA.map(d=>d.varMensual),
+        backgroundColor:CBA_DATA.map(d=>d.varMensual<0?C.verde:C.trigo),
+        borderRadius:3, yAxisID:"y", maxBarThickness:46 },
+      { type:"line", label:"Variación 12 meses (%)",
+        data:CBA_DATA.map(d=>d.var12m),
+        borderColor:C.rojo, backgroundColor:C.rojo,
+        borderWidth:2.5, tension:.3, pointRadius:4,
+        pointBorderColor:"#fff", pointBorderWidth:2, yAxisID:"y1" }
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{position:"bottom", labels:{usePointStyle:true, boxWidth:8}},
+      tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fPct(ctx.parsed.y)}`}}
+    },
+    scales:{
+      y:{ position:"left", title:{display:true,text:"Mensual (%)"}, grid:{color:C.line},
+          ticks:{callback:v=>fPct(v)} },
+      y1:{ position:"right", title:{display:true,text:"12 meses (%)"}, grid:{drawOnChartArea:false},
+          suggestedMin:0, ticks:{callback:v=>fPct(v)} },
+      x:{ grid:{display:false} }
+    }
+  }
+});
+
+/* =========================================================================
+   SIMULADOR: costo alimentario del hogar (CBA × integrantes) vs ingreso
+   Usa siempre el último mes disponible de CBA_DATA.
+   La LP por hogar se reconstruye con la escala oficial: LP_pe × N^0.7
+   ========================================================================= */
+(function(){
+  const IMM_LIQUIDO = 468954; /* sueldo mínimo líquido, sobre bruto de $553.553 vigente desde mayo 2026 — actualizar cuando se reajuste */
+  const inputPersonas = document.getElementById("simPersonas");
+  const outPersonas = document.getElementById("simPersonasOut");
+  const inputIngreso = document.getElementById("simIngreso");
+  const readout = document.getElementById("simReadout");
+
+  const N_RANGE = Array.from({length:10},(_,i)=>i+1);
+  const costoCBA = n => Math.round(ultimo.cba * n);
+  let ingresoActual = IMM_LIQUIDO;
+
+  /* Plugin: dibuja el % del ingreso sobre cada barra */
+  const pctLabels = {
+    id:"pctLabels",
+    afterDatasetsDraw(chart){
+      if (ingresoActual <= 0) return;
+      const {ctx} = chart;
+      const meta = chart.getDatasetMeta(0);
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.font = "600 12px 'Archivo Narrow', sans-serif";
+      meta.data.forEach((bar, i) => {
+        const pct = costoCBA(N_RANGE[i]) / ingresoActual * 100;
+        const txt = pct.toLocaleString("es-CL",{maximumFractionDigits:0}) + "%";
+        ctx.fillStyle = pct >= 100 ? C.rojo : C.inkSoft;
+        ctx.fillText(txt, bar.x, bar.y - 6);
+      });
+      ctx.restore();
+    }
+  };
+
+  let chartSim = new Chart(document.getElementById("chartSim"), {
+    data:{
+      labels:N_RANGE.map(n=>n+(n===1?" persona":" personas")),
+      datasets:[
+        { type:"bar", label:"Costo CBA del hogar", order:3,
+          data:N_RANGE.map(costoCBA),
+          backgroundColor:N_RANGE.map(()=>C.verde), borderRadius:3, maxBarThickness:52 },
+        { type:"line", label:"Ingreso de referencia", order:1,
+          data:N_RANGE.map(()=>IMM_LIQUIDO),
+          borderColor:C.rojo, backgroundColor:C.rojo, borderWidth:2.5,
+          pointRadius:0, tension:0 }
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{position:"bottom", labels:{usePointStyle:true, boxWidth:8}},
+        tooltip:{callbacks:{label:ctx=>{
+          let base = ` ${ctx.dataset.label}: ${fCLP(ctx.parsed.y)}`;
+          if (ctx.datasetIndex === 0 && ingresoActual > 0){
+            const pct = (ctx.parsed.y / ingresoActual * 100)
+              .toLocaleString("es-CL",{minimumFractionDigits:1,maximumFractionDigits:1});
+            base += ` (${pct}% del ingreso)`;
+          }
+          return base;
+        }}}
+      },
+      layout:{padding:{top:18}},
+      scales:{
+        y:{ grid:{color:C.line}, ticks:{callback:v=>"$"+(v/1000).toLocaleString("es-CL")+" mil"} },
+        x:{ grid:{display:false} }
+      }
+    },
+    plugins:[pctLabels]
+  });
+
+  function render(){
+    const n = parseInt(inputPersonas.value, 10);
+    const ingreso = Math.max(0, parseInt(inputIngreso.value, 10) || 0);
+    outPersonas.textContent = n;
+
+    /* actualizar línea de ingreso y resaltar la barra seleccionada */
+    ingresoActual = ingreso;
+    chartSim.data.datasets[1].data = N_RANGE.map(()=>ingreso);
+    chartSim.data.datasets[0].backgroundColor =
+      N_RANGE.map(x=> x===n ? C.ink : C.verde);
+    chartSim.update();
+
+    /* lectura dinámica */
+    const costo = costoCBA(n);
+    const pct = ingreso > 0 ? (costo/ingreso*100) : null;
+    const restante = ingreso - costo;
+    if (pct === null){
+      readout.innerHTML = "Ingresa un monto de ingreso para calcular la proporción.";
+      return;
+    }
+    const pctTxt = pct.toLocaleString("es-CL",{minimumFractionDigits:1,maximumFractionDigits:1});
+    readout.classList.toggle("ok", pct < 50);
+    readout.innerHTML =
+      `Alimentar un hogar de <strong>${n} ${n===1?"persona":"personas"}</strong> según la CBA de ` +
+      `${ultimo.mesLargo} 2026 cuesta <strong>${fCLP(costo)}</strong> al mes: ` +
+      `<strong class="pct">${pctTxt}%</strong> del ingreso de referencia (${fCLP(ingreso)}). ` +
+      (restante >= 0
+        ? `Quedan <strong>${fCLP(restante)}</strong> para todos los demás gastos del hogar: vivienda, transporte, servicios, salud y educación.`
+        : `El costo alimentario <strong>supera el ingreso en ${fCLP(-restante)}</strong>, antes de considerar cualquier otro gasto del hogar.`);
+  }
+
+  inputPersonas.addEventListener("input", render);
+  inputIngreso.addEventListener("input", render);
+  render();
+})();
+</script>
+</body>
+</html>
