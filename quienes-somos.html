@@ -72,7 +72,7 @@ section{padding:clamp(52px,7.5vw,88px) 0}
 .phead{padding:clamp(42px,6vw,74px) 0 clamp(36px,5vw,58px);position:relative;overflow:hidden}
 .phead::after{content:"";position:absolute;inset:0;background:radial-gradient(115% 85% at 76% 20%,rgba(62,110,53,.42),transparent 62%);pointer-events:none}
 .phead-in{position:relative;z-index:1}
-.phead h1{font-size:clamp(1.95rem,4.6vw,3.4rem);margin-bottom:20px;letter-spacing:-.028em;max-width:16ch}
+.phead h1{font-size:clamp(1.95rem,4.6vw,3.4rem);margin-bottom:20px;letter-spacing:-.028em;max-width:22ch}
 .phead h1 em{font-style:normal;color:var(--ocre)}
 .migas{font-size:.78rem;color:#8FA396;margin-bottom:18px}
 .migas a{color:#A9BCAF;text-decoration:none;border-bottom:1px solid rgba(169,188,175,.3)}
@@ -105,17 +105,15 @@ section{padding:clamp(52px,7.5vw,88px) 0}
 .line .tags span{font-size:.68rem;font-weight:600;letter-spacing:.04em;color:#CFE0D4;background:var(--v-linea);border-radius:999px;padding:5px 12px}
 
 /* cierre / CTA */
-.close-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,60px);align-items:center}
-.pill-list{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:2px}
-.pill-list li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;padding:12px 0;border-top:1px solid var(--borde)}
-.pill-list li:last-child{border-bottom:1px solid var(--borde)}
-.pill-list .pk{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-med)}
-.pill-list .pv{font-size:.92rem;color:var(--gris)}
 .cta-box{background:var(--v-800);border:1px solid var(--v-linea);border-radius:8px;padding:clamp(28px,4vw,40px)}
 .cta-box h3{color:#fff;font-size:1.3rem;margin-bottom:12px}
 .cta-box p{color:#B7C9BC;font-size:.94rem;margin-bottom:20px}
 .cta-box .btn-solid{background:var(--ocre);color:#22160A;border-color:var(--ocre)}
 .cta-box .btn-solid:hover{background:#E29B36}
+.cta-wide{max-width:760px;margin:0 auto;text-align:center}
+.cta-wide .eyebrow{color:var(--ocre)}
+.cta-wide p{max-width:60ch;margin-left:auto;margin-right:auto}
+.cta-wide h3{font-size:clamp(1.4rem,2.5vw,1.9rem)}
 
 footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;font-size:.8rem;color:#8FA396}
@@ -123,8 +121,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 .foot .fbrand svg{width:34px;height:31px}
 
 @media(max-width:1000px){
-  .mv,.close-grid{grid-template-columns:1fr;gap:22px}
-  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--v-800);border-bottom:1px solid var(--v-linea);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;display:none;max-height:calc(100dvh - 72px);overflow-y:auto}
+  .mv,  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--v-800);border-bottom:1px solid var(--v-linea);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;display:none;max-height:calc(100dvh - 72px);overflow-y:auto}
   .nav-links.open{display:flex}
   .nav-links a{padding:14px clamp(18px,4vw,28px)}
   .nav-links .btn{margin:10px clamp(18px,4vw,28px) 6px;text-align:center}
@@ -182,7 +179,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   <div class="wrap phead-in">
     <div class="migas"><a href="index.html">Inicio</a> · Quiénes somos</div>
     <div class="eyebrow">Quiénes somos</div>
-    <h1>Evidencia técnica <em>independiente</em> sobre lo que cuesta comer</h1>
+    <h1>Evidencia técnica <em>independiente</em> sobre lo que cuesta comer y los impactos del cambio climático</h1>
     <p class="lede">Somos un observatorio dedicado a producir evidencia sobre el acceso de los hogares chilenos a una alimentación digna y su exposición al riesgo climático y a la volatilidad de precios. Trabajamos donde el dato existe pero nadie lo cruza: entre el precio de los alimentos, el clima y la medición de la pobreza.</p>
   </div>
 </header>
@@ -260,19 +257,9 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 </section>
 
 <section>
-  <div class="wrap close-grid">
-    <div>
-      <div class="eyebrow">Cómo nos sostenemos</div>
-      <h2>Independientes por diseño</h2>
-      <p class="lede">Operamos con un modelo de financiamiento diversificado que evita la dependencia de una sola fuente y preserva la independencia editorial. Ninguna fuente puede representar más del 40% del presupuesto anual, y todas se divulgan en nuestra memoria pública.</p>
-      <ul class="pill-list">
-        <li><span class="pk">Cooperación</span><span class="pv">Fondos concursables nacionales e internacionales (GIZ, UE, Corfo, FONDECYT Aplicado).</span></li>
-        <li><span class="pk">Consultoría</span><span class="pv">Estudios y evaluaciones para organismos públicos, multilaterales y fundaciones.</span></li>
-        <li><span class="pk">Donaciones</span><span class="pv">Ley de Donaciones con Fines Sociales, con franquicia tributaria.</span></li>
-        <li><span class="pk">Academia</span><span class="pv">Convenios de investigación con universidades nacionales e internacionales.</span></li>
-      </ul>
-    </div>
-    <div class="cta-box">
+  <div class="wrap">
+    <div class="cta-box cta-wide">
+      <div class="eyebrow">Contacto</div>
       <h3>¿Trabajamos juntos?</h3>
       <p>Colaboramos con medios, instituciones públicas, universidades y organizaciones que abordan seguridad alimentaria y clima. Si necesitas datos, una lectura del último IPC o una fuente para tu reportaje, escríbenos.</p>
       <a class="btn btn-solid" href="index.html#contacto">Contáctanos</a>
