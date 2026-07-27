@@ -74,26 +74,14 @@ section{padding:clamp(56px,8vw,94px) 0}
 /* hero */
 .hero{padding:clamp(48px,7vw,80px) 0 clamp(52px,7vw,76px);position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(115% 85% at 76% 20%,rgba(62,110,53,.42),transparent 62%);pointer-events:none}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero-single{position:relative;z-index:1;max-width:none}
+.hero-single>div{max-width:44ch}
+.hero-single .hero-sub{max-width:52ch}
 .hero h1{font-size:clamp(2.3rem,5vw,3.8rem);margin-bottom:22px;letter-spacing:-.028em}
 .hero h1 em{font-style:normal;color:var(--ocre)}
 .hero-tag{font-size:clamp(1.02rem,.95rem+.4vw,1.22rem);font-weight:600;color:var(--ocre);max-width:40ch;margin:-4px 0 26px;line-height:1.35}
 .hero-sub{font-size:1.13rem;color:#B7C9BC;max-width:47ch;margin-bottom:30px}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-
-/* canasta */
-.canasta-card{background:var(--v-800);border:1px solid var(--v-linea);border-radius:8px;padding:clamp(16px,3vw,24px)}
-.canasta-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap}
-.canasta-head strong{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9FB4A6}
-.canasta-read{font-size:.72rem;font-weight:500;color:var(--ocre);min-height:1.1em}
-.canasta{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
-.cell{aspect-ratio:1;border-radius:3px;background:var(--v-linea);opacity:0;transform:scale(.55);border:none;padding:0;cursor:pointer;transition:opacity .3s ease,transform .3s ease}
-.cell.on{opacity:1;transform:scale(1)}
-.cell:hover,.cell:focus-visible{transform:scale(1.34);z-index:2;position:relative}
-.legend{display:flex;align-items:center;gap:9px;margin-top:16px;font-size:.64rem;font-weight:600;letter-spacing:.06em;color:#8FA396;text-transform:uppercase}
-.ramp{display:flex;gap:3px}
-.ramp i{width:17px;height:7px;border-radius:1px;display:block}
-.canasta-note{margin-top:14px;font-size:.75rem;line-height:1.5;color:#7F9587}
 
 /* cifras */
 .strip{background:var(--v-800);border-top:1px solid var(--v-linea);border-bottom:1px solid var(--v-linea);padding:52px 0}
@@ -152,7 +140,7 @@ section{padding:clamp(56px,8vw,94px) 0}
 .pub:hover{border-color:var(--ocre);transform:translateY(-4px)}
 .pub a{text-decoration:none;display:block;height:100%}
 .pub .thumb{aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--v-linea)}
-.pub .thumb svg{width:100%;height:100%}
+.pub .thumb svg,.pub .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .pub .body{padding:22px 24px 26px}
 .pub .meta{display:flex;gap:10px;align-items:center;font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ocre);margin-bottom:11px}
 .pub .meta span{color:#7F9587}
@@ -174,10 +162,10 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.cell{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 
 @media(max-width:1000px){
-  .hero-grid,.two,.feature,.contact{grid-template-columns:1fr;gap:clamp(32px,5vw,44px)}
+  .two,.feature,.contact{grid-template-columns:1fr;gap:clamp(32px,5vw,44px)}
   .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--v-800);border-bottom:1px solid var(--v-linea);flex-direction:column;align-items:stretch;gap:0;padding:8px 0;display:none;max-height:calc(100dvh - 72px);overflow-y:auto}
   .nav-links.open{display:flex}
   .nav-links a{padding:14px clamp(18px,4vw,28px)}
@@ -192,16 +180,14 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   .brand svg{width:38px;height:34px}
   .brand .t{font-size:.78rem}
   .brand .s{font-size:.42rem;letter-spacing:.16em}
-  .canasta{grid-template-columns:repeat(8,1fr)}
-  .layer{grid-template-columns:1fr;gap:6px}
+    .layer{grid-template-columns:1fr;gap:6px}
   .l1,.l2{margin-right:0}
   .hero-cta{flex-direction:column;align-items:stretch}
   .hero-cta .btn{text-align:center}
   .foot{flex-direction:column;align-items:flex-start;gap:14px}
 }
 @media(max-width:400px){
-  .canasta{grid-template-columns:repeat(7,1fr);gap:4px}
-  .dims li{grid-template-columns:auto 1fr;row-gap:2px}
+    .dims li{grid-template-columns:auto 1fr;row-gap:2px}
   .dims .d-w{grid-column:2;justify-self:start}
 }
 </style>
@@ -255,28 +241,15 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 </nav>
 
 <header class="hero" id="inicio">
-  <div class="wrap hero-grid">
+  <div class="wrap hero-single">
     <div>
       <h1>Nadie está mirando el <em>precio de la olla</em>. <em>Nosotros sí.</em></h1>
       <p class="hero-tag">Medimos cómo el cambio climático, y otros factores, están cambiando el costo de comer en Chile.</p>
       <p class="hero-sub">Monitoreamos cuánto cuesta comer en Chile y cómo el clima empuja ese costo. Producimos el primer índice que mide, producto por producto, la exposición de la canasta básica al riesgo climático.</p>
       <div class="hero-cta">
-        <a class="btn btn-solid" href="#indice">Conocer el índice</a>
-        <a class="btn btn-ghost" href="#publicaciones">Leer nuestros análisis</a>
+        <a class="btn btn-solid" href="ivcba.html">Conocer el índice</a>
+        <a class="btn btn-ghost" href="evolucion-cba-2026.html">Evolución de la Canasta Básica</a>
       </div>
-    </div>
-    <div class="canasta-card">
-      <div class="canasta-head">
-        <strong>Canasta básica · 79 productos</strong>
-        <span class="canasta-read" id="readout">Pasa el cursor sobre un producto</span>
-      </div>
-      <div class="canasta" id="canasta" role="list" aria-label="Los 79 productos de la canasta básica según exposición al riesgo climático"></div>
-      <div class="legend">
-        <span>Menor exposición</span>
-        <div class="ramp" aria-hidden="true"><i style="background:var(--r1)"></i><i style="background:var(--r2)"></i><i style="background:var(--r3)"></i><i style="background:var(--r4)"></i><i style="background:var(--r5)"></i></div>
-        <span>Mayor</span>
-      </div>
-      <p class="canasta-note">Los productos de mayor exposición corresponden a los identificados en nuestro análisis de junio de 2026. El índice completo asigna un puntaje de 1 a 5 a cada uno de los 79 productos de la canasta oficial.</p>
     </div>
   </div>
 </header>
@@ -328,44 +301,6 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   </div>
 </section>
 
-<section class="crema" id="indice">
-  <div class="wrap feature">
-    <div class="rv">
-      <div class="eyebrow">El instrumento</div>
-      <h2>Índice de Vulnerabilidad de la Canasta Básica</h2>
-      <p class="lede">Evaluamos los productos de la canasta oficial y le asignamos a cada uno un puntaje de riesgo de 1 a 5, combinando cuatro dimensiones ponderadas. El resultado permite ver, de un vistazo, qué parte de la mesa chilena está más expuesta.</p>
-      <ul class="dims">
-        <li><span class="d-n">01</span><span class="d-t">Exposición a variabilidad climática</span><span class="d-w">0,4</span></li>
-        <li><span class="d-n">02</span><span class="d-t">Ciclos ENSO (El Niño / La Niña)</span><span class="d-w">0,2</span></li>
-        <li><span class="d-n">03</span><span class="d-t">Costo del combustible</span><span class="d-w">0,2</span></li>
-        <li><span class="d-n">04</span><span class="d-t">Vulnerabilidad logística</span><span class="d-w">0,2</span></li>
-      </ul>
-      <p class="nota-fuente">Fuentes de base: ARClim, CR2, INIA, ODEPA, NOAA e IFOP.</p>
-      <a class="btn btn-solid" href="ivcba.html" style="margin-top:22px">Explorar el índice interactivo</a>
-    </div>
-    <div class="diagram rv">
-      <h3>Cuando sube la olla, se mueve la línea</h3>
-      <div class="cap">Canasta básica y línea de pobreza · Chile</div>
-      <svg viewBox="0 0 420 250" role="img" aria-label="Diagrama: el alza de la canasta básica desplaza hacia arriba la línea oficial de pobreza">
-        <defs><marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#D18B25"/></marker></defs>
-        <line x1="20" y1="200" x2="400" y2="200" stroke="#D9D2C4" stroke-width="1.5"/>
-        <line x1="20" y1="150" x2="400" y2="150" stroke="#D9D2C4" stroke-width="1.5" stroke-dasharray="4 5"/>
-        <text x="20" y="218" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" fill="#93A199">Línea de pobreza · antes</text>
-        <text x="20" y="142" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" fill="#B4562A">Línea de pobreza · hoy $251.515</text>
-        <rect x="52" y="200" width="46" height="34" rx="3" fill="#DDD6C8"/>
-        <rect x="52" y="150" width="46" height="50" rx="3" fill="#D18B25"/>
-        <text x="75" y="248" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" fill="#93A199">CBA +4,8%</text>
-        <line x1="130" y1="196" x2="130" y2="156" stroke="#D18B25" stroke-width="2.4" marker-end="url(#ar)"/>
-        <circle cx="215" cy="176" r="13" fill="none" stroke="#123728" stroke-width="2.2"/>
-        <path d="M215 189v22M204 200h22" stroke="#123728" stroke-width="2.2" stroke-linecap="round"/>
-        <text x="238" y="174" font-family="Montserrat,sans-serif" font-size="12.5" fill="#123728">Mismo ingreso.</text>
-        <text x="238" y="192" font-family="Montserrat,sans-serif" font-size="12.5" font-weight="700" fill="#B4562A">Ahora bajo la línea.</text>
-      </svg>
-      <p style="font-size:.86rem;color:var(--gris);margin-top:20px">La canasta básica define la línea oficial de pobreza y se calcula sobre el consumo del quintil más pobre. Cuando la comida se encarece más rápido que los sueldos, un hogar puede cruzar el umbral sin haber perdido un solo peso de ingreso.</p>
-    </div>
-  </div>
-</section>
-
 <section id="publicaciones">
   <div class="wrap">
     <div class="rv" style="max-width:58ch;margin-bottom:44px">
@@ -377,23 +312,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 
       <article class="pub">
         <a href="https://eldesconcierto.cl/opinion/la-pesca-y-el-nino-n5460361" target="_blank" rel="noopener">
-          <div class="thumb"><svg viewBox="0 0 400 225" role="img" aria-label="Ilustración: El Niño calienta el mar y desplaza los recursos pesqueros">
-  <rect width="400" height="225" fill="#123728"/>
-  <g fill="none" stroke-linecap="round">
-    <path d="M-10 96 C40 82 80 110 130 96 C180 82 220 110 270 96 C320 82 360 110 412 96" stroke="#3E6E35" stroke-width="7"/>
-    <path d="M-10 128 C40 114 80 142 130 128 C180 114 220 142 270 128 C320 114 360 142 412 128" stroke="#8AA951" stroke-width="6" opacity=".85"/>
-    <path d="M-10 162 C40 148 80 176 130 162 C180 148 220 176 270 162 C320 148 360 176 412 162" stroke="#3E6E35" stroke-width="5" opacity=".6"/>
-  </g>
-  <g transform="translate(150,52)">
-    <path d="M0 22 C22 -4 62 -4 84 22 C62 48 22 48 0 22 Z" fill="#D18B25"/>
-    <path d="M0 22 L-20 4 L-14 22 L-20 40 Z" fill="#D18B25"/>
-    <circle cx="64" cy="17" r="4.4" fill="#123728"/>
-  </g>
-  <g stroke="#D18B25" stroke-width="4.5" stroke-linecap="round" opacity=".75">
-    <path d="M330 40 v-16"/><path d="M330 84 v16"/><path d="M304 62 h-16"/><path d="M356 62 h16"/>
-  </g>
-  <circle cx="330" cy="62" r="16" fill="none" stroke="#D18B25" stroke-width="4.5"/>
-</svg></div>
+          <div class="thumb"><img src="img/noticia-pesca.webp" alt="El Niño calienta el mar y desplaza los recursos pesqueros" loading="lazy" width="400" height="225"></div>
           <div class="body">
             <div class="meta">11 jul 2026 <span>· El Desconcierto</span></div>
             <div class="ttl">La pesca y el niño</div>
@@ -405,16 +324,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 
       <article class="pub">
         <a href="https://www.biobiochile.cl/noticias/opinion/tu-voz/2026/07/14/el-impacto-del-bencinazo-se-sigue-pagando-en-la-mesa-de-las-familias.shtml" target="_blank" rel="noopener">
-          <div class="thumb"><svg viewBox="0 0 400 225" role="img" aria-label="Ilustración: el alza del combustible llega al precio de los alimentos">
-  <rect width="400" height="225" fill="#F3ECE1"/>
-  <path d="M0 168 C60 160 110 150 160 128 C210 106 250 70 400 34" fill="none" stroke="#D18B25" stroke-width="9" stroke-linecap="round"/>
-  <circle cx="352" cy="47" r="13" fill="#D18B25"/>
-  <g fill="#123728">
-    <path d="M42 196 h96 a10 10 0 0 0 10-10 v-34 h26 a8 8 0 0 1 8 8 v22 a14 14 0 0 0 28 0 v-40 l-26-28 h-36 v-16 a10 10 0 0 0-10-10 h-96 a10 10 0 0 0-10 10 v88 a10 10 0 0 0 10 10 Z"/>
-  </g>
-  <circle cx="74" cy="198" r="14" fill="#3E6E35"/><circle cx="150" cy="198" r="14" fill="#3E6E35"/>
-  <path d="M232 150 c0-14 14-26 14-26 s14 12 14 26 a14 14 0 0 1-28 0 Z" fill="#8AA951"/>
-</svg></div>
+          <div class="thumb"><img src="img/noticia-bencinazo.webp" alt="El alza del combustible llega al precio de los alimentos" loading="lazy" width="400" height="225"></div>
           <div class="body">
             <div class="meta">14 jul 2026 <span>· BioBioChile</span></div>
             <div class="ttl">El impacto del bencinazo se sigue pagando en la mesa de las familias</div>
@@ -426,10 +336,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 
       <article class="pub">
         <a href="https://www.elmostrador.cl/noticias/pais/2026/06/20/zoom-a-la-canasta-basica-pan-papas-carne-y-huevo-experimentaran-las-mayores-alzas-de-precio/" target="_blank" rel="noopener">
-          <div class="thumb"><svg viewBox="0 0 400 225" role="img" aria-label="Ilustración: la canasta básica evaluada producto a producto">
-  <rect width="400" height="225" fill="#123728"/>
-  <rect x="43.0" y="35.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="75.0" y="35.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="107.0" y="35.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="139.0" y="35.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="171.0" y="35.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="203.0" y="35.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="235.0" y="35.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="267.0" y="35.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="299.0" y="35.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="331.0" y="35.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="43.0" y="67.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="75.0" y="67.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="107.0" y="67.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="139.0" y="67.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="171.0" y="67.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="203.0" y="67.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="235.0" y="67.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="267.0" y="67.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="299.0" y="67.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="331.0" y="67.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="43.0" y="99.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="75.0" y="99.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="107.0" y="99.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="139.0" y="99.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="171.0" y="99.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="203.0" y="99.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="235.0" y="99.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="267.0" y="99.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="299.0" y="99.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="331.0" y="99.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="43.0" y="131.5" width="26" height="26" rx="4" fill="#2E5A44"/><rect x="75.0" y="131.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="107.0" y="131.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="139.0" y="131.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="171.0" y="131.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="203.0" y="131.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="235.0" y="131.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="267.0" y="131.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="299.0" y="131.5" width="26" height="26" rx="4" fill="#2E5A44"/><rect x="331.0" y="131.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="43.0" y="163.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="75.0" y="163.5" width="26" height="26" rx="4" fill="#2E5A44"/><rect x="107.0" y="163.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="139.0" y="163.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="171.0" y="163.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="203.0" y="163.5" width="26" height="26" rx="4" fill="#D18B25"/><rect x="235.0" y="163.5" width="26" height="26" rx="4" fill="#C4A03A"/><rect x="267.0" y="163.5" width="26" height="26" rx="4" fill="#8AA951"/><rect x="299.0" y="163.5" width="26" height="26" rx="4" fill="#4A7A3C"/><rect x="331.0" y="163.5" width="26" height="26" rx="4" fill="#2E5A44"/>
-</svg></div>
+          <div class="thumb"><img src="img/noticia-canasta.jpeg" alt="La canasta básica evaluada producto a producto" loading="lazy" width="400" height="225"></div>
           <div class="body">
             <div class="meta">20 jun 2026 <span>· El Mostrador</span></div>
             <div class="ttl">Zoom a la canasta básica: pan, papas, carne y huevo experimentarán las mayores alzas</div>
@@ -486,40 +393,6 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 </footer>
 
 <script>
-const PRODUCTOS=[
-["Pan corriente",5],["Papas",5],["Aceites vegetales",5],["Carne de vacuno, posta",5],["Arroz",5],
-["Trutro de pollo",5],["Jurel en conserva",5],["Huevos de gallina",5],["Leche líquida entera",5],["Paltas",5],
-["Carne de vacuno, molida",4],["Pechuga de pollo",4],["Tomates",4],["Cebollas",4],["Zanahorias",4],
-["Lechugas",4],["Harina de trigo",4],["Queso gouda",4],["Chuleta de cerdo",4],["Atún en conserva",4],
-["Manzanas",4],["Plátanos",4],["Choclo fresco",4],["Zapallo",4],["Limones",4],
-["Porotos secos",3],["Lentejas",3],["Espaguetis",3],["Pan especial",3],["Queso chanco",3],
-["Leche en polvo",3],["Yogur",3],["Mantequilla",3],["Margarina",3],["Naranjas",3],
-["Uvas",3],["Duraznos",3],["Acelgas",3],["Brócoli",3],["Pimentones",3],
-["Zapallo italiano",3],["Pepinos",3],["Ajo",3],["Azúcar",3],["Otras pastas secas",3],
-["Cecinas secas",2],["Vienesas",2],["Cecinas de pavo",2],["Embutidos frescos",2],["Patés",2],
-["Leche descremada",2],["Crema de leche",2],["Postres lácteos",2],["Choclo congelado",2],["Verduras encurtidas",2],
-["Salsa de tomate",2],["Mayonesa",2],["Kétchup",2],["Sal",2],["Especias",2],
-["Hierbas",2],["Caldos concentrados",2],["Café",2],["Té",2],["Galletas dulces",2],
-["Galletas no dulces",1],["Cereales para el desayuno",1],["Tortas y masas dulces",1],["Pan envasado",1],["Snacks de cereal",1],
-["Papas fritas envasadas",1],["Mermeladas",1],["Chocolates",1],["Caramelos",1],["Helado familiar",1],
-["Helados individuales",1],["Jugos líquidos",1],["Jugos en polvo",1],["Agua mineral",1],["Refrescos",1]
-];
-const RAMPA={1:"var(--r1)",2:"var(--r2)",3:"var(--r3)",4:"var(--r4)",5:"var(--r5)"};
-const NIVEL={1:"muy baja",2:"baja",3:"media",4:"alta",5:"muy alta"};
-const grid=document.getElementById("canasta"),readout=document.getElementById("readout");
-const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-PRODUCTOS.forEach(([nombre,riesgo],i)=>{
-  const c=document.createElement("button");
-  c.type="button";c.className="cell";c.style.background=RAMPA[riesgo];
-  c.setAttribute("role","listitem");
-  c.setAttribute("aria-label",nombre+" — exposición "+NIVEL[riesgo]);
-  const show=()=>{readout.textContent=nombre+" · exposición "+NIVEL[riesgo];};
-  c.addEventListener("mouseenter",show);c.addEventListener("focus",show);c.addEventListener("click",show);
-  grid.appendChild(c);
-  if(reduce)c.classList.add("on"); else setTimeout(()=>c.classList.add("on"),160+i*11);
-});
-grid.addEventListener("mouseleave",()=>{readout.textContent="Pasa el cursor sobre un producto";});
-
 const nav=document.getElementById("nav");
 const onScroll=()=>nav.classList.toggle("stuck",window.scrollY>8);
 onScroll();window.addEventListener("scroll",onScroll,{passive:true});
