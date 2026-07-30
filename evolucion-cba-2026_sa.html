@@ -144,42 +144,6 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   .foot{flex-direction:column;align-items:flex-start;gap:14px}
   .sim-read{padding:16px 17px}
 }
-
-/* ==== simulador: composición por adultos-equivalentes ==== */
-.sim-eq{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.sim-eq .eqrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--borde);border-radius:8px;padding:7px 9px 7px 14px}
-.sim-eq .eqlbl{font-size:.9rem;font-weight:600;color:var(--verde)}
-.sim-eq .eqlbl small{color:#93A199;font-weight:600;margin-left:5px}
-.sim-eq .stepper{display:inline-flex;align-items:center;gap:3px}
-.sim-eq .stepper .stp{width:30px;height:30px;border:1px solid var(--borde);background:var(--crema);color:var(--verde);border-radius:6px;font-size:1.05rem;font-weight:700;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s,color .15s}
-.sim-eq .stepper .stp:hover{background:var(--ocre);border-color:var(--ocre);color:#22160A}
-.sim-eq .stepper output{min-width:26px;text-align:center;font-weight:700;color:var(--verde);font-variant-numeric:tabular-nums}
-.sim-eqtot{margin-top:12px;font-size:.95rem;font-weight:600;color:var(--verde)}
-.sim-eqtot output{color:var(--ocre);font-weight:800}
-.sim-eqtot small{color:#93A199;font-weight:600}
-
-/* ==== composición ampliada + metodología ==== */
-.sim-c.eqwide{grid-column:auto}
-.eqhint{display:block;color:#93A199;font-weight:600;margin-top:2px}
-.sim-eq{display:flex;flex-direction:column;gap:8px}
-.sim-eq .eqrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--crema);border:1px solid var(--borde);border-radius:8px;padding:7px 9px 7px 13px}
-.metodo{margin-top:18px;border:1px solid var(--borde);border-radius:8px;background:#fff;overflow:hidden}
-.metodo>summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;color:var(--verde);font-size:.95rem;position:relative}
-.metodo>summary::-webkit-details-marker{display:none}
-.metodo>summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--ocre);font-size:1.3rem;font-weight:700}
-.metodo[open]>summary::after{content:"\2212"}
-.metodo>summary:hover{color:var(--ocre)}
-.metodo-body{padding:4px 18px 18px}
-.metodo-body p{font-size:.92rem;line-height:1.6;color:#33463b;margin-top:10px}
-.metodo-formula{background:var(--crema);border:1px solid var(--borde);border-radius:6px;padding:10px 12px;font-weight:600;color:var(--verde)}
-.metodo-tabla{width:100%;border-collapse:collapse;margin-top:14px;font-size:.9rem}
-.metodo-tabla th,.metodo-tabla td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--borde)}
-.metodo-tabla th{color:#93A199;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
-.metodo-tabla td:nth-child(2),.metodo-tabla td:nth-child(3),.metodo-tabla th:nth-child(2),.metodo-tabla th:nth-child(3){text-align:right;font-variant-numeric:tabular-nums}
-.metodo-tabla td:last-child{font-weight:700;color:var(--verde)}
-.metodo-nota{color:#5a6b60}
-.metodo-fuentes{font-size:.82rem;color:#7a8a7f;border-top:1px solid var(--borde);padding-top:12px;margin-top:16px}
-.metodo-fuentes em{font-style:italic}
 </style>
 </head>
 <body>
@@ -232,22 +196,36 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   <div class="wrap strip-grid" id="kpis"></div>
 </div>
 
+<section class="claro">
+  <div class="wrap">
+    <div class="eyebrow">Nivel</div>
+    <h2>El valor de la canasta</h2>
+    <p class="nota" id="notaNivel"></p>
+    <div class="gbox"><div class="gbox-canvas"><canvas id="chartNivel" role="img" aria-label="Gráfico de línea con el valor mensual de la canasta básica de alimentos durante 2026"></canvas></div></div>
+    <p class="nota-fuente">Fuente: Ministerio de Desarrollo Social y Familia, con información de CEPAL e INE (IPC).</p>
+  </div>
+</section>
+
+<section class="crema">
+  <div class="wrap">
+    <div class="eyebrow">Ritmo</div>
+    <h2>Variación mensual y a doce meses</h2>
+    <p class="nota">Las barras muestran la variación mes a mes; la línea, la variación interanual. La aceleración de junio combina el alza mensual más alta del año (0,7%) con un efecto base: junio de 2025 había registrado una caída de −0,6%, lo que amplifica la comparación a doce meses.</p>
+    <div class="gbox"><div class="gbox-canvas"><canvas id="chartVar" role="img" aria-label="Gráfico combinado de variación mensual e interanual de la canasta básica"></canvas></div></div>
+    <p class="nota-fuente">Fuente: Ministerio de Desarrollo Social y Familia, con información de CEPAL e INE (IPC).</p>
+  </div>
+</section>
+
 <section class="claro" id="simulador">
   <div class="wrap">
     <div class="eyebrow">Simulador</div>
     <h2>¿Cuánto del ingreso se va en comer?</h2>
-    <p class="nota">El costo alimentario del hogar se calcula por <strong>adultos-equivalentes</strong>: cada integrante pondera según su requerimiento energético relativo a un adulto de referencia (hombre de 19–59 años, 2.500 kcal/día = 1,00). Así, el costo = CBA por adulto-equivalente × la suma de factores del hogar. Define la composición y el ingreso de referencia para ver qué parte del ingreso se destinaría solo a alimentación, mes a mes durante 2026. La tabla completa, la fórmula y las fuentes están en la <a href="#metodologia">metodología</a>, más abajo.</p>
+    <p class="nota">El costo alimentario de un hogar corresponde a la CBA por persona multiplicada por el número de integrantes, tal como lo calcula la metodología oficial. Sobre cada barra se indica qué porcentaje del ingreso mensual de referencia se destinaría solo a alimentación. Ajusta el tamaño del hogar y el monto del ingreso para explorar distintos escenarios.</p>
 
     <div class="sim-controls">
-      <div class="sim-c eqwide">
-        <label>Composición del hogar <small class="eqhint">(adultos-equivalentes por requerimiento energético)</small></label>
-        <div class="sim-eq">
-          <div class="eqrow"><span class="eqlbl">Hombre adulto <small>2.500 kcal · ×1,00</small></span><span class="stepper"><button type="button" class="stp" data-k="ha" data-d="-1" aria-label="Quitar Hombre adulto">&minus;</button><output id="c_ha">1</output><button type="button" class="stp" data-k="ha" data-d="1" aria-label="Agregar Hombre adulto">+</button></span></div>
-          <div class="eqrow"><span class="eqlbl">Mujer adulta <small>2.000 kcal · ×0,80</small></span><span class="stepper"><button type="button" class="stp" data-k="ma" data-d="-1" aria-label="Quitar Mujer adulta">&minus;</button><output id="c_ma">1</output><button type="button" class="stp" data-k="ma" data-d="1" aria-label="Agregar Mujer adulta">+</button></span></div>
-          <div class="eqrow"><span class="eqlbl">Niño/niña 6–10 años <small>1.750 kcal · ×0,70</small></span><span class="stepper"><button type="button" class="stp" data-k="n610" data-d="-1" aria-label="Quitar Niño/niña 6–10 años">&minus;</button><output id="c_n610">1</output><button type="button" class="stp" data-k="n610" data-d="1" aria-label="Agregar Niño/niña 6–10 años">+</button></span></div>
-          <div class="eqrow"><span class="eqlbl">Niño/niña 0–6 años <small>1.250 kcal · ×0,50</small></span><span class="stepper"><button type="button" class="stp" data-k="n06" data-d="-1" aria-label="Quitar Niño/niña 0–6 años">&minus;</button><output id="c_n06">1</output><button type="button" class="stp" data-k="n06" data-d="1" aria-label="Agregar Niño/niña 0–6 años">+</button></span></div>
-        </div>
-        <p class="sim-eqtot">Equivale a <output id="simEqOut">3,00</output> adultos-equivalentes <small>&middot; <output id="simPersOut">4</output> personas</small></p>
+      <div class="sim-c">
+        <label for="simPersonas">Integrantes del hogar: <output id="simPersonasOut">4</output></label>
+        <input type="range" id="simPersonas" min="1" max="10" step="1" value="4">
       </div>
       <div class="sim-c">
         <label for="simIngreso">Ingreso mensual de referencia</label>
@@ -261,36 +239,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
     <div class="gbox"><div class="gbox-canvas alto"><canvas id="chartSim" role="img" aria-label="Gráfico interactivo del costo de la canasta básica según tamaño del hogar comparado con un ingreso de referencia"></canvas></div></div>
 
     <p class="nota" style="margin-top:16px"><strong>Lectura con cautela:</strong> el ingreso de referencia por defecto corresponde al sueldo mínimo líquido; el monto exacto varía según AFP, sistema de salud y gratificación de cada trabajador. Un hogar puede además tener más de un perceptor de ingresos.</p>
-    <details class="metodo" id="metodologia">
-      <summary>Metodología: cómo calculamos los adultos-equivalentes</summary>
-      <div class="metodo-body">
-        <p>No todos los integrantes de un hogar requieren la misma energía, por lo que contar "personas" sobre- o subestima el gasto real en alimentos. Usamos el concepto de <strong>adulto-equivalente</strong>: cada integrante pondera según su requerimiento energético relativo a un adulto de referencia.</p>
-        <p><strong>Adulto de referencia:</strong> hombre de 19–59 años, con un requerimiento de 2.500 kcal/día, al que se le asigna un factor de 1,00.</p>
-        <p class="metodo-formula">factor del integrante = requerimiento energético del integrante ÷ 2.500 kcal/día</p>
-        <table class="metodo-tabla">
-          <thead><tr><th>Grupo</th><th>kcal/día</th><th>Adulto equivalente</th></tr></thead>
-          <tbody>
-          <tr><td>Hombre adulto</td><td>2.500</td><td>1,00</td></tr>
-          <tr><td>Mujer adulta</td><td>2.000</td><td>0,80</td></tr>
-          <tr><td>Niño/niña 6–10 años</td><td>1.750</td><td>0,70</td></tr>
-          <tr><td>Niño/niña 0–6 años</td><td>1.250</td><td>0,50</td></tr>
-          </tbody>
-        </table>
-        <p class="metodo-nota"><strong>Importante:</strong> estos factores son ilustrativos, calculados sobre requerimientos energéticos aproximados. Para su uso como metodología oficial del Observatorio conviene recalcularlos con una tabla específica de requerimientos energéticos (FAO/OMS o las recomendaciones del Ministerio de Salud de Chile) y documentar la fuente exacta, de modo que cualquier investigador pueda reproducir los resultados.</p>
-        <p class="metodo-fuentes"><strong>Fuentes:</strong> Weisell, R. &amp; Dop, M.C. (2012). <em>The Adult Male Equivalent Concept and its Application to Household Consumption and Expenditure Surveys.</em> Food and Nutrition Bulletin, 33(Suppl. 3), S157–S162. &middot; FAO/WHO/UNU (2004). <em>Human Energy Requirements.</em> &middot; Ministerio de Salud de Chile. <em>Guías Alimentarias para la población chilena</em> y recomendaciones de requerimientos energéticos.</p>
-      </div>
-    </details>
     <p class="nota-fuente">Elaboración: Observatorio de Seguridad Alimentaria, sobre datos de Mindesaf.</p>
-  </div>
-</section>
-
-<section class="claro">
-  <div class="wrap">
-    <div class="eyebrow">Nivel</div>
-    <h2>El valor de la canasta</h2>
-    <p class="nota" id="notaNivel"></p>
-    <div class="gbox"><div class="gbox-canvas"><canvas id="chartNivel" role="img" aria-label="Gráfico de línea con el valor mensual de la canasta básica de alimentos durante 2026"></canvas></div></div>
-    <p class="nota-fuente">Fuente: Ministerio de Desarrollo Social y Familia, con información de CEPAL e INE (IPC).</p>
   </div>
 </section>
 
@@ -349,7 +298,7 @@ document.getElementById("kpis").innerHTML = [
   { fig:fCLP(ultimo.cba), lbl:`cuesta la canasta básica por persona en ${ultimo.mesLargo} de 2026.`, src:`Mindesaf · ${ultimo.mesLargo} 2026` },
   { fig:fPct(ultimo.var12m), lbl:`subió en doce meses, desde ${fPct(previo.var12m)} el mes anterior.`, src:"Variación interanual" },
   { fig:ACUM_ANUAL, lbl:`acumula la canasta en lo que va del año, contra ${IPC_12M} del IPC general a doce meses.`, src:"Acumulado 2026" },
-  { fig:fCLP(Math.round(ultimo.cba*3)), lbl:"cuesta alimentar un hogar de cuatro personas (3,0 adultos-equivalentes) durante un mes.", src:"CBA × 3,0 adultos-eq." },
+  { fig:fCLP(ultimo.cba*4), lbl:"cuesta alimentar un hogar de cuatro personas durante un mes.", src:"CBA × 4 integrantes" },
 ].map(k=>`<div class="stat"><div class="fig">${k.fig}</div><div class="lbl">${k.lbl}</div><div class="src">${k.src}</div></div>`).join("");
 
 document.getElementById("notaNivel").innerHTML =
@@ -394,38 +343,51 @@ function init(){
     }
   });
 
-  /* --- simulador (adultos-equivalentes) --- */
-  const REF = 2500;                       // hombre 19–59 años, 2.500 kcal/día = 1,00
-  const GRUPOS = [
-    {k:"ha",kcal:2500},
-    {k:"ma",kcal:2000},
-    {k:"n610",kcal:1750},
-    {k:"n06",kcal:1250}
-  ];
-  const cnt = { ha:1, ma:1, n610:1, n06:1 };
+  /* --- variaciones --- */
+  new Chart(document.getElementById("chartVar"), {
+    data:{ labels, datasets:[
+      { type:"bar", label:"Variación mensual", data:CBA_DATA.map(d=>d.varMensual),
+        backgroundColor:CBA_DATA.map(d=>d.varMensual<0?C.verdeMed:C.ocre),
+        borderRadius:3, yAxisID:"y", maxBarThickness:52 },
+      { type:"line", label:"Variación 12 meses", data:CBA_DATA.map(d=>d.var12m),
+        borderColor:C.rojo, backgroundColor:C.rojo, borderWidth:2.5, tension:.3,
+        pointRadius:4, pointBorderColor:"#fff", pointBorderWidth:2, yAxisID:"y1" }
+    ]},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{position:"bottom", labels:{usePointStyle:true, boxWidth:8, padding:16}},
+        tooltip:{ backgroundColor:C.verde, padding:10, displayColors:false,
+          callbacks:{ title:it=>cap(CBA_DATA[it[0].dataIndex].mesLargo)+" 2026",
+                      label:ctx=>`${ctx.dataset.label}: ${fPct(ctx.parsed.y)}` } } },
+      scales:{ y:{ position:"left", grid:{color:C.borde}, border:{display:false},
+                   title:{display:true,text:"Mensual (%)"}, ticks:{callback:v=>fPct(v)} },
+               y1:{ position:"right", grid:{drawOnChartArea:false}, border:{display:false},
+                    suggestedMin:0, title:{display:true,text:"12 meses (%)"}, ticks:{callback:v=>fPct(v)} },
+               x:{ grid:{display:false} } }
+    }
+  });
+
+  /* --- simulador --- */
+  const rangoP = document.getElementById("simPersonas");
+  const outP = document.getElementById("simPersonasOut");
   const inpI = document.getElementById("simIngreso");
-  const eqOut = document.getElementById("simEqOut");
-  const persOut = document.getElementById("simPersOut");
   const read = document.getElementById("simRead");
+  const N = Array.from({length:10},(_,i)=>i+1);
+  const costo = n => Math.round(ultimo.cba * n);
   let ingresoActual = INGRESO_REF, chartSim = null;
   const angosto = () => window.innerWidth < 660;
 
-  const equiv = () => GRUPOS.reduce((t,g)=> t + (cnt[g.k]||0)*(g.kcal/REF), 0);
-  const personas = () => GRUPOS.reduce((t,g)=> t + (cnt[g.k]||0), 0);
-  const fNum = x => x.toLocaleString("es-CL",{minimumFractionDigits:2, maximumFractionDigits:2});
-  const serieCosto = () => CBA_DATA.map(d => Math.round(d.cba * equiv()));
-
-  /* etiquetas de % sobre cada barra: costo del mes / ingreso (1 decimal) */
+  /* etiquetas de % sobre (o junto a) cada barra */
   const pctLabels = {
     id:"pctLabels",
     afterDatasetsDraw(ch){
       if (ingresoActual <= 0) return;
-      const ctx = ch.ctx, horiz = ch.options.indexAxis === "y", serie = serieCosto();
+      const ctx = ch.ctx, horiz = ch.options.indexAxis === "y";
       ctx.save();
-      ctx.font = `700 ${window.innerWidth<520?11:13}px Montserrat, sans-serif`;
+      ctx.font = `700 ${window.innerWidth<520?9:11}px Montserrat, sans-serif`;
       ch.getDatasetMeta(0).data.forEach((bar,i)=>{
-        const p = serie[i] / ingresoActual * 100;
-        const t = p.toLocaleString("es-CL",{minimumFractionDigits:1, maximumFractionDigits:1}) + "%";
+        const p = costo(N[i]) / ingresoActual * 100;
+        const t = p.toLocaleString("es-CL",{maximumFractionDigits:0}) + "%";
         ctx.fillStyle = p >= 100 ? C.rojo : C.gris;
         if (horiz){ ctx.textAlign="left"; ctx.textBaseline="middle"; ctx.fillText(t, bar.x+7, bar.y); }
         else { ctx.textAlign="center"; ctx.textBaseline="alphabetic"; ctx.fillText(t, bar.x, bar.y-7); }
@@ -440,33 +402,33 @@ function init(){
     const ejeDinero = { grid:{color:C.borde}, border:{display:false},
                         ticks:{callback:v=>"$"+(v/1000).toFixed(0)+"k"} };
     const ejeCat = { grid:{display:false}, border:{display:false} };
+
     chartSim = new Chart(document.getElementById("chartSim"), {
       data:{
-        labels,
+        labels:N.map(n=>n+(n===1?" pers.":" pers.")),
         datasets:[
-          { type:"bar", label:"Costo mensual del hogar", order:2,
-            data:serieCosto(), backgroundColor:C.verdeMed,
-            borderRadius:3, maxBarThickness:horiz?22:46 },
+          { type:"bar", label:"Costo de la canasta del hogar", order:2,
+            data:N.map(costo), backgroundColor:N.map(()=>C.verdeMed),
+            borderRadius:3, maxBarThickness:horiz?26:52 },
           { type:"line", label:"Ingreso de referencia", order:1,
-            data:labels.map(()=>ingresoActual), borderColor:C.ocre, backgroundColor:C.ocre,
+            data:N.map(()=>ingresoActual), borderColor:C.ocre, backgroundColor:C.ocre,
             borderWidth:2.5, pointRadius:0, tension:0 }
         ]
       },
       options:{
         indexAxis: horiz ? "y" : "x",
         responsive:true, maintainAspectRatio:false,
-        layout:{ padding: horiz ? {right:52} : {top:22} },
+        layout:{ padding: horiz ? {right:46} : {top:22} },
         plugins:{
           legend:{position:"bottom", labels:{usePointStyle:true, boxWidth:8, padding:14}},
           tooltip:{ backgroundColor:C.verde, padding:10, displayColors:false,
-            callbacks:{ title:it=>cap(CBA_DATA[it[0].dataIndex].mesLargo)+" 2026",
-              label:ctx=>{
-                const v = horiz ? ctx.parsed.x : ctx.parsed.y;
-                let t = `${ctx.dataset.label}: ${fCLP(v)}`;
-                if (ctx.datasetIndex===0 && ingresoActual>0)
-                  t += ` \u00b7 ${fPct(v/ingresoActual*100)} del ingreso`;
-                return t;
-              }}}
+            callbacks:{ label:ctx=>{
+              const v = horiz ? ctx.parsed.x : ctx.parsed.y;
+              let t = `${ctx.dataset.label}: ${fCLP(v)}`;
+              if (ctx.datasetIndex===0 && ingresoActual>0)
+                t += ` · ${fPct(v/ingresoActual*100)} del ingreso`;
+              return t;
+            }}}
         },
         scales: horiz ? { x:ejeDinero, y:ejeCat } : { y:ejeDinero, x:ejeCat }
       },
@@ -475,24 +437,21 @@ function init(){
   }
 
   function pintar(){
+    const n = parseInt(rangoP.value,10);
     const ing = Math.max(0, parseInt(inpI.value,10) || 0);
+    outP.textContent = n;
     ingresoActual = ing;
-    GRUPOS.forEach(g=>{ const o=document.getElementById("c_"+g.k); if(o) o.textContent = cnt[g.k]||0; });
-    const eq = equiv(), per = personas();
-    eqOut.textContent = fNum(eq);
-    persOut.textContent = per;
 
-    chartSim.data.datasets[0].data = serieCosto();
-    chartSim.data.datasets[1].data = labels.map(()=>ing);
+    chartSim.data.datasets[1].data = N.map(()=>ing);
+    chartSim.data.datasets[0].backgroundColor = N.map(x => x===n ? C.verde : C.verdeMed);
     chartSim.update();
 
-    const cst = Math.round(ultimo.cba * eq);
-    if (per <= 0){ read.textContent = "Agrega al menos un integrante al hogar."; return; }
-    if (ing <= 0){ read.textContent = "Ingresa un monto de ingreso para calcular la proporción."; return; }
-    const p = cst/ing*100, resto = ing - cst;
+    const cst = costo(n);
+    if (ing <= 0){ read.textContent = "Ingresa un monto para calcular la proporción."; return; }
+    const p = cst/ing*100;
+    const resto = ing - cst;
     read.innerHTML =
-      `Tu hogar de <strong>${per} ${per===1?"persona":"personas"}</strong> equivale a ` +
-      `<strong>${fNum(eq)} adultos-equivalentes</strong>. Alimentarlo con la canasta de ` +
+      `Alimentar un hogar de <strong>${n} ${n===1?"persona":"personas"}</strong> con la canasta de ` +
       `${ultimo.mesLargo} de 2026 cuesta <strong>${fCLP(cst)}</strong> al mes: ` +
       `<span class="pct${p>=100?' grave':''}">${fPct(p)}</span> del ingreso de referencia (${fCLP(ing)}). ` +
       (resto >= 0
@@ -500,21 +459,15 @@ function init(){
         : `El costo de comer <strong>supera el ingreso en ${fCLP(-resto)}</strong>, antes de cualquier otro gasto.`);
   }
 
-  document.querySelectorAll(".sim-eq .stp").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      const k = b.dataset.k, d = parseInt(b.dataset.d,10);
-      cnt[k] = Math.max(0, Math.min(12, (cnt[k]||0) + d));
-      pintar();
-    });
-  });
-
   construir(); pintar();
+  rangoP.addEventListener("input", pintar);
   inpI.addEventListener("input", pintar);
 
-  let eraAngosto = angosto(), tRes = null;
+  /* reconstruir el gráfico solo si se cruza el umbral de orientación */
+  let eraAngosto = angosto(), t = null;
   window.addEventListener("resize", ()=>{
-    clearTimeout(tRes);
-    tRes = setTimeout(()=>{
+    clearTimeout(t);
+    t = setTimeout(()=>{
       if (angosto() !== eraAngosto){ eraAngosto = angosto(); construir(); pintar(); }
     }, 200);
   }, {passive:true});
