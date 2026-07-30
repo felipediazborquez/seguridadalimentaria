@@ -420,6 +420,90 @@ section:not(.claro):not(.crema) .cc-card p{color:#B7C9BC}
   </div>
 </section>
 
+<section class="cc-loop">
+  <style>
+  .cc-loop{border-top:1px solid var(--v-linea)}
+  .cc-loop .loop-fig{max-width:780px;margin:34px auto 0}
+  .cc-loop svg{width:100%;height:auto;display:block;overflow:visible}
+  .cc-loop .node-cap{fill:#EAF1EB;font-family:"Montserrat",sans-serif;font-weight:700;font-size:17px}
+  .cc-loop .node-sub{fill:#9DB3A4;font-family:"Montserrat",sans-serif;font-weight:500;font-size:13px}
+  .cc-loop .lbl-emit{fill:#D9BE7A;font-family:"Montserrat",sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.02em}
+  .cc-loop .lbl-impact{fill:#DBA089;font-family:"Montserrat",sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.02em}
+  .cc-loop .heat{transform-box:fill-box;transform-origin:center}
+  .cc-loop .loop-note{max-width:60ch;margin:28px auto 0;text-align:center;color:#B7C9BC;font-size:1rem;line-height:1.6}
+  .cc-loop .loop-legend{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:.86rem;color:#C6D5CA}
+  .cc-loop .loop-legend span{display:inline-flex;align-items:center;gap:8px}
+  .cc-loop .loop-legend i{width:22px;height:4px;border-radius:2px;display:inline-block}
+  @media (prefers-reduced-motion:no-preference){
+    .cc-loop .heat{animation:ccHeat 3.4s ease-in-out infinite}
+    @keyframes ccHeat{0%,100%{opacity:.12;transform:scale(1)}50%{opacity:.30;transform:scale(1.07)}}
+  }
+  @media (max-width:640px){
+    .cc-loop .node-cap{font-size:15px} .cc-loop .lbl-emit,.cc-loop .lbl-impact{font-size:13px}
+  }
+  </style>
+  <div class="wrap">
+    <div class="eyebrow rv">El círculo completo</div>
+    <h2 class="rv">Un impacto que corre en las dos direcciones</h2>
+    <div class="cc-prose rv"><p>La forma en que producimos alimentos calienta el planeta; y ese planeta más cálido y seco golpea de vuelta a la producción. No son dos problemas separados: son un mismo círculo que se retroalimenta y que, sin acción, tiende a acelerarse.</p></div>
+
+    <div class="loop-fig rv">
+      <svg id="ccLoopSvg" viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Diagrama animado: la producción de alimentos emite gases de efecto invernadero que calientan el clima; el clima más cálido y seco reduce la producción, en un ciclo que se retroalimenta.">
+        <defs>
+          <radialGradient id="gProd" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#357a44"/><stop offset="100%" stop-color="#0f3323"/></radialGradient>
+          <radialGradient id="gClim" cx="50%" cy="38%" r="72%"><stop offset="0%" stop-color="#F7C63F"/><stop offset="100%" stop-color="#C97F1C"/></radialGradient>
+          <linearGradient id="gEmit" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8AA951"/><stop offset="100%" stop-color="#F5B301"/></linearGradient>
+          <linearGradient id="gImpact" x1="1" y1="0" x2="0" y2="0"><stop offset="0%" stop-color="#E0A63C"/><stop offset="100%" stop-color="#C0532B"/></linearGradient>
+          <marker id="arrEmit" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F5B301"/></marker>
+          <marker id="arrImpact" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#C0532B"/></marker>
+          <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8"/></filter>
+        </defs>
+
+        <!-- heat glow -->
+        <circle class="heat" cx="690" cy="230" r="94" fill="#F5B301" opacity=".14" filter="url(#soft)"/>
+
+        <!-- arcs -->
+        <path id="p-emit" d="M276,183 C362,56 538,56 624,183" fill="none" stroke="url(#gEmit)" stroke-width="3.5" marker-end="url(#arrEmit)" opacity=".92"/>
+        <path id="p-impact" d="M624,277 C538,404 362,404 276,277" fill="none" stroke="url(#gImpact)" stroke-width="3.5" marker-end="url(#arrImpact)" opacity=".92"/>
+
+        <!-- arc labels -->
+        <text class="lbl-emit" x="450" y="42" text-anchor="middle">emite CO₂ · metano · óxido nitroso</text>
+        <text class="lbl-impact" x="450" y="432" text-anchor="middle">sequía · calor extremo · menos agua</text>
+
+        <!-- flowing particles -->
+        <g><circle class="fdot" r="5.5" fill="#F5B301" opacity="0"><animateMotion dur="3s" begin="0s" repeatCount="indefinite" rotate="auto"><mpath href="#p-emit"/></animateMotion><animate attributeName="opacity" dur="3s" begin="0s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#F5B301" opacity="0"><animateMotion dur="3s" begin="0.6s" repeatCount="indefinite" rotate="auto"><mpath href="#p-emit"/></animateMotion><animate attributeName="opacity" dur="3s" begin="0.6s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#F5B301" opacity="0"><animateMotion dur="3s" begin="1.2s" repeatCount="indefinite" rotate="auto"><mpath href="#p-emit"/></animateMotion><animate attributeName="opacity" dur="3s" begin="1.2s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#F5B301" opacity="0"><animateMotion dur="3s" begin="1.8s" repeatCount="indefinite" rotate="auto"><mpath href="#p-emit"/></animateMotion><animate attributeName="opacity" dur="3s" begin="1.8s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#F5B301" opacity="0"><animateMotion dur="3s" begin="2.4s" repeatCount="indefinite" rotate="auto"><mpath href="#p-emit"/></animateMotion><animate attributeName="opacity" dur="3s" begin="2.4s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle></g>
+        <g><circle class="fdot" r="5.5" fill="#C0532B" opacity="0"><animateMotion dur="3s" begin="0s" repeatCount="indefinite" rotate="auto"><mpath href="#p-impact"/></animateMotion><animate attributeName="opacity" dur="3s" begin="0s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#C0532B" opacity="0"><animateMotion dur="3s" begin="0.6s" repeatCount="indefinite" rotate="auto"><mpath href="#p-impact"/></animateMotion><animate attributeName="opacity" dur="3s" begin="0.6s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#C0532B" opacity="0"><animateMotion dur="3s" begin="1.2s" repeatCount="indefinite" rotate="auto"><mpath href="#p-impact"/></animateMotion><animate attributeName="opacity" dur="3s" begin="1.2s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#C0532B" opacity="0"><animateMotion dur="3s" begin="1.8s" repeatCount="indefinite" rotate="auto"><mpath href="#p-impact"/></animateMotion><animate attributeName="opacity" dur="3s" begin="1.8s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle><circle class="fdot" r="5.5" fill="#C0532B" opacity="0"><animateMotion dur="3s" begin="2.4s" repeatCount="indefinite" rotate="auto"><mpath href="#p-impact"/></animateMotion><animate attributeName="opacity" dur="3s" begin="2.4s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.88;1"/></circle></g>
+
+        <!-- Producción node -->
+        <circle cx="210" cy="230" r="78" fill="url(#gProd)" stroke="#357a44" stroke-width="2"/>
+        <g stroke="#8AA951" stroke-width="6" fill="none" stroke-linecap="round"><path d="M210,262 L210,210"/></g>
+        <path d="M210,228 C182,224 174,204 180,188 C206,186 216,210 210,228 Z" fill="#8AA951"/>
+        <path d="M210,236 C238,232 246,212 240,196 C214,194 204,218 210,236 Z" fill="#6f9040"/>
+        <text class="node-cap" x="210" y="352" text-anchor="middle">Producción de alimentos</text>
+        <text class="node-sub" x="210" y="372" text-anchor="middle">agricultura · ganadería · uso del suelo</text>
+
+        <!-- Clima node -->
+        <circle cx="690" cy="230" r="78" fill="url(#gClim)" stroke="#F7C63F" stroke-width="2"/>
+        <g stroke="#8a5910" stroke-width="5" stroke-linecap="round"><line x1="720.0" y1="230.0" x2="733.0" y2="230.0"/><line x1="711.2" y1="251.2" x2="720.4" y2="260.4"/><line x1="690.0" y1="260.0" x2="690.0" y2="273.0"/><line x1="668.8" y1="251.2" x2="659.6" y2="260.4"/><line x1="660.0" y1="230.0" x2="647.0" y2="230.0"/><line x1="668.8" y1="208.8" x2="659.6" y2="199.6"/><line x1="690.0" y1="200.0" x2="690.0" y2="187.0"/><line x1="711.2" y1="208.8" x2="720.4" y2="199.6"/></g>
+        <circle cx="690" cy="230" r="21" fill="#fff3d0" stroke="none"/>
+        <text class="node-cap" x="690" y="352" text-anchor="middle">Sistema climático</text>
+        <text class="node-sub" x="690" y="372" text-anchor="middle">temperatura · agua · eventos extremos</text>
+      </svg>
+    </div>
+
+    <div class="loop-legend rv">
+      <span><i style="background:linear-gradient(90deg,#8AA951,#F5B301)"></i> Producción → clima (emisiones)</span>
+      <span><i style="background:linear-gradient(90deg,#E0A63C,#C0532B)"></i> Clima → producción (impactos)</span>
+    </div>
+    <p class="loop-note rv">Cada vuelta que no se interrumpe tiende a intensificar la siguiente. Por eso importa medir —y actuar— en los dos sentidos.</p>
+  </div>
+</section>
+<script>
+(function(){var s=document.getElementById("ccLoopSvg");
+if(s&&window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){try{s.pauseAnimations();}catch(e){}}})();
+</script>
+
 <section class="crema">
   <div class="wrap">
     <div class="eyebrow rv">Producción → clima</div>
