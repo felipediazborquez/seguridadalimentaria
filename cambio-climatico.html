@@ -303,6 +303,18 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   .nav-submenu a:hover{background:transparent;color:#fff}
   .nav-submenu a.actual{background:transparent}
 }
+
+/* ==== header uniforme entre páginas · sin quiebres de línea ==== */
+.nav-links a,.nav-droptop{white-space:nowrap}
+.brand .t,.brand .s{white-space:nowrap}
+@media(min-width:1001px){
+  .nav-links{gap:clamp(13px,1.7vw,22px)}
+  .nav-links a{font-size:14.5px}
+  .nav-droptop{font-size:14.5px}
+  .brand svg{width:52px;height:46px}
+  .brand .t{font-size:15px;line-height:1.1}
+  .brand .s{font-size:7.4px;margin-top:3px}
+}
 </style>
 <style>
 .cc-hero{background:var(--verde);padding:clamp(84px,13vh,140px) 0 clamp(48px,7vw,72px);border-bottom:1px solid var(--v-linea)}
@@ -472,7 +484,20 @@ section:not(.claro):not(.crema) .cc-card p{color:#B7C9BC}
   @media (max-width:640px){
     .cc-loop .node-cap{font-size:15px} .cc-loop .lbl-emit,.cc-loop .lbl-impact{font-size:13px}
   }
-  </style>
+  
+/* === header idéntico entre páginas + sin wrap (final, px-lock) === */
+.brand svg{width:52px;height:46px;flex-shrink:0}
+.brand .t{font-size:15px;line-height:1.08;white-space:nowrap}
+.brand .s{font-size:7.4px;margin-top:3px;white-space:nowrap}
+@media(min-width:1001px){
+  .nav-links{gap:clamp(12px,1.4vw,20px);flex-wrap:nowrap}
+  .nav-links a,.nav-droptop{font-size:14.5px;white-space:nowrap}
+}
+@media(max-width:1000px){
+  .nav-links a,.nav-droptop{font-size:15px;white-space:nowrap}
+  .nav-submenu a{font-size:14px}
+}
+</style>
   <div class="wrap">
     <div class="eyebrow rv">El círculo completo</div>
     <h2 class="rv">Un impacto que corre en las dos direcciones</h2>
