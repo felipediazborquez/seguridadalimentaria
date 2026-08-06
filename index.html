@@ -278,6 +278,34 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   .hero-photo::before{background:linear-gradient(0deg,rgba(10,20,13,.95) 0%,rgba(10,20,13,.86) 34%,rgba(10,20,13,.5) 60%,rgba(10,20,13,.14) 82%,rgba(10,20,13,.35) 100%)}
   .hero-photo .mh-tag{transform:rotate(-1.2deg)}
 }
+
+/* ==== dropdown Herramientas ==== */
+.nav-drop{position:relative;display:flex;align-items:center}
+.nav-droptop{font-size:.93rem;font-weight:500;color:#A9BCAF;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:color .2s;user-select:none}
+.nav-drop:hover .nav-droptop,.nav-drop:focus-within .nav-droptop{color:#fff}
+.nav-droptop .caret{font-size:.66em;transition:transform .2s}
+.nav-drop:hover .nav-droptop .caret,.nav-drop:focus-within .nav-droptop .caret{transform:rotate(180deg)}
+.nav-submenu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);min-width:252px;background:var(--v-800);border:1px solid var(--v-linea);border-radius:11px;padding:7px;display:flex;flex-direction:column;gap:2px;box-shadow:0 20px 46px rgba(0,0,0,.42);opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;z-index:60}
+.nav-submenu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.nav-drop:hover .nav-submenu,.nav-drop:focus-within .nav-submenu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-submenu a{white-space:nowrap;padding:10px 13px;border-radius:7px;font-size:.9rem;font-weight:500;color:#C6D5CA}
+.nav-submenu a:hover{background:var(--verde);color:#fff}
+/* ==== tarjeta: cuánto subió cada plato ==== */
+.hplatos .platos-list{display:flex;flex-direction:column;gap:11px;margin:2px 0}
+.hplatos .prow{display:grid;grid-template-columns:1fr auto;column-gap:10px;row-gap:5px;align-items:baseline}
+.hplatos .pn{font-size:.82rem;color:#D6E3D9;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hplatos .pv{font-size:.82rem;font-weight:800;color:var(--ocre);text-align:right;font-variant-numeric:tabular-nums}
+.hplatos .ptrack{grid-column:1/-1;height:5px;border-radius:3px;background:#0E2A1E;overflow:hidden}
+.hplatos .ptrack i{display:block;height:100%;border-radius:3px;background:linear-gradient(to right,#8AA951,var(--ocre))}
+@media(max-width:1000px){
+  .nav-drop{flex-direction:column;align-items:stretch}
+  .nav-droptop{padding:14px clamp(18px,4vw,28px);justify-content:space-between}
+  .nav-droptop .caret{display:none}
+  .nav-submenu{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;padding:0 0 6px;min-width:0;gap:0}
+  .nav-submenu::before{display:none}
+  .nav-submenu a{padding:11px clamp(18px,4vw,28px) 11px calc(clamp(18px,4vw,28px) + 16px);border-radius:0;font-size:.9rem;color:#8FA396}
+  .nav-submenu a:hover{background:transparent;color:#fff}
+}
 </style>
 </head>
 <body>
@@ -321,8 +349,14 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
       <a href="quienes-somos.html">Quiénes somos</a>
       <a href="#problema">El problema</a>
       <a href="cambio-climatico.html">Cambio climático</a>
-      <a href="ivcba.html">El índice</a>
-      <a href="evolucion-cba-2026.html">Evolución CBA</a>
+      <div class="nav-drop">
+        <span class="nav-droptop" tabindex="0" role="button" aria-haspopup="true">Herramientas <span class="caret" aria-hidden="true">▾</span></span>
+        <div class="nav-submenu" role="menu">
+          <a href="ivcba.html" role="menuitem">IV-CBA · Índice de vulnerabilidad</a>
+          <a href="explorador-precios.html" role="menuitem">Explorador de precios</a>
+          <a href="evolucion-cba-2026.html#simulador" role="menuitem">Canasta básica por familia</a>
+        </div>
+      </div>
       <a href="#publicaciones">Publicaciones</a>
       <a class="btn btn-ghost" href="#contacto">Contacto</a>
     </div>
@@ -333,9 +367,9 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   <div class="mh-wrap">
     <div class="mh-col">
       <span class="mh-eyebrow">El costo de comer en Chile</span>
-      <h1 class="mh-hook">Nadie está mirando el precio de la olla.
-        <span class="mh-tag">Nosotros sí.</span></h1>
-      <p class="mh-lede">Medimos cómo el <strong>cambio climático</strong>, y otros factores, están cambiando el costo de comer en Chile.</p>
+      <h1 class="mh-hook">Lo sientes en cada compra.
+        <span class="mh-tag">Nosotros lo medimos.</span></h1>
+      <p class="mh-lede">Observamos cómo el <strong>cambio climático</strong> y otros factores mueven el costo de la canasta básica.</p>
     </div>
   </div>
 </header>
@@ -343,13 +377,21 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
 <section class="hero-cards-band" aria-label="Indicadores destacados">
   <div class="wrap">
     <div class="hero-cards">
-      <a class="hcard hcard-link" href="ivcba.html">
+      <a class="hcard hcard-link hplatos" href="explorador-precios.html">
         <div class="hcard-h">
-          <span class="k">Top 10 · mayor impacto</span>
-          <span class="tag">IV-CBA</span>
+          <span class="k">Cuánto subió cada plato</span>
+          <span class="tag">2015 → 2026</span>
         </div>
-        <div class="mini" id="miniTop"></div>
-        <span class="more">Conoce el índice completo →</span>
+        <div class="platos-list">
+          <div class="prow"><span class="pn">Cazuela de vacuno</span><span class="pv">+124%</span><span class="ptrack"><i style="width:100%"></i></span></div>
+          <div class="prow"><span class="pn">Pollo arvejado con arroz</span><span class="pv">+95%</span><span class="ptrack"><i style="width:76%"></i></span></div>
+          <div class="prow"><span class="pn">Spaghetti bolognesa</span><span class="pv">+91%</span><span class="ptrack"><i style="width:73%"></i></span></div>
+          <div class="prow"><span class="pn">Charquicán con huevo frito</span><span class="pv">+89%</span><span class="ptrack"><i style="width:71%"></i></span></div>
+          <div class="prow"><span class="pn">Mechada con puré</span><span class="pv">+77%</span><span class="ptrack"><i style="width:62%"></i></span></div>
+          <div class="prow"><span class="pn">Completo</span><span class="pv">+71%</span><span class="ptrack"><i style="width:57%"></i></span></div>
+          <div class="prow"><span class="pn">Asado (4 personas)</span><span class="pv">+70%</span><span class="ptrack"><i style="width:56%"></i></span></div>
+        </div>
+        <span class="more">Abrir el explorador →</span>
       </a>
 
       <a class="hcard hcard-link hcost" href="evolucion-cba-2026.html">
@@ -372,7 +414,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
     <div class="stat rv"><div class="fig">3,8 MM</div><div class="lbl">de personas en Chile viven con inseguridad alimentaria moderada o grave: el 19,2% de la población.</div><div class="src">FAO · SOFI 2026</div></div>
     <div class="stat rv"><div class="fig">$90.658</div><div class="lbl">cuesta hoy la canasta básica por persona, un 4,8% más que hace un año.</div><div class="src">Mindesaf · junio 2026</div></div>
     <div class="stat rv"><div class="fig">4,3%</div><div class="lbl">subió el IPC general en el mismo período. La comida le ganó al promedio.</div><div class="src">INE · junio 2026</div></div>
-    <div class="stat rv"><div class="fig">79</div><div class="lbl">productos evaluados uno a uno según su exposición al clima y a la logística.</div><div class="src">Índice IV-CBA</div></div>
+    <div class="stat rv"><div class="fig">+1,44 °C</div><div class="lbl">subió la temperatura media global en 2025 sobre la era preindustrial. El clima más cálido y extremo golpea las cosechas y encarece el acceso a los alimentos.</div><div class="src">OMM · Estado del Clima 2025</div></div>
   </div>
 </div>
 

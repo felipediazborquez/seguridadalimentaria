@@ -278,6 +278,31 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
   .hero-photo::before{background:linear-gradient(0deg,rgba(10,20,13,.95) 0%,rgba(10,20,13,.86) 34%,rgba(10,20,13,.5) 60%,rgba(10,20,13,.14) 82%,rgba(10,20,13,.35) 100%)}
   .hero-photo .mh-tag{transform:rotate(-1.2deg)}
 }
+
+/* ==== dropdown Herramientas ==== */
+.nav-drop{position:relative;display:flex;align-items:center}
+.nav-droptop{font-size:.93rem;font-weight:500;color:#A9BCAF;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:color .2s;user-select:none}
+.nav-drop:hover .nav-droptop,.nav-drop:focus-within .nav-droptop{color:#fff}
+.nav-droptop.actual{color:var(--ocre)}
+.nav-droptop .caret{font-size:.66em;transition:transform .2s}
+.nav-drop:hover .nav-droptop .caret,.nav-drop:focus-within .nav-droptop .caret{transform:rotate(180deg)}
+.nav-submenu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);min-width:252px;background:var(--v-800);border:1px solid var(--v-linea);border-radius:11px;padding:7px;display:flex;flex-direction:column;gap:2px;box-shadow:0 20px 46px rgba(0,0,0,.42);opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;z-index:60}
+.nav-submenu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.nav-drop:hover .nav-submenu,.nav-drop:focus-within .nav-submenu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-submenu a{white-space:nowrap;padding:10px 13px;border-radius:7px;font-size:.9rem;font-weight:500;color:#C6D5CA}
+.nav-submenu a:hover{background:var(--verde);color:#fff}
+.nav-submenu a.actual{color:var(--ocre);background:rgba(209,139,37,.12)}
+.nav-links a.actual{color:var(--ocre)}
+@media(max-width:1000px){
+  .nav-drop{flex-direction:column;align-items:stretch}
+  .nav-droptop{padding:14px clamp(18px,4vw,28px);justify-content:space-between}
+  .nav-droptop .caret{display:none}
+  .nav-submenu{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;padding:0 0 6px;min-width:0;gap:0}
+  .nav-submenu::before{display:none}
+  .nav-submenu a{padding:11px clamp(18px,4vw,28px) 11px calc(clamp(18px,4vw,28px) + 16px);border-radius:0;font-size:.9rem;color:#8FA396}
+  .nav-submenu a:hover{background:transparent;color:#fff}
+  .nav-submenu a.actual{background:transparent}
+}
 </style>
 <style>
 .cc-hero{background:var(--verde);padding:clamp(84px,13vh,140px) 0 clamp(48px,7vw,72px);border-bottom:1px solid var(--v-linea)}
@@ -359,9 +384,15 @@ section:not(.claro):not(.crema) .cc-card p{color:#B7C9BC}
     <div class="nav-links" id="navLinks">
       <a href="quienes-somos.html">Quiénes somos</a>
       <a href="index.html#problema">El problema</a>
-      <a href="cambio-climatico.html" aria-current="page">Cambio climático</a>
-      <a href="ivcba.html">El índice</a>
-      <a href="evolucion-cba-2026.html">Evolución CBA</a>
+      <a href="cambio-climatico.html" class="actual" aria-current="page">Cambio climático</a>
+      <div class="nav-drop">
+        <span class="nav-droptop" tabindex="0" role="button" aria-haspopup="true">Herramientas <span class="caret" aria-hidden="true">▾</span></span>
+        <div class="nav-submenu" role="menu">
+          <a href="ivcba.html" role="menuitem">IV-CBA · Índice de vulnerabilidad</a>
+          <a href="explorador-precios.html" role="menuitem">Explorador de precios</a>
+          <a href="evolucion-cba-2026.html#simulador" role="menuitem">Canasta básica por familia</a>
+        </div>
+      </div>
       <a href="index.html#publicaciones">Publicaciones</a>
       <a class="btn btn-ghost" href="index.html#contacto">Contacto</a>
     </div>
