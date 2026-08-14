@@ -413,7 +413,7 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
           <div class="dd">Ambos factores están correlacionados (Pearson 0,89 sobre los 79 productos): las cadenas largas tienden a quemar más combustible. Pero no miden lo mismo. El combustible captura la sensibilidad a un <b>shock de precio</b> —reversible, coyuntural—; la logística captura la <b>dependencia estructural</b> de importaciones y cadena de frío, que persiste aunque el diésel baje. Un producto puede ser sensible a uno y no al otro: los limones dependen poco del flete (combustible 2) pese a producirse en zona acotada, mientras un plátano importado arrastra logística máxima con un componente de combustible menor en su precio final. Mantenerlos separados preserva esa distinción; el lector puede ponderar cada eje por su cuenta en la tabla de productos.</div>
         </div>
         <p class="dd" style="margin-top:8px"><b>Repesado (escala fija):</b> al desactivar El Niño o combustible, esa dimensión se omite del promedio y el índice se recalcula solo sobre los factores activos, manteniendo la proporción original de sus pesos. Con todos los factores activos el divisor es 1,0; al apagar uno de 0,2 pasa a 0,8. La escala 1–5 se conserva.</p>
-        <p class="nota-fuente">Base de datos: abril 2026 · 79 productos de la canasta básica oficial. Fuentes: ARClim, CR2, INIA, ODEPA, NOAA, IFOP, ENAP, FAO.</p>
+        <p class="nota-fuente">Base de datos de riesgo: abril 2026 · 79 productos de la canasta básica oficial · valor CBA actualizado a julio 2026 ($91.220/persona). Fuentes: ARClim, CR2, INIA, ODEPA, NOAA, IFOP, ENAP, FAO.</p>
       </div>
     </div>
   </div>
@@ -570,7 +570,7 @@ const PRODUCTOS = [
     const factoresTxt = activos.length===2 ? "clima + El Niño + combustible"
       : activos.length===1 ? "clima + "+activos[0]
       : "solo cambio climático";
-    $("#gaugeMeta").innerHTML = `Abril 2026 · 79 productos · CBA $90.384/persona<br>Factores activos: <b>${factoresTxt}</b>`;
+    $("#gaugeMeta").innerHTML = `CBA $91.220/persona · julio 2026 · 79 productos<br>Riesgo climático: base abril 2026 · Factores activos: <b>${factoresTxt}</b>`;
   }
 
   /* ---------- dashboard ---------- */

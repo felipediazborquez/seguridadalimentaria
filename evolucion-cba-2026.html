@@ -279,7 +279,6 @@ footer{border-top:1px solid var(--v-linea);padding:40px 0 48px}
     <div class="eyebrow">Actualización mensual · Serie metodología 2024</div>
     <h1>Cuánto cuesta <em>llenar la olla</em>, mes a mes</h1>
     <p class="lede">Seguimiento del valor oficial de la Canasta Básica de Alimentos durante 2026, según los informes de la División Observatorio Social del Ministerio de Desarrollo Social y Familia. La CBA define la línea de pobreza y se calcula sobre el consumo del quintil más pobre: cuando sube, se mueve el umbral.</p>
-    <div class="cinta" id="cinta" aria-hidden="true"></div>
   </div>
 </header>
 
@@ -386,19 +385,6 @@ const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
 const ultimo = CBA_DATA[CBA_DATA.length-1];
 const previo = CBA_DATA[CBA_DATA.length-2];
 const primero = CBA_DATA[0];
-
-/* ---------- cinta del encabezado ---------- */
-(function(){
-  const c = document.getElementById("cinta");
-  const max = Math.max(...CBA_DATA.map(d=>Math.abs(d.varMensual)));
-  CBA_DATA.forEach(d=>{
-    const i = document.createElement("div");
-    i.className = "cinta-i";
-    i.title = `${d.mesLargo}: ${fPct(d.varMensual)} mensual`;
-    i.innerHTML = `<div class="cinta-b ${d.varMensual<0?'neg':''}" style="height:${Math.max(3,Math.round(Math.abs(d.varMensual)/max*34))}px"></div><span>${d.mes}</span>`;
-    c.appendChild(i);
-  });
-})();
 
 /* ---------- franja de cifras ---------- */
 document.getElementById("kpis").innerHTML = [
