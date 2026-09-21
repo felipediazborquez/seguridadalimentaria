@@ -371,10 +371,9 @@ const CBA_DATA = [
   { mes:"May", mesLargo:"mayo",    cba:89995, varMensual:-0.4, var12m:3.4 },
   { mes:"Jun", mesLargo:"junio",   cba:90658, varMensual: 0.7, var12m:4.8 },
   { mes:"Jul", mesLargo:"julio",   cba:91220, varMensual: 0.6, var12m:4.6 },
-  { mes:"Ago", mesLargo:"agosto",  cba:92327, varMensual: 1.2, var12m:5.0 },
 ];
-const ACUM_ANUAL = "5,0%";        /* variación últimos 12 meses (columna final), Cuadro 3 del informe */
-const IPC_12M = "4,1%";           /* IPC general a 12 meses, mismo mes */
+const ACUM_ANUAL = "2,2%";        /* variación acumulada del año, Cuadro 3 del informe */
+const IPC_12M = "3,5%";           /* IPC general a 12 meses, mismo mes */
 const INGRESO_REF = 468954;       /* sueldo mínimo líquido (bruto $553.553, mayo 2026) */
 
 const C = { verde:"#123728", verdeMed:"#3E6E35", lima:"#8AA951", ocre:"#D18B25",
@@ -391,13 +390,13 @@ const primero = CBA_DATA[0];
 document.getElementById("kpis").innerHTML = [
   { fig:fCLP(ultimo.cba), lbl:`cuesta la canasta básica por persona en ${ultimo.mesLargo} de 2026.`, src:`Mindesaf · ${ultimo.mesLargo} 2026` },
   { fig:fPct(ultimo.var12m), lbl:`subió en doce meses, desde ${fPct(previo.var12m)} el mes anterior.`, src:"Variación interanual" },
-  { fig:IPC_12M, lbl:`subió el IPC general en el mismo período.`, src:"IPC · 12 meses" },
+  { fig:ACUM_ANUAL, lbl:`acumula la canasta en lo que va del año, contra ${IPC_12M} del IPC general a doce meses.`, src:"Acumulado 2026" },
   { fig:fCLP(Math.round(ultimo.cba*3)), lbl:"cuesta alimentar un hogar de cuatro personas (3,0 adultos-equivalentes) durante un mes.", src:"CBA × 3,0 adultos-eq." },
 ].map(k=>`<div class="stat"><div class="fig">${k.fig}</div><div class="lbl">${k.lbl}</div><div class="src">${k.src}</div></div>`).join("");
 
 document.getElementById("notaNivel").innerHTML =
   `Entre ${primero.mesLargo} y ${ultimo.mesLargo} de 2026 la canasta pasó de <strong>${fCLP(primero.cba)}</strong> a ` +
-  `<strong>${fCLP(ultimo.cba)}</strong> por persona, con una variación de <strong>${ACUM_ANUAL}</strong> en los últimos doce meses. ` +
+  `<strong>${fCLP(ultimo.cba)}</strong> por persona, con una variación acumulada de <strong>${ACUM_ANUAL}</strong> en el año. ` +
   `En todo el período corre por sobre el IPC general: la comida le gana al promedio, y eso golpea primero a los hogares que ya destinan la mayor parte de su presupuesto a alimentarse.`;
 
 /* ---------- gráficos ---------- */
